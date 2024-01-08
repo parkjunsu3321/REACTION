@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
   const [message, setMessage] = useState('');
 
-useEffect(() => {
-    // API 호출
-    fetch('/api/hello')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(data => {
-            console.log(data);
-            setMessage(data);
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            // 추가 디버깅을 위해 서버 응답을 콘솔에 출력
-            return error.text().then(errorMessage => console.error('Server response:', errorMessage));
-        });
-}, []);
-
+  useEffect(() => {
+    // axios를 이용한 API 호출
+    axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/hello')
+      .then(response => {
+        console.log(response.data);
+        setMessage(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        // 추가 디버깅을 위해 서버 응답을 콘솔에 출력
+        if (error.response) {
+          console.error('Server response:', error.response.data);
+        }
+      });
+  }, []);
 
   return (
     <div className="App">
