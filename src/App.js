@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from 'react';
-
-function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
+// App.js
+useEffect(() => {
     // API 호출
     fetch('/api/hello')
-      .then(response => response.text())
-      .then(data => {
-        console.log(data); // 받은 문자열을 콘솔에 출력
-        setMessage(data);
-      })
-      .catch(error => console.error('Error fetching data:', error));
-  }, []); // useEffect가 처음 한 번만 실행되도록 빈 배열을 전달합니다.
-
-  return (
-    <div className="App">
-      <h1></h1>
-    </div>
-  );
-}
-
-export default App;
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log(data);
+            setMessage(data);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            // 추가 디버깅을 위해 서버 응답을 콘솔에 출력
+            return error.text().then(errorMessage => console.error('Server response:', errorMessage));
+        });
+}, []);
