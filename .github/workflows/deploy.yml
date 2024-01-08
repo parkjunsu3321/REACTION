@@ -1,0 +1,39 @@
+name: Deploy to cloudtype
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: parkjunsu3321/postgresql
+          stage: main
+          yaml: >
+            name: reaction
+
+            app: web
+
+            options:
+              nodeversion: 14
+              docbase: /build
+              spa: true
+              buildenv:
+                - name: REACT_APP_WAITLIST_API_URL
+                  value: https://port-0-java-springboot23-hkty2alqiwtpix.sel4.cloudtype.app/
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
+              preset: react
