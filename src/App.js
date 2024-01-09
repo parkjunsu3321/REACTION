@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
     // axios를 이용한 API 호출
-    axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/hello')
+    axios.get(process.env.REACT_APP_WAITLIST_API_URL)
       .then(response => {
         console.log(response.data);
         setMessage(response.data);
