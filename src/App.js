@@ -4,7 +4,7 @@ import axios from 'axios';
 function App() {
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
+  const fetchData = () => {
     // axios를 이용한 API 호출
     axios.get(process.env.REACT_APP_WAITLIST_API_URL+'/api')
       .then(response => {
@@ -18,11 +18,17 @@ function App() {
           console.error('Server response:', error.response.data);
         }
       });
+  };
+
+  useEffect(() => {
+    // 초기 렌더링 시 데이터 가져오기
+    fetchData();
   }, []);
 
   return (
     <div className="App">
       <h1>{message}</h1>
+      <button onClick={fetchData}>Fetch Data</button>
     </div>
   );
 }
