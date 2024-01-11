@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function App() {
   const [message, setMessage] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
   const fetchData = () => {
     axios.get(process.env.REACT_APP_WAITLIST_API_URL+'/api')
@@ -12,14 +13,13 @@ function App() {
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        // 추가 디버깅을 위해 서버 응답을 콘솔에 출력
         if (error.response) {
           console.error('Server response:', error.response.data);
         }
       });
   };
 
-const btndata = () => {
+  const btndata = () => {
     axios.get(process.env.REACT_APP_WAITLIST_API_URL+'/api/db')
       .then(response => {
         console.log(response.data);
@@ -27,21 +27,29 @@ const btndata = () => {
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        // 추가 디버깅을 위해 서버 응답을 콘솔에 출력
         if (error.response) {
           console.error('Server response:', error.response.data);
         }
       });
   };
-  
+
   useEffect(() => {
-    // 초기 렌더링 시 데이터 가져오기
     fetchData();
   }, []);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
   return (
     <div className="App">
       <h1>{message}</h1>
+      <input
+        type="text"
+        placeholder="Enter text"
+        value={inputValue}
+        onChange={handleInputChange}
+      />
       <button onClick={btndata}>Fetch Data</button>
     </div>
   );
