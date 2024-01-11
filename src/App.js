@@ -20,7 +20,12 @@ function App() {
   };
 
   const btndata = () => {
-    axios.get(process.env.REACT_APP_WAITLIST_API_URL+'/api/db')
+    // Include inputValue in the request
+    axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/db', {
+      params: {
+        input: inputValue,
+      },
+    })
       .then(response => {
         console.log(response.data);
         setMessage(response.data);
