@@ -23,7 +23,8 @@ function App() {
     // Include inputValue in the request
     axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/fieldtest', {
       params: {
-        input: inputValue,
+        input: id,
+        input: pass
       },
     })
       .then(response => {
@@ -52,10 +53,18 @@ function App() {
       <input
         type="text"
         placeholder="Enter text"
-        value={inputValue}
+        value={id}
         onChange={handleInputChange}
       />
       <button onClick={btndata}>Fetch Data</button>
+          <br></br>
+          <br></br>
+          <input
+        type="text"
+        placeholder="Enter text"
+        value={pass}
+        onChange={handleInputChange}
+      />
     </div>
   );
 }
