@@ -21,7 +21,7 @@ function App() {
   };
 
   const btndata = () => {
-    axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/fieldtest', {
+    axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/check', {
       params: {
         id: inputValueId,
         pass: inputValuePass,
