@@ -24,7 +24,7 @@ function App() {
     axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/fieldtest', {
       params: {
         input: id,
-        input: pass
+        input: pass,
       },
     })
       .then(response => {
