@@ -29,6 +29,8 @@ function App() {
     })
       .then(response => {
         console.log(response.data);
+        console.log(inputValueId);
+        console.log(inputValuePass);
         setMessage(response.data);
       })
       .catch(error => {
