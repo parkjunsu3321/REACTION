@@ -3,7 +3,8 @@ import axios from 'axios';
 
 function App() {
   const [message, setMessage] = useState('');
-  const [inputValue, setInputValue] = useState('');
+  const [inputValueId, setInputValueId] = useState('');
+  const [inputValuePass, setInputValuePass] = useState('');
 
   const fetchData = () => {
     axios.get(process.env.REACT_APP_WAITLIST_API_URL+'/api')
@@ -20,11 +21,10 @@ function App() {
   };
 
   const btndata = () => {
-    // Include inputValue in the request
     axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/fieldtest', {
       params: {
-        input: id,
-        input: pass,
+        id: inputValueId,
+        pass: inputValuePass,
       },
     })
       .then(response => {
@@ -43,8 +43,12 @@ function App() {
     fetchData();
   }, []);
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+  const handleInputChangeId = (e) => {
+    setInputValueId(e.target.value);
+  };
+
+  const handleInputChangePass = (e) => {
+    setInputValuePass(e.target.value);
   };
 
   return (
@@ -52,19 +56,20 @@ function App() {
       <h1>{message}</h1>
       <input
         type="text"
-        placeholder="Enter text"
-        value={id}
-        onChange={handleInputChange}
+        placeholder="Enter ID"
+        value={inputValueId}
+        onChange={handleInputChangeId}
       />
-      <button onClick={btndata}>Fetch Data</button>
-          <br></br>
-          <br></br>
-          <input
+      <br />
+      <br />
+      <input
         type="text"
-        placeholder="Enter text"
-        value={pass}
-        onChange={handleInputChange}
+        placeholder="Enter Password"
+        value={inputValuePass}
+        onChange={handleInputChangePass}
       />
+      <br />
+      <button onClick={btndata}>Fetch Data</button>
     </div>
   );
 }
