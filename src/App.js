@@ -88,7 +88,7 @@ const btndata01 = () => {
         onChange={handleInputChangePass}
       />
       <br />
-      <button onClick={btndata}>Fetch Data</button>
+      <button onClick={btndata01}>Fetch Data</button>
     </div>
   );
 }
