@@ -40,25 +40,26 @@ function App() {
 };
   
 const btndata01 = () => {
-  axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
-    params: {
+    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
       id: inputValueId,
       pass: inputValuePass,
-    },
-  })
-    .then(response => {
-      console.log(response.data);
-      console.log(inputValueId);
-      setMessage(response.data);
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-      if (error.response) {
-        console.error('Server response:', error.response.data);
-      }
-    });
-};
-
+      .then(response => {
+        console.log(response.data);
+        setMessage(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        if (error.response) {
+          console.error('Server response:', error.response.data);
+        }
+      });
+  };
+  
   useEffect(() => {
     fetchData();
   }, []);
