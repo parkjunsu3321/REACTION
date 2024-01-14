@@ -29,7 +29,6 @@ function App() {
   })
     .then(response => {
       console.log(response.data);
-      console.log(inputValueId);
       setMessage(response.data);
     })
     .catch(error => {
@@ -49,6 +48,7 @@ const btndata01 = () => {
   })
     .then(response => {
       console.log(response.data);
+      console.log(inputValueId);
       setMessage(response.data);
     })
     .catch(error => {
