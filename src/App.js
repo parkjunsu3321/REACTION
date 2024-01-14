@@ -40,7 +40,7 @@ function App() {
 };
   
 const btndata01 = () => {
-  axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
+  axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
     params: {
       id: inputValueId,
       pass: inputValuePass,
