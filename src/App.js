@@ -38,7 +38,25 @@ function App() {
       }
     });
 };
-
+  
+const btndata01 = () => {
+  axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
+    params: {
+      id: inputValueId,
+      pass: inputValuePass,
+    },
+  })
+    .then(response => {
+      console.log(response.data);
+      setMessage(response.data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+      if (error.response) {
+        console.error('Server response:', error.response.data);
+      }
+    });
+};
 
   useEffect(() => {
     fetchData();
