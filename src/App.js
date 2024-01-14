@@ -29,8 +29,7 @@ function App() {
   })
     .then(response => {
       console.log(response.data);
-      console.log(id);
-      console.log(pass);
+      console.log(response.id);
       setMessage(response.data);
     })
     .catch(error => {
