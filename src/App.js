@@ -61,6 +61,11 @@ const btndata01 = () => {
   
   useEffect(() => {
     fetchData();
+  window.addEventListener('beforeunload', exitwindow);
+
+    return () => {
+      window.removeEventListener('beforeunload', exitwindow);
+    };
   }, []);
 
   const handleInputChangeId = (e) => {
@@ -70,12 +75,6 @@ const btndata01 = () => {
   const handleInputChangePass = (e) => {
     setInputValuePass(e.target.value);
   };
-
-  window.addEventListener('beforeunload', exitwindow);
-
-    return () => {
-      window.removeEventListener('beforeunload', exitwindow);
-    };
   return (
     <div className="App">
       <h1>{message}</h1>
