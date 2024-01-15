@@ -7,7 +7,7 @@ function App() {
   const [inputValuePass, setInputValuePass] = useState('');
 
   const fetchData = () => {
-    axios.get(process.env.REACT_APP_WAITLIST_API_URL+'/api')
+    axios.put(process.env.REACT_APP_WAITLIST_API_URL+'/api/change')
       .then(response => {
         console.log(response.data);
         setMessage(response.data);
