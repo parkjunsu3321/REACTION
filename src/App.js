@@ -25,20 +25,25 @@ function App() {
     };
   
   const btndata = () => {
-  axios.put(process.env.REACT_APP_WAITLIST_API_URL + '/api/change')
-    .then(response => {
-      console.log(response.data);
-      setMessage(response.data);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-      if (error.response) {
-        console.error('Server response:', error.response.data);
-      }
-    });
+  axios.put(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', null, {
+    params: {
+      id: inputValueId,
+    }
+  })
+  .then(response => {
+    console.log(response.data);
+    setMessage(response.data);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+    if (error.response) {
+      console.error('Server response:', error.response.data);
+    }
+  });
 };
+
   
-const btndata01 = () => {
+const login = () => {
     axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
       id: inputValueId,
       pass: inputValuePass,
@@ -93,7 +98,7 @@ const btndata01 = () => {
         onChange={handleInputChangePass}
       />
       <br />
-      <button onClick={btndata01}>Fetch Data</button>
+      <button onClick={login}>Fetch Data</button>
       <button onClick={btndata}>Fetch Data</button>
     </div>
   );
