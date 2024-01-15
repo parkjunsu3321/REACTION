@@ -21,12 +21,7 @@ function App() {
   };
 
   const btndata = () => {
-  axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/check', {
-    params: {
-      id: inputValueId,
-      pass: inputValuePass,
-    },
-  })
+  axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/db')
     .then(response => {
       console.log(response.data);
       setMessage(response.data);
@@ -91,6 +86,7 @@ const btndata01 = () => {
       />
       <br />
       <button onClick={btndata01}>Fetch Data</button>
+      <button onClick={btndata}>Fetch Data</button>
     </div>
   );
 }
