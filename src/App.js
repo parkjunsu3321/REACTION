@@ -7,7 +7,7 @@ function App() {
   const [inputValuePass, setInputValuePass] = useState('');
 
   const fetchData = () => {
-    axios.put(process.env.REACT_APP_WAITLIST_API_URL+'/api/change')
+    axios.get(process.env.REACT_APP_WAITLIST_API_URL+'/api')
       .then(response => {
         console.log(response.data);
         setMessage(response.data);
@@ -25,7 +25,7 @@ function App() {
     };
   
   const btndata = () => {
-  axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/db')
+  axios.put(process.env.REACT_APP_WAITLIST_API_URL + '/api/change')
     .then(response => {
       console.log(response.data);
       setMessage(response.data);
