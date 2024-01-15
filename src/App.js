@@ -20,6 +20,10 @@ function App() {
       });
   };
 
+  const exitwindow = () => {
+     axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/exit')
+    };
+  
   const btndata = () => {
   axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/db')
     .then(response => {
@@ -67,6 +71,11 @@ const btndata01 = () => {
     setInputValuePass(e.target.value);
   };
 
+  window.addEventListener('beforeunload', exitwindow);
+
+    return () => {
+      window.removeEventListener('beforeunload', exitwindow);
+    };
   return (
     <div className="App">
       <h1>{message}</h1>
