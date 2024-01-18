@@ -21,8 +21,12 @@ function App() {
   };
 
   
-  const deleteItem = (inputValueId) => {
-    axios.delete(`${process.env.REACT_APP_WAITLIST_API_URL}/api/delete/${id}`)
+  const deleteItem = () => {
+    axios.delete(process.env.REACT_APP_WAITLIST_API_URL+'/api/delete',null, {
+       params: {
+      id: inputValueId,
+        }
+      })
       .then(response => {
         console.log(response.data);
         setMessage(response.data);
