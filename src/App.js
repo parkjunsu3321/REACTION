@@ -31,7 +31,7 @@ function App() {
     }
   })
   .then(response => {
-    console.log(response.data);
+    console.log(inputValueId);
     setMessage(response.data);
   })
   .catch(error => {
