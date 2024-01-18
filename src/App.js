@@ -20,9 +20,27 @@ function App() {
       });
   };
 
+   const exitwindow = () => {
+    axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/exit');
+  };
   
-  
-
+  const deleteItem = () => {
+    axios.delete(process.env.REACT_APP_WAITLIST_API_URL + '/api/delete', null, {
+    params: {
+      id: inputValueId,
+    }
+  })
+  .then(response => {
+    console.log(response.data);
+    setMessage(response.data);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+    if (error.response) {
+      console.error('Server response:', error.response.data);
+      }
+    });
+  };
   
   
   const btndata = () => {
