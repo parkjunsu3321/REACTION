@@ -118,7 +118,7 @@ const login = () => {
       />
       <br />
       <button onClick={login}>Fetch Data</button>
-      <button onClick={btndata}>Fetch Data</button>
+      <button onClick={deleteItem}>Fetch Data</button>
     </div>
   );
 }
