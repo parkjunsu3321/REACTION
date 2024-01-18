@@ -20,9 +20,21 @@ function App() {
       });
   };
 
-  const exitwindow = () => {
-     axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/exit')
-    };
+  
+  const deleteItem = (inputValueId) => {
+    axios.delete(`${process.env.REACT_APP_WAITLIST_API_URL}/api/delete/${id}`)
+      .then(response => {
+        console.log(response.data);
+        setMessage(response.data);
+      })
+      .catch(error => {
+        console.error('Error deleting item:', error);
+        if (error.response) {
+          console.error('Server response:', error.response.data);
+        }
+      });
+  };
+  
   
   const btndata = () => {
   axios.put(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', null, {
