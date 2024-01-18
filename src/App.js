@@ -25,7 +25,7 @@ function App() {
   };
   
   const deleteItem = () => {
-    axios.delete(process.env.REACT_APP_WAITLIST_API_URL + '/api/delete', null, {
+    axios.delete(process.env.REACT_APP_WAITLIST_API_URL + '/api/delete',{
     params: {
       id: inputValueId,
     }
