@@ -1,126 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import YouTube from 'react-youtube';
 
-function App() {
-  const [message, setMessage] = useState('');
-  const [inputValueId, setInputValueId] = useState('');
-  const [inputValuePass, setInputValuePass] = useState('');
-
-  const fetchData = () => {
-    axios.get(process.env.REACT_APP_WAITLIST_API_URL+'/api')
-      .then(response => {
-        console.log(response.data);
-        setMessage(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        if (error.response) {
-          console.error('Server response:', error.response.data);
-        }
-      });
+const App = ({ videoId }) => {
+  const [key, setKey] = useState(0); // 상태를 변경하여 강제로 컴포넌트를 다시 렌더링
+  const validateVideoId = (videoId) => {
+    // videoId validation logic (e.g., length, special characters)
+    // Perform default value or error handling if invalid
+    return videoId ? videoId : '8dlA7MKi06k';
   };
 
-   const exitwindow = () => {
-    axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/exit');
+  const onEndHandler = (event) => {
+    // Video end handler logic
+    event.target.stopVideo(0);
   };
-  
-  const deleteItem = () => {
-    axios.delete(process.env.REACT_APP_WAITLIST_API_URL + '/api/delete',{
-    params: {
-      id: inputValueId,
-    }
-  })
-  .then(response => {
-    console.log(response.data);
-    setMessage(response.data);
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-    if (error.response) {
-      console.error('Server response:', error.response.data);
-      }
-    });
-  };
-  
-  
-  const btndata = () => {
-  axios.put(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', null, {
-    params: {
-      id: inputValueId,
-    }
-  })
-  .then(response => {
-    console.log(response.data);
-    setMessage(response.data);
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-    if (error.response) {
-      console.error('Server response:', error.response.data);
-    }
-  });
-};
 
-  
-const login = () => {
-    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
-      id: inputValueId,
-      pass: inputValuePass,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        console.log(response.data);
-        setMessage(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        if (error.response) {
-          console.error('Server response:', error.response.data);
-        }
-      });
-  };
-  
+  const validatedVideoId = validateVideoId(videoId);
+
   useEffect(() => {
-    fetchData();
-  window.addEventListener('beforeunload', exitwindow);
+    // 페이지가 로드될 때마다 key 값을 변경하여 강제로 다시 렌더링
+    setKey((prevKey) => prevKey + 1);
+  }, [videoId]); // videoId가 변경될 때만 useEffect 실행
 
-    return () => {
-      window.removeEventListener('beforeunload', exitwindow);
-    };
-  }, []);
-
-  const handleInputChangeId = (e) => {
-    setInputValueId(e.target.value);
-  };
-
-  const handleInputChangePass = (e) => {
-    setInputValuePass(e.target.value);
-  };
   return (
-    <div className="App">
-      <h1>{message}</h1>
-      <input
-        type="text"
-        placeholder="Enter ID"
-        value={inputValueId}
-        onChange={handleInputChangeId}
+    <div style={{ position: 'absolute', left: '-9999px' }}>
+      <YouTube
+        key={key} // key 값이 변경될 때마다 YouTube 컴포넌트가 새로 생성됨
+        videoId={validatedVideoId}
+        opts={{
+          width: '300',
+          height: '300',
+          playerVars: {
+            autoplay: 1,
+            rel: 0,
+            modestbranding: 1,
+            start: 0,
+            end: 5,
+          },
+        }}
+        onEnd={onEndHandler}
       />
-      <br />
-      <br />
-      <input
-        type="text"
-        placeholder="Enter Password"
-        value={inputValuePass}
-        onChange={handleInputChangePass}
-      />
-      <br />
-      <button onClick={login}>Fetch Data</button>
-      <button onClick={deleteItem}>Fetch Data</button>
     </div>
   );
-}
+};
 
 export default App;
