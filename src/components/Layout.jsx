@@ -15,7 +15,7 @@ import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { IoIosPeople } from "react-icons/io";
 import { CiSquareQuestion } from "react-icons/ci";
 // 여기까지가 아이콘 적용 라이브러리
-login_b = false;
+var login_b = false;
 const Container = styled.div`   
     width: 100vw;
     height: 100vh;
