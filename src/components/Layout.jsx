@@ -15,7 +15,7 @@ import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { IoIosPeople } from "react-icons/io";
 import { CiSquareQuestion } from "react-icons/ci";
 // 여기까지가 아이콘 적용 라이브러리
-
+login_b = false;
 const Container = styled.div`   
     width: 100vw;
     height: 100vh;
@@ -263,13 +263,10 @@ const Layout = ({ RightMainContent }) => {
                         <Link to="/" style={LinkStyle}>
                             <ul><IoHomeOutline />홈</ul>
                         </Link>
-
-                        <Link to="/MyPage" style={LinkStyle}>
-                        <ul><FaChild />마이페이지 (테스트)</ul>
+                        <Link to={login_b ? "/SignIn" : "/MyPage"} style={LinkStyle}>
+                            <ul><FaChild />마이페이지 (테스트)</ul>
                         </Link>
-
                         <hr></hr>
-
                         <Link to="/PopularSong" style={LinkStyle}>
                             <ul><ImFloppyDisk />대중가요 맞추기</ul>
                         </Link>
