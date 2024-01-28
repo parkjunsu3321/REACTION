@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/SignIn.css';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 const User = {
   // 가상의 사용자 데이터 (임시로 추가) 삭제해도 댐
   // 로그인 시 스크립트 창 볼려고 만든거임
@@ -38,11 +38,24 @@ export default function SignIn() {
 
   // 로그인 버튼 클릭 핸들러임
   const onClickConfirmButton = () => {
-    if (id === User.id && pw === User.pw) {
-      alert('로그인에 성공했습니다.');
-    } else {
-      alert('등록되지 않은 회원입니다.')
-    }
+    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
+      id: inputValueId,
+      pass: inputValuePass,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        alert(response.data);
+      })
+      .catch(error => {
+        alert('Error fetching data:', error);
+        if (error.response) {
+          alert('Server response:', error.response.data);
+        }
+      });
+    
   }
 
   // 엔터 키 다운 가능하게 만든 핸들러임
