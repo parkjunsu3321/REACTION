@@ -38,9 +38,13 @@ export default function SignIn() {
 
   // 로그인 버튼 클릭 핸들러임
   const onClickConfirmButton = () => {
-    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
-      id: inputValueId,
-      pass: inputValuePass,
+    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', 
+    {
+      params:
+      {
+        id: inputValueId,
+        pass: inputValuePass,
+      }
     }, {
       headers: {
         'Content-Type': 'application/json',
