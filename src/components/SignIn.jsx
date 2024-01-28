@@ -5,13 +5,13 @@ import axios from 'axios';
 const User = {
   // 가상의 사용자 데이터 (임시로 추가) 삭제해도 댐
   // 로그인 시 스크립트 창 볼려고 만든거임
-  id: '20203206',
+  userid: '20203206',
   pw: '1234'
 }
 
 export default function SignIn() {
   // 아이디, 비밀번호 변수 선언
-  const [id, setId] = useState('');
+  const [userid, setId] = useState('');
   const [pw, setPw] = useState('');
   
   // 전체 유효성 검사를 위한 변수임
@@ -39,8 +39,8 @@ export default function SignIn() {
   // 로그인 버튼 클릭 핸들러임
   const onClickConfirmButton = () => {
     axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
-      id: inputValueId,
-      pass: inputValuePass,
+      id: userid,
+      pass: pw,
     }, {
       headers: {
         'Content-Type': 'application/json',
