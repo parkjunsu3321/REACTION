@@ -28,7 +28,7 @@ export default function SignIn() {
   const handlePassword = (e) => {
     const newPw = e.target.value;
     setPw(newPw);
-    updateButtonState(id, newPw);
+    updateButtonState(userid, newPw);
   };
 
   // 아이디와 비밀번호를 1자 이상이라도 입력 시 버튼 활성화
@@ -77,7 +77,7 @@ export default function SignIn() {
             type='text'
             className='input'
             placeholder='아이디 입력'
-            value={id}
+            value={userid}
             onChange={handleId}
             onKeyDown={handleKeyDown}
           />
