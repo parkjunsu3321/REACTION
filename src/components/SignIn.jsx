@@ -47,10 +47,7 @@ export default function SignIn() {
       },
     })
       .then(response => {
-        if(response.data == true)
-        {
           alert(response.data)
-        }
       })
       .catch(error => {
         alert('Error fetching data:', error);
