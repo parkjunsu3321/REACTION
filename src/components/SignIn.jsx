@@ -111,6 +111,7 @@ export default function SignIn() {
 
       <div>
         <button onClick={onClickConfirmButton} disabled={notAllow} className='loginButton'>
+          로그인
         </button>
       </div>
 
