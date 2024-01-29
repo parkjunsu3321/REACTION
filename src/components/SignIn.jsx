@@ -49,7 +49,7 @@ export default function SignIn() {
       .then(response => {
         if(response.data == true)
         {
-          
+          alert(response.data)
         }
       })
       .catch(error => {
@@ -111,9 +111,6 @@ export default function SignIn() {
 
       <div>
         <button onClick={onClickConfirmButton} disabled={notAllow} className='loginButton'>
-          <Link to="/SignUp">
-            
-          </Link>
         </button>
       </div>
 
