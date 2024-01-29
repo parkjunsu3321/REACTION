@@ -47,7 +47,10 @@ export default function SignIn() {
       },
     })
       .then(response => {
-        alert(response.data);
+        if(response.data == true)
+        {
+          
+        }
       })
       .catch(error => {
         alert('Error fetching data:', error);
@@ -108,7 +111,9 @@ export default function SignIn() {
 
       <div>
         <button onClick={onClickConfirmButton} disabled={notAllow} className='loginButton'>
-          로그인
+          <Link to="/SignUp">
+            
+          </Link>
         </button>
       </div>
 
