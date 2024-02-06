@@ -19,6 +19,7 @@ import { FaLock } from "react-icons/fa";
 import { FaUserLarge } from "react-icons/fa6";
 import { BiSolidWidget } from "react-icons/bi";
 import { ImMenu } from "react-icons/im";
+import axios from 'axios';
 // 여기까지가 아이콘 적용 라이브러리
 var login_b = false;
 const Container = styled.div`   
