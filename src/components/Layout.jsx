@@ -337,7 +337,7 @@ const Layout = ({ RightMainContent }) => {
                                 </HeaderRightL>
                                 <HeaderRightR>
                                     <Link to={logincheck ? "../" : "/SignIn"}  style={LinkStyle2}>
-                                        <SignBtn onClick={logincheck ? null : handleSignBtnClick}>
+                                        <SignBtn onClick={logincheck ? handleSignBtnClick : null}>
                                             {logincheck ? '로그아웃' : '로그인 / 회원가입'}
                                         </SignBtn>
                                     </Link>
