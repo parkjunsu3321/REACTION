@@ -1,5 +1,6 @@
 import styled from 'styled-components'; //  백틱``을 이용한 간단한 css 작성을 위해 사용
 import { Link, useLocation } from 'react-router-dom';    // react-router 사용
+import MediaQuery from 'react-responsive';
 // 여기서부터 아이콘 적용 라이브러리
 import { IoSearchSharp } from "react-icons/io5";
 import { IoHomeOutline } from "react-icons/io5";
@@ -14,6 +15,10 @@ import { TbLanguageHiragana } from "react-icons/tb";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import { IoIosPeople } from "react-icons/io";
 import { CiSquareQuestion } from "react-icons/ci";
+import { FaLock } from "react-icons/fa";
+import { FaUserLarge } from "react-icons/fa6";
+import { BiSolidWidget } from "react-icons/bi";
+import { ImMenu } from "react-icons/im";
 // 여기까지가 아이콘 적용 라이브러리
 var login_b = false;
 const Container = styled.div`   
@@ -24,14 +29,6 @@ const Container = styled.div`
     align-items: center;
     background-color: lightsalmon;
     min-width: 1025px;
-
-    /* 태블릿 스타일 */
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-    }
-
-    /* 모바일 스타일 */
-    @media screen and (max-width: 767px) {
-    }
 `;
 
 const Frame = styled.div`
@@ -156,7 +153,7 @@ const Main = styled.main`
 `;
 
 const SideMenu = styled.div`
-    width: 12%;
+    width: 17%;
     height: auto;
     background-color: white;
     border-right: 1px solid lightgray;
@@ -238,6 +235,64 @@ const LinkStyle2 = {
     color: 'black',
 };
 
+// 여기서부터 모바일 환경 컴포넌트
+
+const MobileContainer = styled.div`
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    border: 1px solid black;
+`
+
+const MobileHeader = styled.div`
+    width: 100%;
+    height: 10%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    h1 {
+        margin: 0px;
+        margin-left: 6%;
+    }
+`
+
+const MobileHeaderL = styled.div`
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+`
+
+const MobileHeaderR = styled.div`
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+`
+
+const MobileMain = styled.div`
+    width: 100%;
+    height: 80%;
+    background-color: lightsalmon;
+`
+
+const MobileFooter = styled.div`
+    width: 100%;
+    height: 10%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+`
+
+const IconStyle = {
+    width: '30px',
+    height: '30px',
+};
+
 const Layout = ({ RightMainContent }) => {
     const location = useLocation();
     const { state } = location;
@@ -251,89 +306,111 @@ const Layout = ({ RightMainContent }) => {
         logincheck = state.login_b;
     }
     return (
-        <Container>
-            <Frame>
-                <Header>
-                    <HeaderLeft>
-                        <h1>Reaction</h1>
-                        <SearchBox></SearchBox>
-                    </HeaderLeft>
-                    <HeaderRight>
-                        <HeaderRightL>
-                        </HeaderRightL>
-                        <HeaderRightR>
-                            <Link to={logincheck ? "../" : "/SignIn"}  style={LinkStyle2}>
-                                <SignBtn>{logincheck ? '로그아웃' : '로그인 / 회원가입'}</SignBtn>
-                            </Link>
-                            <MypageBtn>마이페이지</MypageBtn>
-                        </HeaderRightR>
-                    </HeaderRight>
-                </Header>
-                <Main>
-                    <SideMenu>
-                        <Link to="/" style={LinkStyle}>
-                            <ul><IoHomeOutline />홈</ul>
-                        </Link>
-                        <Link to={logincheck ? "/MyPage" : "/SignIn"} style={LinkStyle}>
-                            <ul><FaChild />마이페이지 (테스트)</ul>
-                        </Link>
-                        <hr></hr>
-                        <Link to="/PopularSong" style={LinkStyle}>
-                            <ul><ImFloppyDisk />대중가요 맞추기</ul>
-                        </Link>
+        <>
+                <MediaQuery minWidth={768}>
+                <Container>
+                    <Frame>
+                        <Header>
+                            <HeaderLeft>
+                                <h1>Reaction</h1>
+                                <SearchBox></SearchBox>
+                            </HeaderLeft>
+                            <HeaderRight>
+                                <HeaderRightL>
+                                </HeaderRightL>
+                                <HeaderRightR>
+                                    <Link to={logincheck ? "../" : "/SignIn"}  style={LinkStyle2}>
+                                        <SignBtn>{logincheck ? '로그아웃' : '로그인 / 회원가입'}</SignBtn>
+                                    </Link>
+                                    <MypageBtn>마이페이지</MypageBtn>
+                                </HeaderRightR>
+                            </HeaderRight>
+                        </Header>
+                        <Main>
+                            <SideMenu>
+                                <Link to="/" style={LinkStyle}>
+                                    <ul><IoHomeOutline />홈</ul>
+                                </Link>
+                                <Link to={logincheck ? "/MyPage" : "/SignIn"} style={LinkStyle}>
+                                    <ul><FaChild />마이페이지 (테스트)</ul>
+                                </Link>
+                                <hr></hr>
+                                <Link to="/PopularSong" style={LinkStyle}>
+                                    <ul><ImFloppyDisk />대중가요 맞추기</ul>
+                                </Link>
 
-                        <ul><BsMusicPlayer />내취향 음악 맞추기</ul>
+                                <ul><BsMusicPlayer />내취향 음악 맞추기</ul>
 
-                        <Link to="/PopSong" style={LinkStyle}>
-                            <ul><FaGlobeAmericas />팝송 맞추기</ul>
-                        </Link>
+                                <Link to="/PopSong" style={LinkStyle}>
+                                    <ul><FaGlobeAmericas />팝송 맞추기</ul>
+                                </Link>
 
-                        <Link to="/JpopSong" style={LinkStyle}>
-                            <ul><TbLanguageHiragana />JPOP 맞추기</ul>
-                        </Link>
+                                <Link to="/JpopSong" style={LinkStyle}>
+                                    <ul><TbLanguageHiragana />JPOP 맞추기</ul>
+                                </Link>
 
-                            <ul><PiTelevisionSimpleBold />드라마 / 영화 노래 맞추기</ul>
+                                    <ul><PiTelevisionSimpleBold />드라마 / 영화 노래 맞추기</ul>
 
-                        <Link to="/VideoPlayer">
-                            <ul><TbDeviceAirpods />업데이트 예정</ul>
-                        </Link>                            
-                            <hr></hr>
-                            <ul><FaRankingStar />명예의 전당</ul>
-                            <ul><MdFiberNew />업데이트 내역</ul>
-                            <ul><IoIosPeople />자유 게시판</ul>
-                            <ul><CiSquareQuestion />요청 게시판</ul>
-                    </SideMenu>
-                    <RightMain>
+                                <Link to="/VideoPlayer">
+                                    <ul><TbDeviceAirpods />업데이트 예정</ul>
+                                </Link>                            
+                                    <hr></hr>
+                                    <ul><FaRankingStar />명예의 전당</ul>
+                                    <ul><MdFiberNew />업데이트 내역</ul>
+                                    <ul><IoIosPeople />자유 게시판</ul>
+                                    <ul><CiSquareQuestion />요청 게시판</ul>
+                            </SideMenu>
+                            <RightMain>
+                                {RightMainContent}
+                            </RightMain>
+                        </Main>
+                        <Footer>
+                            <FooterLeft>
+                                <ul>Project Reaction</ul>
+                                <ul>Front - 이승훈 , 현지훈</ul>
+                                <ul>Back - 박준수 , 조우주</ul>
+                                <ul>대표전화 - 010-1234-5678</ul>
+                            </FooterLeft>
+                            <FooterRight>
+                                <img
+                                    src="/images/instagram.png"
+                                    alt="instagram"
+                                    style={CommonImageStyle}
+                                />
+                                <img
+                                    src="/images/kakaotalk.png"
+                                    alt="kakaotalk"
+                                    style={CommonImageStyle}
+                                />
+                                <img
+                                    src="/images/twitter.png"
+                                    alt="twitter"
+                                    style={CommonImageStyle}
+                                />
+                            </FooterRight>
+                        </Footer>
+                    </Frame>
+                </Container>     
+            </MediaQuery>    
+            
+            <MediaQuery maxWidth={768}>
+                <MobileContainer>
+                    <MobileHeader>
+                        <MobileHeaderL><h1>Reaction</h1></MobileHeaderL>
+                        <MobileHeaderR><FaLock style={{ width:'20px', height:'20px' }}/><h2 style={{ marginRight: '5%' , marginLeft: '5%' }}>Guest</h2><h2>님</h2></MobileHeaderR>
+                    </MobileHeader>
+                    <MobileMain>
                         {RightMainContent}
-                    </RightMain>
-                </Main>
-                <Footer>
-                    <FooterLeft>
-                        <ul>Project Reaction</ul>
-                        <ul>Front - 이승훈 , 현지훈</ul>
-                        <ul>Back - 박준수 , 조우주</ul>
-                        <ul>대표전화 - 010-1234-5678</ul>
-                    </FooterLeft>
-                    <FooterRight>
-                        <img
-                            src="/images/instagram.png"
-                            alt="instagram"
-                            style={CommonImageStyle}
-                        />
-                        <img
-                            src="/images/kakaotalk.png"
-                            alt="kakaotalk"
-                            style={CommonImageStyle}
-                        />
-                        <img
-                            src="/images/twitter.png"
-                            alt="twitter"
-                            style={CommonImageStyle}
-                        />
-                    </FooterRight>
-                </Footer>
-            </Frame>
-        </Container>         
+                    </MobileMain>
+                    <MobileFooter>
+                        <FaUserLarge style={IconStyle}/>
+                        <BiSolidWidget style={IconStyle}/>
+                        <FaRankingStar style={IconStyle}/>
+                        <ImMenu style={IconStyle}/>
+                    </MobileFooter>
+                </MobileContainer>
+            </MediaQuery>
+        </>
     );
 }
 

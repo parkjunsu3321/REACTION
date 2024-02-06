@@ -112,6 +112,11 @@ const RightBox = styled.div`
   background-color: rgba(255, 255, 255, 0.9);
 `;
 
+const HomeLink = styled(StyledLink)`
+  top: 500px;
+  left: 38%;
+`;
+
 export const MyPage = () => {
   return (
     <Container>
@@ -135,6 +140,11 @@ export const MyPage = () => {
             <WithdrawalLink to='/mypage/회원탈퇴'>
               회원 탈퇴
             </WithdrawalLink>
+          </li>
+          <li>
+            <HomeLink to='/'>
+              홈으로
+            </HomeLink>
           </li>
         </ul>
       </LeftBox>

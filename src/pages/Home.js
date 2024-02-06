@@ -1,7 +1,9 @@
 import React from 'react';
 import '../styles/Home.module.css';
 import Layout from '../components/Layout';
-import { Routes, Route,useLocation} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
+import styled from 'styled-components';
 import PopularSong from '../pages/PopularSong';
 import PopSong from '../pages/PopSong';
 import JpopSong from '../pages/JpopSong';
@@ -9,20 +11,70 @@ import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import InGame from './InGame';
 import VideoPlayer from './VideoPlayer';
-
 import MyPage from '../components/MyPage';
 import MyInfo from '../components/MyInfo';
 import PwChange from '../components/PwChange';
 import Withdrawal from '../components/Withdrawal';
 
+const Frame = styled.div`
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+`
+
+const imgStyle = {
+  width: '180px',
+  height: '160px',
+  borderRadius: '20px',
+}
+
+const TagBox = styled.div`
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 function Home() {
   const RightMainContent = (
-    <img
-      src="/images/discospaghetti.gif"
-      alt="Let's DISCO"
-      style={{ width: '50%', height: 'auto' }}
-    />
+    <>
+      <MediaQuery minWidth={768}>
+        <h1>Content for desktop</h1>
+      </MediaQuery>
+
+      <MediaQuery maxWidth={767}>
+       <Frame>
+          <TagBox>
+            <img src="/images/younha.jpg" style={imgStyle}/>
+            <h3>대중가요 맞추기</h3>
+          </TagBox>
+          <TagBox>
+            <img src="/images/drama.jpg" style={imgStyle}/>
+            <h3>OST 맞추기</h3>
+          </TagBox>
+          <TagBox>
+            <img src="/images/lemon.jpg" style={imgStyle}/>
+            <h3>JPOP 맞추기</h3>
+          </TagBox>
+          <TagBox>
+            <img src="/images/stay.jpg" style={imgStyle}/>
+            <h3>POP송 맞추기</h3>
+          </TagBox>
+          <TagBox>
+            <img src="/images/drama.jpg" style={imgStyle}/>
+            <h3>OST 맞추기</h3>
+          </TagBox>
+          <TagBox>
+            <img src="/images/drama.jpg" style={imgStyle}/>
+            <h3>OST 맞추기</h3>
+          </TagBox>
+        </Frame>
+      </MediaQuery>
+    </>
   );
 
   return (
