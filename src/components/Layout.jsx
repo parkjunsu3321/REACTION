@@ -262,7 +262,7 @@ const Layout = ({ RightMainContent }) => {
                         <HeaderRightL>
                         </HeaderRightL>
                         <HeaderRightR>
-                            <Link to="/SignIn" style={LinkStyle2}>
+                            <Link to={logincheck ? "/SignIn" : "../"}  style={LinkStyle2}>
                                 <SignBtn>{logincheck ? '로그아웃' : '로그인 / 회원가입'}</SignBtn>
                             </Link>
                             <MypageBtn>마이페이지</MypageBtn>
