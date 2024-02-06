@@ -42,7 +42,7 @@ export default function SignIn() {
     })
       .then(response => {
     alert(response.data); // 성공 알림
-    history('../pages/Home'); // 로그인 성공 시 이동할 페이지 경로
+    history('/'); // 로그인 성공 시 이동할 페이지 경로
 })
 .catch(error => {
     alert('Error fetching data: ' + error); // 실패 알림
