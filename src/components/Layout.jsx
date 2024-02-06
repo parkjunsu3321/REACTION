@@ -274,7 +274,7 @@ const Layout = ({ RightMainContent }) => {
                         <Link to="/" style={LinkStyle}>
                             <ul><IoHomeOutline />홈</ul>
                         </Link>
-                        <Link to={login_b ? "/MyPage" : "/SignIn"} style={LinkStyle}>
+                        <Link to={logincheck ? "/MyPage" : "/SignIn"} style={LinkStyle}>
                             <ul><FaChild />마이페이지 (테스트)</ul>
                         </Link>
                         <hr></hr>
