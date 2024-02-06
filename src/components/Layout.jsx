@@ -241,7 +241,15 @@ const LinkStyle2 = {
 const Layout = ({ RightMainContent }) => {
     const location = useLocation();
     const { state } = location;
-    let logincheck = state ? state.login_b : false;
+    var logincheck;
+    if(state == null)
+    {
+        logincheck = false;
+    }
+    else
+    {
+        logincheck = state.login_b;
+    }
     return (
         <Container>
             <Frame>
