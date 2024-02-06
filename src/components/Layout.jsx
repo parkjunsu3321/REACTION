@@ -1,5 +1,5 @@
 import styled from 'styled-components'; //  백틱``을 이용한 간단한 css 작성을 위해 사용
-import { Link } from 'react-router-dom';    // react-router 사용
+import { Link, useLocation } from 'react-router-dom';    // react-router 사용
 // 여기서부터 아이콘 적용 라이브러리
 import { IoSearchSharp } from "react-icons/io5";
 import { IoHomeOutline } from "react-icons/io5";
@@ -239,6 +239,9 @@ const LinkStyle2 = {
 };
 
 const Layout = ({ RightMainContent }) => {
+    const location = useLocation();
+    const { login_b } = location.state;
+    let logincheck = state ? state.login_b : false;
     return (
         <Container>
             <Frame>
@@ -252,7 +255,7 @@ const Layout = ({ RightMainContent }) => {
                         </HeaderRightL>
                         <HeaderRightR>
                             <Link to="/SignIn" style={LinkStyle2}>
-                                <SignBtn>'로그인 / 회원가입'</SignBtn>
+                                <SignBtn>{logincheck ? '로그아웃' : '로그인 / 회원가입'}</SignBtn>
                             </Link>
                             <MypageBtn>마이페이지</MypageBtn>
                         </HeaderRightR>
