@@ -41,8 +41,9 @@ export default function SignIn() {
       },
     })
       .then(response => {
-    alert(response.data); // 성공 알림
-    history('../', { state: {login_b : true,},}); // 로그인 성공 시 이동할 페이지 경로
+    alert("로그인 성공"); // 성공 알림
+    history('../', { state: { login_b: true } });
+
 })
 .catch(error => {
     alert('Error fetching data: ' + error); // 실패 알림
