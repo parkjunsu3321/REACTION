@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/SignIn.css';
-import { Link, withRouter } from 'react-router-dom'; // withRouter 추가
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 const User = {
   // 가상의 사용자 데이터 (임시로 추가) 삭제해도 댐
@@ -9,14 +9,14 @@ const User = {
   pw: '1234'
 }
 
-function SignIn(props) { // withRouter로 감싸진 SignIn 컴포넌트 정의
+export default function SignIn() {
   // 아이디, 비밀번호 변수 선언
   const [userid, setId] = useState('');
   const [pw, setPw] = useState('');
   
   // 전체 유효성 검사를 위한 변수임
   const [notAllow, setNotAllow] = useState(true); // true이면 로그인 버튼 비활성화 false 일 경우 활성화
-  
+
   // 아이디 입력 핸들러임
   const handleId = (e) => {
     const newId = e.target.value;
@@ -47,12 +47,7 @@ function SignIn(props) { // withRouter로 감싸진 SignIn 컴포넌트 정의
       },
     })
       .then(response => {
-        if (response.data === true) {
-          // 로그인 성공 시 다른 경로로 이동
-          props.history.push('/otherComponentPath'); // props를 통해 history 객체에 접근
-        } else {
-          alert('로그인 실패');
-        }
+          alert(response.data)
       })
       .catch(error => {
         alert('Error fetching data:', error);
