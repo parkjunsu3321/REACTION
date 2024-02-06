@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/SignIn.css';
-import { Link, useHistory } from 'react-router-dom'; // useHistory 추가
+import { Link, useNavigate } from 'react-router-dom'; // useHistory 추가
 import axios from 'axios';
 
 const User = {
@@ -13,7 +13,7 @@ export default function SignIn() {
   const [pw, setPw] = useState('');
   const [notAllow, setNotAllow] = useState(true);
 
-  const history = useHistory(); // useHistory를 사용하여 history 객체 가져오기
+  const history = useNavigate(); // useHistory를 사용하여 history 객체 가져오기
 
   const handleId = (e) => {
     const newId = e.target.value;
