@@ -15,7 +15,6 @@ import MyInfo from '../components/MyInfo';
 import PwChange from '../components/PwChange';
 import Withdrawal from '../components/Withdrawal';
 
-const location = useLocation();
 
 function Home() {
   const RightMainContent = (
