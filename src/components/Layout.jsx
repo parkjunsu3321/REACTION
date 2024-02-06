@@ -240,7 +240,7 @@ const LinkStyle2 = {
 
 const Layout = ({ RightMainContent }) => {
     const location = useLocation();
-    const { state } = location.state;
+    const { state } = location;
     let logincheck = state ? state.login_b : false;
     return (
         <Container>
