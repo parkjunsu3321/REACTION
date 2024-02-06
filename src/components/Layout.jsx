@@ -293,7 +293,10 @@ const IconStyle = {
     height: '30px',
 };
 
+
+
 const Layout = ({ RightMainContent }) => {
+    
     const location = useLocation();
     const { state } = location;
     var logincheck;
@@ -305,6 +308,19 @@ const Layout = ({ RightMainContent }) => {
     {
         logincheck = state.login_b;
     }
+
+    const handleSignBtnClick = () => {
+        axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
+            .then(response => {
+                alert('로그아웃되었습니다.');
+                logincheck = false;
+            })
+            .catch(error => {
+                alert('로그아웃 중 오류가 발생했습니다.');
+                console.error('로그아웃 오류:', error);
+            });
+    };
+    
     return (
         <>
                 <MediaQuery minWidth={768}>
@@ -320,7 +336,9 @@ const Layout = ({ RightMainContent }) => {
                                 </HeaderRightL>
                                 <HeaderRightR>
                                     <Link to={logincheck ? "../" : "/SignIn"}  style={LinkStyle2}>
-                                        <SignBtn>{logincheck ? '로그아웃' : '로그인 / 회원가입'}</SignBtn>
+                                        <SignBtn onClick={logincheck ? null : handleSignBtnClick}>
+                                            {logincheck ? '로그아웃' : '로그인 / 회원가입'}
+                                        </SignBtn>
                                     </Link>
                                     <MypageBtn>마이페이지</MypageBtn>
                                 </HeaderRightR>
