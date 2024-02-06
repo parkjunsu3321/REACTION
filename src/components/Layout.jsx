@@ -313,8 +313,11 @@ const Layout = ({ RightMainContent }) => {
     const handleSignBtnClick = () => {
         axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
             .then(response => {
-                alert('로그아웃되었습니다.');
-                logincheck = false;
+                if(response.data == true)
+                {
+                    alert('로그아웃되었습니다.');
+                    logincheck = false;
+                }
             })
             .catch(error => {
                 alert('로그아웃 중 오류가 발생했습니다.');
