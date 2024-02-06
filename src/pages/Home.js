@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Home.module.css';
 import Layout from '../components/Layout';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route,useLocation} from 'react-router-dom';
 import PopularSong from '../pages/PopularSong';
 import PopSong from '../pages/PopSong';
 import JpopSong from '../pages/JpopSong';
@@ -14,6 +14,8 @@ import MyPage from '../components/MyPage';
 import MyInfo from '../components/MyInfo';
 import PwChange from '../components/PwChange';
 import Withdrawal from '../components/Withdrawal';
+
+const location = useLocation();
 
 function Home() {
   const RightMainContent = (
