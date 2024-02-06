@@ -120,23 +120,3 @@ export default function SignIn() {
     </div>
   );
 }
-
-여기서 const onClickConfirmButton = () => {
-    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
-      id: userid,
-      pass: pw,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-          alert(response.data)
-      })
-      .catch(error => {
-        alert('Error fetching data:', error);
-        if (error.response) {
-          alert('Server response:', error.response.data);
-        }
-      });
-  }
