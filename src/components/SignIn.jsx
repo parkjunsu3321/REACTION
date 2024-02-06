@@ -42,7 +42,7 @@ function SignIn(props) {
     })
       .then(response => {
         if (response.data === true) {
-          props.history.push('/otherComponentPath');
+          props.history.push('/Layout');
         } else {
           alert('로그인 실패');
         }
