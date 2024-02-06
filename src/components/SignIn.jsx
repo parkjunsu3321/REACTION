@@ -43,7 +43,7 @@ export default function SignIn() {
       .then(response => {
           alert(response.data);
           // 로그인 성공 시 특정 페이지로 이동
-          history.push('/Home'); // 로그인 성공 시 이동할 페이지 경로
+          history.push('/SignUp'); // 로그인 성공 시 이동할 페이지 경로
       })
       .catch(error => {
         alert('Error fetching data:', error);
