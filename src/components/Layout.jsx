@@ -315,7 +315,7 @@ const Layout = ({ RightMainContent }) => {
             .then(response => {
                 if(response.data == true)
                 {
-                    alert('로그아웃되었습니다.');
+                    alert('로그아웃 되었습니다.');
                     logincheck = false;
                 }
             })
