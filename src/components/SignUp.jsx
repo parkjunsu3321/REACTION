@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/SignUp.css';
+import axios from 'axios';
 
 export default function SignUp() {
   // 사용자 이름, 아이디, 비밀번호, 비밀번호 확인 변수 선언
@@ -75,8 +76,30 @@ export default function SignUp() {
     }
   };
 
-  const onChickCheckId= (e) => {
-	
+  const onChickCheckId = () => {
+	axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/checkid', {
+        id: inputValueId,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          if(response.data == true)
+          {
+            alert("사용가능한 아이디 입니다.");
+          }
+          else
+          {
+            alert("중복되는 아이디 입니다.");
+          }
+        })
+        .catch(error => {
+          alert('Error fetching data:', error);
+          if (error.response) {
+            alert('Server response:', error.response.data);
+          }
+        });
   };	
 
   return (
@@ -106,7 +129,7 @@ export default function SignUp() {
             value={id}
             onChange={handleId}
           />
-          <button className='overLapButton' disabled={!idValid}>중복확인</button>
+          <button onChick = {onChickCheckId} className='overLapButton' disabled={!idValid}>중복확인</button>
         </div>
 
         <div className='errorMessageWrap'>
