@@ -148,6 +148,9 @@ const MyInfo = () => {
     axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/info')
       .then(response => {
         setResponseData(response.data);
+        console.log(responseData[0]);
+        console.log(responseData[1]);
+        console.log(responseData[2]);
       })
       .catch(error => {
         console.error('오류:', error);
