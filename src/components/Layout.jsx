@@ -299,11 +299,13 @@ const IconStyle = {
 
 const Layout = ({ RightMainContent }) => {
 
-    var logincheck;
+    const [logincheck, setLoginCheck] = useState(false);
+
     useEffect(() => {
         axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api')
             .then(response => {
-                logincheck = response.data;
+                // logincheck 값을 설정
+                setLoginCheck(response.data);
                 console.log(logincheck);
             })
             .catch(error => {
@@ -311,6 +313,7 @@ const Layout = ({ RightMainContent }) => {
                 console.log(logincheck);
             });
     }, []);
+
     
     
 
