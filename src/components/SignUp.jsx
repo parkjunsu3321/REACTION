@@ -75,6 +75,10 @@ export default function SignUp() {
     }
   };
 
+  const onChickCheckId= (e) => {
+	
+  };	
+
   return (
     <div className='page1'>
       <div className='titleWrap1'>
