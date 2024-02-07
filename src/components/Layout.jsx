@@ -322,7 +322,7 @@ const Layout = ({ RightMainContent }) => {
     }
 
     const handleSignBtnClick = () => {
-        axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
+        axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api')
             .then(response => {
                 if(response.data == true)
                 {
