@@ -299,31 +299,24 @@ const IconStyle = {
 
 const Layout = ({ RightMainContent }) => {
 
-    const [logincheck, setLoginCheck] = useState(false);
+    const [logincheck, setLoginCheck] = useState(false); // useState 훅을 사용하여 상태 변수로 선언
 
     useEffect(() => {
         axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api')
             .then(response => {
-                // logincheck 값을 설정
-                setLoginCheck(response.data);
-                console.log(logincheck);
+                setLoginCheck(response.data); // logincheck를 상태로 설정
             })
             .catch(error => {
                 console.error('오류:', error);
-                console.log(logincheck);
             });
     }, []);
-
-    
-    
 
     const handleSignBtnClick = () => {
         axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
             .then(response => {
-                if(response.data == true)
-                {
+                if(response.data === true) {
                     alert('로그아웃 되었습니다.');
-                    logincheck = false;
+                    setLoginCheck(false); // 로그아웃 성공 시 logincheck 상태 변경
                 }
             })
             .catch(error => {
