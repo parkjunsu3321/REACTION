@@ -307,7 +307,7 @@ const Layout = ({ RightMainContent }) => {
                 logincheck = response.data;
             })
             .catch(error => {
-                consol.log(logincheck);
+                console.log(logincheck);
                 console.error('오류:', error);
             });
     }, []);
