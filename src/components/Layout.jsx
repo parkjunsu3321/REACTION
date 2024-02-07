@@ -301,7 +301,7 @@ const Layout = ({ RightMainContent }) => {
 
     var logincheck;
     useEffect(() => {
-        axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
+        axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api')
             .then(response => {
                 logincheck = response.data;
             })
@@ -322,7 +322,7 @@ const Layout = ({ RightMainContent }) => {
     }
 
     const handleSignBtnClick = () => {
-        axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api')
+        axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
             .then(response => {
                 if(response.data == true)
                 {
