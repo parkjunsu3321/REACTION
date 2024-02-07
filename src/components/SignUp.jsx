@@ -78,7 +78,7 @@ export default function SignUp() {
 
   const onChickCheckId = () => {
 	axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/checkid', {
-        id: inputValueId,
+        id: id,
       }, {
         headers: {
           'Content-Type': 'application/json',
