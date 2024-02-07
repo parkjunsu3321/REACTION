@@ -299,13 +299,20 @@ const IconStyle = {
 
 const Layout = ({ RightMainContent }) => {
 
+    var logincheck;
     useEffect(() => {
-        console.log('페이지가 실행됨!');
+        axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
+            .then(response => {
+logincheck = response.data;
+            })
+            .catch(error => {
+                alert('로그아웃 중 오류가 발생했습니다.');
+                console.error('로그아웃 오류:', error);
+            });
     }, []);
     
     const location = useLocation();
     const { state } = location;
-    var logincheck;
     if(state == null)
     {
         logincheck = false;
