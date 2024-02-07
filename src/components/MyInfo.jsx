@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const InfoTitle = styled.div` /*내정보 타이틀 텍스트*/
@@ -141,6 +141,18 @@ const LoginNop = styled.div` /*로그인 시 게임 참가 횟수*/
 `;
 
 const MyInfo = () => {
+  const [logincheck, setLoginCheck] = useState(false);
+  const [responseData, setResponseData] = useState([]);
+  useEffect(() => {
+    axios.post('/api/data', requestData)
+      .then(response => {
+        setResponseData(response.data);
+      })
+      .catch(error => {
+        console.error('오류:', error);
+      });
+  }, []);
+  
   return (
     <div>
       <InfoTitle>내 정보</InfoTitle>
@@ -161,15 +173,15 @@ const MyInfo = () => {
 
       <NameText>사용자명</NameText>
       <NameLine />
-      <LoginName>name</LoginName>
+      <LoginName>responseData[0]</LoginName>
 
       <IdText>아이디</IdText>
       <IdLine />
-      <LoginId>id</LoginId>
+      <LoginId>responseData[1]</LoginId>
 
       <NopText>게임 참가 횟수</NopText>
       <NopLine />
-      <LoginNop>0</LoginNop>
+      <LoginNop>responseData[2]</LoginNop>
     </div>
   );
 };
