@@ -303,11 +303,10 @@ const Layout = ({ RightMainContent }) => {
     useEffect(() => {
         axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
             .then(response => {
-logincheck = response.data;
+                logincheck = response.data;
             })
             .catch(error => {
-                alert('로그아웃 중 오류가 발생했습니다.');
-                console.error('로그아웃 오류:', error);
+                console.error('오류:', error);
             });
     }, []);
     
