@@ -310,16 +310,7 @@ const Layout = ({ RightMainContent }) => {
             });
     }, []);
     
-    const location = useLocation();
-    const { state } = location;
-    if(state == null)
-    {
-        logincheck = false;
-    }
-    else
-    {
-        logincheck = state.login_b;
-    }
+    
 
     const handleSignBtnClick = () => {
         axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
