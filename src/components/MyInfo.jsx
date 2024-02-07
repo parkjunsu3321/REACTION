@@ -142,13 +142,13 @@ const LoginNop = styled.div` /*로그인 시 게임 참가 횟수*/
 `;
 
 const MyInfo = () => {
-  const [logincheck, setLoginCheck] = useState(false);
   const [responseData, setResponseData] = useState([]);
+
   useEffect(() => {
     axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/info')
       .then(response => {
         setResponseData(response.data);
-        console.log(responseData);
+        console.log(response.data); // 올바른 데이터를 확인하기 위해 responseData 대신 response.data를 출력합니다.
       })
       .catch(error => {
         console.error('오류:', error);
@@ -175,15 +175,15 @@ const MyInfo = () => {
 
       <NameText>사용자명</NameText>
       <NameLine />
-      <LoginName>responseData[0]</LoginName>
+      <LoginName>{responseData[0]}</LoginName>
 
       <IdText>아이디</IdText>
       <IdLine />
-      <LoginId>responseData[1]</LoginId>
+      <LoginId>{responseData[1]}</LoginId>
 
       <NopText>게임 참가 횟수</NopText>
       <NopLine />
-      <LoginNop>responseData[2]</LoginNop>
+      <LoginNop>{responseData[2]}</LoginNop>
     </div>
   );
 };
