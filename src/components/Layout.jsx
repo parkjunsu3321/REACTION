@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'; //  백틱``을 이용한 간단한 css 작성을 위해 사용
 import { Link, useLocation } from 'react-router-dom';    // react-router 사용
 import MediaQuery from 'react-responsive';
