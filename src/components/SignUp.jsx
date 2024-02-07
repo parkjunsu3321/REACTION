@@ -129,7 +129,7 @@ export default function SignUp() {
             value={id}
             onChange={handleId}
           />
-          <button onChick = {onChickCheckId} className='overLapButton' disabled={!idValid}>중복확인</button>
+          <button onChick = {onClickCheckId} className='overLapButton' disabled={!idValid}>중복확인</button>
         </div>
 
         <div className='errorMessageWrap'>
