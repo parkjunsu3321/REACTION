@@ -303,7 +303,7 @@ const Layout = ({ RightMainContent }) => {
     useEffect(() => {
         axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api')
             .then(response => {
-                consol.log(logincheck);
+                console.log(logincheck);
                 logincheck = response.data;
             })
             .catch(error => {
