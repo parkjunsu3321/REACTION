@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const InfoTitle = styled.div` /*내정보 타이틀 텍스트*/
   margin-top: 20px;
@@ -144,7 +145,7 @@ const MyInfo = () => {
   const [logincheck, setLoginCheck] = useState(false);
   const [responseData, setResponseData] = useState([]);
   useEffect(() => {
-    axios.post('/api/info', requestData)
+    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/info')
       .then(response => {
         setResponseData(response.data);
       })
