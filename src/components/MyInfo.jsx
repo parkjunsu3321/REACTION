@@ -144,7 +144,7 @@ const MyInfo = () => {
   const [logincheck, setLoginCheck] = useState(false);
   const [responseData, setResponseData] = useState([]);
   useEffect(() => {
-    axios.post('/api/data', requestData)
+    axios.post('/api/info', requestData)
       .then(response => {
         setResponseData(response.data);
       })
