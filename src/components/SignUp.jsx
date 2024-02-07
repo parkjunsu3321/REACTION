@@ -62,10 +62,31 @@ export default function SignUp() {
   // 회원가입 버튼 클릭 핸들러임
   const onClickSignUpButton = () => {
     if (!notAllow) {
-      alert('회원가입에 성공했습니다.');
-      console.log('회원가입 정보:', { name, id, pw }); //삭제해도 댐
-    } else {
-      alert('회원가입 정보를 올바르게 입력해주세요.'); //이것도 필요없을 거 같긴함
+      axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/join', {
+      id: id,
+      pw: pw,
+      name : name,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+	      if(response.data == true)
+	      {
+      		alert('회원가입에 성공했습니다.');
+	      }
+	       else
+	      {
+		alert('회원가입 중에 오류가 발생했습니다.')
+	      }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        if (error.response) {
+          alert('Server response:', error.response.data);
+        }
+      });
     }
   };
 
