@@ -41,7 +41,14 @@ export default function SignIn() {
       },
     })
       .then(response => {
-    alert("로그인 성공"); // 성공 알림
+    if(response.data == true)
+    {
+      alert("로그인 성공");
+    }
+    else
+    {
+      alert("아이디 또는 비밀번호가 잘못 되었습니다.");
+    } 
     history('../', { state: { login_b: true } });
 
 })
