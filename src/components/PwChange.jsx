@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const PwTitle = styled.div` /*비밀번호 변경 타이틀 텍스트*/
   margin-top: 20px;
@@ -169,22 +170,17 @@ export default function PwChange() {
     setConfirmPwValid(newConfirmPw === newPw);
   };
 
-  // 새로운 비밀번호와 확인 값이 일치하는지 여부
-  const isPwMatch = newPw === confirmPw;
-  // 현재 비밀번호, 새 비밀번호, 새 비밀번호 확인 값이 비어 있지 않고, 새 비번과 확인 값이 일치하는 경우 변경 가능
-  const isPwValid = currentPw !== '' && newPw !== '' && isPwMatch;
-
   // 비밀번호 변경 버튼 클릭 핸들러임
   const handlePwChange = () => {
     axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', {
-              pw : pw,
+              pw : newPw, // 여기서 pw를 newPw로 수정
             }, {
             headers: {
               'Content-Type': 'application/json',
             },
           })
           .then(response => {
-            alert('아이디 변경이 완료되었습니다.');
+            alert('비밀번호 변경이 완료되었습니다.');
           })
           .catch(error => {
           alert('Error fetching data: ' + error); // 실패 알림
@@ -237,7 +233,7 @@ export default function PwChange() {
         <ErrorMessage>비밀번호가 일치하지 않습니다</ErrorMessage>
       )}
 
-      <PwChangeBtn disabled={!isPwValid} onClick={handlePwChange}>
+      <PwChangeBtn disabled={!confirmPwValid} onClick={handlePwChange}>
         변경하기
       </PwChangeBtn>
     </div>
