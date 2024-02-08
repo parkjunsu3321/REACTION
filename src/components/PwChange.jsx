@@ -176,7 +176,21 @@ export default function PwChange() {
 
   // 비밀번호 변경 버튼 클릭 핸들러임
   const handlePwChange = () => {
-    alert('비밀번호가 변경되었습니다');
+    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', {
+              pw : pw,
+            }, {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+          .then(response => {
+            alert('아이디 변경이 완료되었습니다.');
+          })
+          .catch(error => {
+          alert('Error fetching data: ' + error); // 실패 알림
+          if (error.response) {
+          alert('Server response: ' + error.response.data);
+        }
   };
 
   return (
