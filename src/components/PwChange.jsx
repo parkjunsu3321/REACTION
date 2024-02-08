@@ -172,23 +172,23 @@ export default function PwChange() {
 
   // 비밀번호 변경 버튼 클릭 핸들러임
   const handlePwChange = () => {
-    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', {
-              pw: newPw, // 여기서 pw를 newPw로 수정
-            }, {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-          .then(response => {
-            alert('비밀번호 변경이 완료되었습니다.');
-          })
-          .catch(error => {
-          alert('Error fetching data: ' + error); // 실패 알림
-          if (error.response) {
-          alert('Server response: ' + error.response.data);
-        }
+  axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', {
+    pw: newPw, // 여기서 pw를 newPw로 수정
+  }, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => {
+      alert('비밀번호 변경이 완료되었습니다.');
+    })
+    .catch(error => {
+      alert('Error fetching data: ' + error); // 실패 알림
+      if (error.response) {
+        alert('Server response: ' + error.response.data);
       }
-  };
+    }); // 중괄호 추가
+};
 
   return (
     <div>
