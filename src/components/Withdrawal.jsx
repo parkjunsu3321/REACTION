@@ -129,7 +129,7 @@ export default function Withdrawal() {
             },
           })
           .then(response => {
-            alert(response.data);
+            alert('탈퇴가 완료되었습니다.');
           })
           .catch(error => {
           alert('Error fetching data: ' + error); // 실패 알림
@@ -137,9 +137,10 @@ export default function Withdrawal() {
           alert('Server response: ' + error.response.data);
         }
     });
-
-            alert('계정이 삭제되었습니다.');
-          } else {
+          } 
+          
+          else 
+          {
             alert('동의하지 않거나 비밀번호를 입력하지 않으면 삭제할 수 없습니다.');
           }
         }}
