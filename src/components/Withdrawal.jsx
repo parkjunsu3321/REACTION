@@ -122,7 +122,7 @@ export default function Withdrawal() {
         onClick={() => {
           if (isChecked) {
             axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/drop', {
-              id: pw,
+              pw : pw,
             }, {
             headers: {
               'Content-Type': 'application/json',
