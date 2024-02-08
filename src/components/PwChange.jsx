@@ -187,6 +187,7 @@ export default function PwChange() {
           if (error.response) {
           alert('Server response: ' + error.response.data);
         }
+      }
   };
 
   return (
