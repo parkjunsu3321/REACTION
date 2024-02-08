@@ -173,7 +173,7 @@ export default function PwChange() {
   // 비밀번호 변경 버튼 클릭 핸들러임
   const handlePwChange = () => {
   axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', {
-    pw : currentPw,
+    pw: currentPw,
     newPw: newPw,
   }, {
     headers: {
