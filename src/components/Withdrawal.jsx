@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const WdTitle = styled.div` /*회원 탈퇴 타이틀 텍스트*/
   margin-top: 20px;
@@ -120,9 +121,8 @@ export default function Withdrawal() {
         disabled={!isChecked || pw === ''}
         onClick={() => {
           if (isChecked) {
-            axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
-              id: userid,
-              pass: pw,
+            axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/drop', {
+              id: pw,
             }, {
             headers: {
               'Content-Type': 'application/json',
