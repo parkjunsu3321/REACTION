@@ -189,6 +189,9 @@ export default function PwChange() {
       {
         alert('비밀번호 변경중 오류가 발생하였습니다.');
       }
+      setCurrentPw('');
+      setConfirmPw('');
+      setNewPw('');
     })
     .catch(error => {
       alert('Error fetching data: ' + error); // 실패 알림
