@@ -129,7 +129,14 @@ export default function Withdrawal() {
             },
           })
           .then(response => {
-            alert('탈퇴가 완료되었습니다.');
+            if(response.data == true)
+            {
+              alert('탈퇴가 완료되었습니다.');
+            }
+            else
+            {
+              alert('탈퇴 중에 문제가 발생 했습니다.');
+            }
           })
           .catch(error => {
           alert('Error fetching data: ' + error); // 실패 알림
