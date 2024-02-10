@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 const WdTitle = styled.div` /*회원 탈퇴 타이틀 텍스트*/
   margin-top: 20px;
@@ -82,7 +83,8 @@ const RemoveBtn = styled.button` /*삭제하기 버튼*/
 export default function Withdrawal() {
   const [isChecked, setIsChecked] = useState(false);
   const [pw, setPw] = useState('');
-
+  const history = useNavigate();
+  
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
@@ -132,10 +134,13 @@ export default function Withdrawal() {
             if(response.data == true)
             {
               alert('탈퇴가 완료되었습니다.');
+              history('../');
             }
             else
             {
               alert('탈퇴 중에 문제가 발생 했습니다.');
+              setPw('');
+              setIsChecked(false);
             }
           })
           .catch(error => {
