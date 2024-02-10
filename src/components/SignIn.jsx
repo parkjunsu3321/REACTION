@@ -44,12 +44,14 @@ export default function SignIn() {
     if(response.data == true)
     {
       alert("로그인 성공");
+      history('../', { state: { login_b: true } });
     }
     else
     {
       alert("아이디 또는 비밀번호가 잘못 되었습니다.");
+      setId('');
+      setPw('');
     } 
-    history('../', { state: { login_b: true } });
 
 })
 .catch(error => {
