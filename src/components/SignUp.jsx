@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/SignUp.css';
+import { Link, useNavigate } from 'react-router-dom'; // useHistory 추가
 import axios from 'axios';
 
 export default function SignUp() {
@@ -8,6 +9,7 @@ export default function SignUp() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
+  const history = useNavigate();
 
   // 입력 유효성 검사를 위한 변수들임
   const [idValid, setIdValid] = useState(false);
@@ -75,6 +77,7 @@ export default function SignUp() {
 	      if(response.data == true)
 	      {
       		alert('회원가입에 성공했습니다.');
+		history('/Layout');
 	      }
 	       else
 	      {
