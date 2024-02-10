@@ -77,7 +77,7 @@ export default function SignUp() {
 	      if(response.data == true)
 	      {
       		alert('회원가입에 성공했습니다.');
-		history('/SingIn');
+		history('/SignIn');
 	      }
 	       else
 	      {
