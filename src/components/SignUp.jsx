@@ -77,11 +77,15 @@ export default function SignUp() {
 	      if(response.data == true)
 	      {
       		alert('회원가입에 성공했습니다.');
-		history('/Layout');
+		history('../');
 	      }
 	       else
 	      {
-		alert('회원가입 중에 오류가 발생했습니다.')
+		alert('회원가입 중에 오류가 발생했습니다.');
+		setName('');
+		setId('');
+		setPw('');
+		setConfirmPw('');
 	      }
       })
       .catch(error => {
