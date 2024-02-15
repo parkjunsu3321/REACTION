@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect , useState } from 'react';
 import styled from 'styled-components'; //  백틱``을 이용한 간단한 css 작성을 위해 사용
-import { Link, useLocation } from 'react-router-dom';    // react-router 사용
+import { Link } from 'react-router-dom';    // react-router 사용
 import MediaQuery from 'react-responsive';
 // 여기서부터 아이콘 적용 라이브러리
 import { IoSearchSharp } from "react-icons/io5";
@@ -23,6 +24,7 @@ import { ImMenu } from "react-icons/im";
 import axios from 'axios';
 // 여기까지가 아이콘 적용 라이브러리
 var login_b = false;
+
 const Container = styled.div`   
     width: 100vw;
     height: 100vh;
@@ -120,6 +122,8 @@ const SearchBox = () => {
             </SearchIcon>
         </SearchContainer>
     );
+
+    
 };
 
 const SignBtn = styled.button`
@@ -155,7 +159,7 @@ const Main = styled.main`
 `;
 
 const SideMenu = styled.div`
-    width: 17%;
+    width: 12%;
     height: auto;
     background-color: white;
     border-right: 1px solid lightgray;
@@ -241,53 +245,62 @@ const LinkStyle2 = {
 
 const MobileContainer = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 100dvh; 
+    min-height: 100vh
+    display: flex;
+    flex-direction: column;
     background-color: white;
-    border: 1px solid black;
 `
 
 const MobileHeader = styled.div`
-    width: 100%;
-    height: 10%;
-    background-color: white;
+    height: 10%; 
+    background-color: lightsalmon;
     display: flex;
     flex-direction: row;
-    h1 {
-        margin: 0px;
-        margin-left: 6%;
-    }
+    align-items: center;
 `
 
 const MobileHeaderL = styled.div`
     width: 50%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    align-items: center;
+    height: auto;
+    margin-left: 5%;
 `
 
 const MobileHeaderR = styled.div`
     width: 50%;
-    height: 100%;
-    background-color: white;
+    height: auto;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+    margin-right: 3%;
 `
 
 const MobileMain = styled.div`
-    width: 100%;
     height: 80%;
-    background-color: lightsalmon;
+    background-color: white;
+    display: flex;
+
 `
 
 const MobileFooter = styled.div`
-    width: 100%;
     height: 10%;
-    background-color: white;
+    background-color: lightsalmon;
     display: flex;
-    align-items: center;
     justify-content: space-around;
+    align-items: center;
+`
+
+const MobileSignBtn = styled.button`
+    width: auto;
+    height: 30px;
+    background-color: orange;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    font-weight: bolder;
+    cursor: pointer;
+    margin-left: 5%;
 `
 
 const IconStyle = {
@@ -418,8 +431,19 @@ const Layout = ({ RightMainContent }) => {
             <MediaQuery maxWidth={768}>
                 <MobileContainer>
                     <MobileHeader>
-                        <MobileHeaderL><h1>Reaction</h1></MobileHeaderL>
-                        <MobileHeaderR><FaLock style={{ width:'20px', height:'20px' }}/><h2 style={{ marginRight: '5%' , marginLeft: '5%' }}>Guest</h2><h2>님</h2></MobileHeaderR>
+                        <MobileHeaderL>
+                            <Link to="/" style={LinkStyle}>
+                                <h1 style={{ fontFamily:"Itim-Regular" }}>Reaction</h1>
+                            </Link>
+                        </MobileHeaderL>
+                        <MobileHeaderR>
+                            <MobileSignBtn onClick={logincheck ? handleSignBtnClick : null}>
+                                <Link to="/SignIn" style={LinkStyle2}>
+                                    <FaLock style={{ width:'10px', height:'10px' }}/>
+                                     {logincheck ? 'LogOut' : 'SignIn'}
+                                </Link>
+                            </MobileSignBtn>
+                        </MobileHeaderR>
                     </MobileHeader>
                     <MobileMain>
                         {RightMainContent}

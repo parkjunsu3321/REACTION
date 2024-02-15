@@ -1,3 +1,5 @@
+import React from "react";
+import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -26,7 +28,7 @@ const Main = styled.main`
 `;
 
 const ProbBtn = styled.button`
-    width: 100%;
+    width: 200px;
     height: 60px;
     background-color: salmon;
     color: black;
@@ -63,30 +65,122 @@ const LinkStyle = {
     display: 'inline',
 };
 
+// 여기서부터 모바일 환경 컴포넌트
+
+const MobileFrame = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: salmon;
+`
+
+const MobileHeader = styled.div`
+    width: 100%;
+    height: 60%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+const MobileMain = styled.div`
+    width: 100%;
+    height: 10%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+
+const MobileProbBtn = styled.button`
+    width: 100px;
+    height: 50px;
+    background-color: salmon;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 1px;
+    font-weight: bold;
+    text-decoration: none; 
+`;
+
+const LinkStyle2 = {
+    padding: '1%',
+    textDecoration: 'none',
+    color: 'black',
+    display: 'inline',
+}
+
+const MobileFooter = styled.div`
+    width: 100%;
+    height: 30%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const MobileTextBox = styled.div`
+    width: 90%;
+    height: 90%;
+    background-color: orange;
+    border-radius: 15px;
+    font-size: 15px;
+    display: flex; 
+    align-items: center;
+    text-align: center;
+`
+
 const GameMainSet = ({ headerContent, textBoxContent }) => {
     return (
-        <Frame>
-            <Header>
-                {headerContent}
-            </Header>
-            <Main>
-                <Link to="/Ingame" style={LinkStyle}>
-                    <ProbBtn>Easy</ProbBtn>
-                </Link>
-                
-                <Link to="/Ingame" style={LinkStyle}>
-                    <ProbBtn>Normal</ProbBtn>
-                </Link>
+        <>
+            <MediaQuery minWidth={768}>
+                <Frame>
+                    <Header>
+                        {headerContent}
+                    </Header>
+                    <Main>
+                        <Link to="/Ingame" style={LinkStyle}>
+                            <ProbBtn>Easy</ProbBtn>
+                        </Link>
+                        
+                        <Link to="/Ingame" style={LinkStyle}>
+                            <ProbBtn>Normal</ProbBtn>
+                        </Link>
 
-                <Link to="/Ingame" style={LinkStyle}>
-                    <ProbBtn>Hard</ProbBtn>
-                </Link>
+                        <Link to="/Ingame" style={LinkStyle}>
+                            <ProbBtn>Hard</ProbBtn>
+                        </Link>
 
-            </Main>
-            <Footer>
-                <TextBox>{textBoxContent}</TextBox>
-            </Footer>
-        </Frame>
+                    </Main>
+                    <Footer>
+                        <TextBox>{textBoxContent}</TextBox>
+                    </Footer>
+                </Frame>
+            </MediaQuery>
+
+            <MediaQuery maxWidth={768}>
+                <MobileFrame>
+                    <MobileHeader>
+                        {headerContent}
+                    </MobileHeader>
+                    <MobileMain>
+                        <Link to="/Ingame" style={LinkStyle2}>
+                            <MobileProbBtn>Easy</MobileProbBtn>
+                        </Link>
+                        <Link to="/Ingame" style={LinkStyle2}>
+                            <MobileProbBtn>Normal</MobileProbBtn>
+                        </Link>
+                        <Link to="/Ingame" style={LinkStyle2}>
+                            <MobileProbBtn>Hard</MobileProbBtn>
+                        </Link>
+                    </MobileMain>
+                    <MobileFooter>
+                        <MobileTextBox>{textBoxContent}</MobileTextBox>
+                    </MobileFooter>
+                </MobileFrame>
+            </MediaQuery>
+        </>
     );
 }
 

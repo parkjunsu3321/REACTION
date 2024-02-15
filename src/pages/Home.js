@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Home.module.css';
 import Layout from '../components/Layout';
 import { Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import styled from 'styled-components';
 import PopularSong from '../pages/PopularSong';
@@ -17,27 +18,43 @@ import PwChange from '../components/PwChange';
 import Withdrawal from '../components/Withdrawal';
 
 const Frame = styled.div`
-  width: 100vw;
-  height: 80vh;
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  overflow: scroll;
   align-items: center;
-  justify-content: center;
 `
 
 const imgStyle = {
-  width: '180px',
-  height: '160px',
+  width: '100%',
+  height: '100%',
   borderRadius: '20px',
 }
 
 const TagBox = styled.div`
-  width: 50%;
-  height: auto;
+  width: 40%;
+  height: 30%;
+  margin: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  a { 
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `
+
+const LinkStyle = {
+  textDecoration: 'none',
+  color: 'black',
+};
 
 function Home() {
   const RightMainContent = (
@@ -49,28 +66,36 @@ function Home() {
       <MediaQuery maxWidth={767}>
        <Frame>
           <TagBox>
-            <img src="/images/younha.jpg" style={imgStyle}/>
-            <h3>대중가요 맞추기</h3>
+            <Link to="PopularSong" style={LinkStyle}>
+              <img src="/images/younha.jpg" style={imgStyle}/>
+              <h3>대중가요 맞추기</h3>
+            </Link>
           </TagBox>
           <TagBox>
-            <img src="/images/drama.jpg" style={imgStyle}/>
-            <h3>OST 맞추기</h3>
+            <Link to="PopularSong" style={LinkStyle}>
+              <img src="/images/drama.jpg" style={imgStyle}/>
+              <h3>OST 맞추기</h3>`
+            </Link>
           </TagBox>
           <TagBox>
-            <img src="/images/lemon.jpg" style={imgStyle}/>
-            <h3>JPOP 맞추기</h3>
+            <Link to="PopularSong" style={LinkStyle}>
+              <img src="/images/lemon.jpg" style={imgStyle}/>
+              <h3>JPOP 맞추기</h3>
+            </Link>
           </TagBox>
           <TagBox>
-            <img src="/images/stay.jpg" style={imgStyle}/>
-            <h3>POP송 맞추기</h3>
+            <Link to="PopularSong" style={LinkStyle}>
+              <img src="/images/stay.jpg" style={imgStyle}/>
+              <h3>POP송 맞추기</h3>
+            </Link>
           </TagBox>
           <TagBox>
-            <img src="/images/drama.jpg" style={imgStyle}/>
-            <h3>OST 맞추기</h3>
+            <img src="/images/discospaghetti.gif" style={imgStyle}/>
+            <h3>업데이트 예정</h3>
           </TagBox>
           <TagBox>
-            <img src="/images/drama.jpg" style={imgStyle}/>
-            <h3>OST 맞추기</h3>
+            <img src="/images/discospaghetti.gif" style={imgStyle}/>
+            <h3>업데이트 예정</h3>
           </TagBox>
         </Frame>
       </MediaQuery>
