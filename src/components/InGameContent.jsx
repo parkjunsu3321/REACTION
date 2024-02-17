@@ -165,7 +165,7 @@ const InGameContent = () => {
   const [inputText, setInputText] = useState(""); // 텍스트박스 상태 관리
   const [isPlaying, setIsPlaying] = useState(true); // 재생되고있는지 상태 관리
   const [score, setScore] = useState(0); // 점수 상태 관리
-
+  const [answer, setAnswer] = useState("");
   const playerRef = useRef(null);
 
   useEffect(() => {
@@ -183,10 +183,9 @@ const InGameContent = () => {
     const currentSong = popularSongs[currentIndex];
     var tag  = "hiphop";
     var time = 2.0;
-    var answer = popularSongs[currentIndex].answer;
+    setAnswer(currentSong.answer);
     const flaskUrl = 'https://port-0-flask-9zxht12blqjml81v.sel4.cloudtype.app/embedding';
     // GET 요청을 보낼 쿼리 파라미터 설정
-  alert(currentSong.answer);
   alert(answer);
     axios.get(flaskUrl, {
   params: {
