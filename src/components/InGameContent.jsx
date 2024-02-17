@@ -178,7 +178,7 @@ const InGameContent = () => {
     if (currentIndex !== null) {
       setVideoCode(popularSongs[currentIndex].code);
       setAnswer(popularSongs[currentIndex].answer);
-      setTag(popularSongs[currentIndex].tag[0])
+      setTag(popularSongs[currentIndex].tag)
     }
   }, [currentIndex]);
 
@@ -187,12 +187,12 @@ const InGameContent = () => {
     var time = 2.0;
     const flaskUrl = 'https://port-0-flask-9zxht12blqjml81v.sel4.cloudtype.app/embedding';
     // GET 요청을 보낼 쿼리 파라미터 설정
-    console.log("Current answer:", answer[0]);
+    console.log("Current answer:", tag);
     axios.get(flaskUrl, {
   params: {
     answer: answer[0],
     user_answer: inputText,
-    tag: tag,
+    tag: tag[0],
     time: time
   }
 })
