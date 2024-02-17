@@ -195,9 +195,9 @@ const InGameContent = () => {
     axios.get(flaskUrl, { params })
       .then(response => {
         // 응답 데이터 처리
-        setSimilarityPercentage(response.data.similarityPercentage);
+	alert('성공');
       })
-      .catch(error => console.error('Error:', error));
+      .catch(error => alert('Error:', error));
   };
 
   const handlePassClick = () => {
