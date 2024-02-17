@@ -187,7 +187,7 @@ const InGameContent = () => {
     // GET 요청을 보낼 쿼리 파라미터 설정
     axios.get(flaskUrl, {
   params: {
-    answer: currentSong,
+    answer: currentSong.answer,
     user_answer: inputText,
     tag: tag,
     time: time
