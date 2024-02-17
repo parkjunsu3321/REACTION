@@ -185,7 +185,7 @@ const InGameContent = () => {
     var time = 2.0;
     const flaskUrl = 'https://port-0-flask-9zxht12blqjml81v.sel4.cloudtype.app/embedding';
     // GET 요청을 보낼 쿼리 파라미터 설정
-    axios.get('/embedding', {
+    axios.get(flaskUrl, {
   params: {
     answer: 'your_answer_data',
     user_answer: 'user_input_data',
