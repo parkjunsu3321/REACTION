@@ -192,7 +192,7 @@ const InGameContent = () => {
   params: {
     answer: answer[0],
     user_answer: inputText,
-    tag: tag,
+    tag: tag[0],
     time: time
   }
 })
