@@ -3,6 +3,7 @@ import styled from "styled-components";
 import YouTube from "react-youtube";
 import MediaQuery from "react-responsive";
 import popularSongs from "../song/PopularSong.json";
+import axios from 'axios';
 
 const Frame = styled.div`
   width: 100%;
