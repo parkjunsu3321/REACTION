@@ -187,10 +187,10 @@ const InGameContent = () => {
     // GET 요청을 보낼 쿼리 파라미터 설정
     axios.get(flaskUrl, {
   params: {
-    answer: 'your_answer_data',
-    user_answer: 'user_input_data',
-    tag: 'tag_data',
-    time: 'time_data'
+    answer: currentSong,
+    user_answer: inputText,
+    tag: tag,
+    time: time
   }
 })
 .then(response => {
