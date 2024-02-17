@@ -178,7 +178,7 @@ const InGameContent = () => {
     if (currentIndex !== null) {
       setVideoCode(popularSongs[currentIndex].code);
       setAnswer(popularSongs[currentIndex].answer);
-      setTag(popularSongs[currentIndex].tag)
+      setTag(popularSongs[currentIndex].tags)
     }
   }, [currentIndex]);
 
@@ -192,7 +192,7 @@ const InGameContent = () => {
   params: {
     answer: answer[0],
     user_answer: inputText,
-    tag: tag[0],
+    tag: tag,
     time: time
   }
 })
