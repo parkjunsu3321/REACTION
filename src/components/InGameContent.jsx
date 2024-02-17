@@ -176,6 +176,7 @@ const InGameContent = () => {
   useEffect(() => {
     if (currentIndex !== null) {
       setVideoCode(popularSongs[currentIndex].code);
+      setAnswer(popularSongs[currentIndex].answer);
     }
   }, [currentIndex]);
 
@@ -183,7 +184,6 @@ const InGameContent = () => {
     const currentSong = popularSongs[currentIndex];
     var tag  = "hiphop";
     var time = 2.0;
-    setAnswer(popularSongs[currentIndex].answer);
     const flaskUrl = 'https://port-0-flask-9zxht12blqjml81v.sel4.cloudtype.app/embedding';
     // GET 요청을 보낼 쿼리 파라미터 설정
   alert(answer);
