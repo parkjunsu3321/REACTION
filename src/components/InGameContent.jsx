@@ -178,7 +178,7 @@ const InGameContent = () => {
     if (currentIndex !== null) {
       setVideoCode(popularSongs[currentIndex].code);
       setAnswer(popularSongs[currentIndex].answer);
-      setTag(popularSongs[currentIndex].tags)
+      setTag(popularSongs[currentIndex].tags);
     }
   }, [currentIndex]);
 
