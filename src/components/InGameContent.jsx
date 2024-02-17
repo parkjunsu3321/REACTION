@@ -166,6 +166,7 @@ const InGameContent = () => {
   const [isPlaying, setIsPlaying] = useState(true); // 재생되고있는지 상태 관리
   const [score, setScore] = useState(0); // 점수 상태 관리
   const [answer, setAnswer] = useState("");
+  const [tag, setTag] = useState("");
   const playerRef = useRef(null);
 
   useEffect(() => {
@@ -177,6 +178,7 @@ const InGameContent = () => {
     if (currentIndex !== null) {
       setVideoCode(popularSongs[currentIndex].code);
       setAnswer(popularSongs[currentIndex].answer);
+      setTag(popularSongs[currentIndex].tag)
     }
   }, [currentIndex]);
 
