@@ -189,7 +189,7 @@ const InGameContent = () => {
     console.log("Current answer:", answer);
     axios.get(flaskUrl, {
   params: {
-    answer: answer,
+    answer: answer[0],
     user_answer: inputText,
     tag: tag,
     time: time
