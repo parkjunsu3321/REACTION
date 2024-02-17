@@ -187,6 +187,7 @@ const InGameContent = () => {
     const flaskUrl = 'https://port-0-flask-9zxht12blqjml81v.sel4.cloudtype.app/embedding';
     // GET 요청을 보낼 쿼리 파라미터 설정
   alert(currentSong.answer);
+  alert(answer);
     axios.get(flaskUrl, {
   params: {
     answer: answer,
