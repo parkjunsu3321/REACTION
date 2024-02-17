@@ -180,15 +180,23 @@ const InGameContent = () => {
 
   const handleCorrectClick = () => {
     const currentSong = popularSongs[currentIndex];
-    if (currentSong.answer.includes(inputText.trim().toLowerCase())) {
-      alert("정답입니다.");
-      const nextIndex = (currentIndex + 1) % popularSongs.length;
-      setCurrentIndex(nextIndex);
-      setInputText("");
-      setScore(score + 1); // 맞췄을 때 점수 증가
-    } else {
-      alert("틀렸습니다. 다시 시도해주세요.");
-    }
+    var tag  = "hiphop";
+    var time = 2.0;
+    const flaskUrl = 'https://port-0-flask-9zxht12blqjml81v.sel4.cloudtype.app/embedding';
+    // GET 요청을 보낼 쿼리 파라미터 설정
+    const params = {
+      answer: currentSong,
+      user_answer: inputText,
+      tag: tag,
+      time: time
+    };
+
+    axios.get(flaskUrl, { params })
+      .then(response => {
+        // 응답 데이터 처리
+        setSimilarityPercentage(response.data.similarityPercentage);
+      })
+      .catch(error => console.error('Error:', error));
   };
 
   const handlePassClick = () => {
