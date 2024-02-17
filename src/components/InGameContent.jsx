@@ -185,19 +185,23 @@ const InGameContent = () => {
     var time = 2.0;
     const flaskUrl = 'https://port-0-flask-9zxht12blqjml81v.sel4.cloudtype.app/embedding';
     // GET 요청을 보낼 쿼리 파라미터 설정
-    const params = {
-      answer: currentSong,
-      user_answer: inputText,
-      tag: tag,
-      time: time
-    };
+    axios.get('/embedding', {
+  params: {
+    answer: 'your_answer_data',
+    user_answer: 'user_input_data',
+    tag: 'tag_data',
+    time: 'time_data'
+  }
+})
+.then(response => {
+  // 서버에서 받은 응답을 처리합니다.
+  console.log("성공");
+})
+.catch(error => {
+  // 오류가 발생한 경우 처리합니다.
+  console.error('Error:', error);
+});
 
-    axios.get(flaskUrl, { params })
-      .then(response => {
-        // 응답 데이터 처리
-	alert('성공');
-      })
-      .catch(error => alert('Error:', error));
   };
 
   const handlePassClick = () => {
