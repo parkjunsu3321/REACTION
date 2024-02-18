@@ -370,17 +370,17 @@ const Layout = ({ RightMainContent }) => {
                                     <ul><FaChild />마이페이지 (테스트)</ul>
                                 </Link>
                                 <hr></hr>
-                                <Link to="/PopularSong" style={LinkStyle}>
+                                <Link to=logincheck ? "/PopularSong" : "/SignIn" style={LinkStyle}>
                                     <ul><ImFloppyDisk />대중가요 맞추기</ul>
                                 </Link>
 
                                 <ul><BsMusicPlayer />내취향 음악 맞추기</ul>
 
-                                <Link to="/PopSong" style={LinkStyle}>
+                                <Link to=logincheck ? "/PopSong" : "/SignIn" style={LinkStyle}>
                                     <ul><FaGlobeAmericas />팝송 맞추기</ul>
                                 </Link>
 
-                                <Link to="/JpopSong" style={LinkStyle}>
+                                <Link to=logincheck ? "/JpopSong" : "/SignIn" style={LinkStyle}>
                                     <ul><TbLanguageHiragana />JPOP 맞추기</ul>
                                 </Link>
 
