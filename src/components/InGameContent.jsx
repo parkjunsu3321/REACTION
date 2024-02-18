@@ -199,6 +199,7 @@ const InGameContent = () => {
 .then(response => {
   // 서버에서 받은 응답을 처리합니다.
   console.log("성공");
+  handlePassClick();
 })
 .catch(error => {
   // 오류가 발생한 경우 처리합니다.
