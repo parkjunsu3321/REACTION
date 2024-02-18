@@ -212,6 +212,7 @@ const InGameContent = () => {
     const nextIndex = (currentIndex + 1) % popularSongs.length;
     setCurrentIndex(nextIndex);
     setInputText("");
+    console.log("passclick");
   };
 
   const handleReady = (event) => {
