@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+import MediaQuery from "react-responsive";
+import { IoClose } from "react-icons/io5";
+import { Link } from 'react-router-dom';
+
 const PwTitle = styled.div` /*비밀번호 변경 타이틀 텍스트*/
   margin-top: 20px;
   font-size: 24px;
@@ -147,6 +151,207 @@ const PwChangeBtn = styled.button` /*비밀번호 변경하기 버튼*/
   }
 `;
 
+//여기서부터 모바일 환경 컴포넌트
+const MobileFrame = styled.div`
+  width: 100vw;
+  height: 80dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+`
+
+const MobileHeader = styled.div`
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  background-color: antiquewhite;
+`;
+
+const MobileHeaderA = styled.div`
+    width: 10%;
+    height: 100%;
+    display: flex-start;
+    justify-content: center;
+    align-items: center;
+`
+
+const MobileHeaderB = styled.div`
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+const MobileHeaderC = styled.div`
+    height: 100%;
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+
+const MobilePwText = styled.div` /*박스 안 비밀번호 변경 텍스트*/
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+`;
+
+const MobileMain = styled.div`
+    width: 100%;
+    height:90%;
+    background-color: white;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const MobileMainA = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height:20%;
+    margin-top:20px;
+`;
+
+const MobileCurrentPwText = styled.div` /*현재 비밀번호 텍스트*/
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+`;
+
+const MobilePwInput = styled.input` /*기존 비번 입력하는 박스 디자인*/
+  display: flex; 
+  align-items: center; 
+  justify-content:center;
+  border-radius: 20px;
+  padding: 16px;
+  margin-top: 20px;
+  width: 80%;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+
+  &:focus-within {
+    border: 1px solid #9e30f4;
+    box-shadow: 0 0 10px rgba(158, 48, 244, 0.3);
+  }
+`;
+
+const MobileMainB = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%;
+height:20%;
+`;
+
+const MobileChangePwText = styled.div` /*변경 비밀번호 텍스트*/
+font-size: 18px;
+font-weight: 700;
+color: #333;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content:center;
+`;
+
+const MobilePwInput2 = styled.input` /*새로운 비번 입력하는 박스 디자인*/
+display: flex; 
+align-items: center; 
+justify-content:center;
+border-radius: 20px;
+padding: 16px;
+margin-top: 20px;
+width: 80%;
+background-color: white;
+border: 1px solid #ccc;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+
+&:focus-within {
+  border: 1px solid #9e30f4;
+  box-shadow: 0 0 10px rgba(158, 48, 244, 0.3);
+}
+`;
+
+const MobileMainC = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%;
+height:20%;
+`;
+
+const MobileConfirmPwText = styled.div` /*비밀번호 확인 텍스트*/
+font-size: 18px;
+font-weight: 700;
+color: #333;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content:center;
+`;
+
+const MobilePwInput3 = styled.input` /*새로운 비번 확인 박스 디자인*/
+display: flex; 
+  align-items: center; 
+  justify-content:center;
+  border-radius: 20px;
+  padding: 16px;
+  margin-top: 20px;
+  width: 80%;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+
+  &:focus-within {
+    border: 1px solid #9e30f4;
+    box-shadow: 0 0 10px rgba(158, 48, 244, 0.3);
+  }
+`;
+
+const MobileErrorMessage = styled.div` /*새로운 비번 일치 여부 에러메시지*/
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+`;
+
+
+const MobilePwChangeBtn = styled.button`
+  width: 90%;
+  height: 60px;
+  border: none;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 15px;
+  color: #ff813a; /* 텍스트 색상 */
+  margin-top: 40px;
+  font-size: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+
+  border-width: 1px; /* 테두리의 두께 */
+  border-style: solid; /* 테두리의 스타일을 실선으로 지정 */
+  border-color: lightgray; /* 테두리의 색상을 검정색으로 지정 */
+
+  &:disabled {
+    background-color: #dadada;
+    color: white;
+  }
+`;
+
+const LinkStyle = {
+  textDecoration: 'none',
+  color: 'black',
+};
+
 export default function PwChange() {
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
@@ -201,53 +406,97 @@ export default function PwChange() {
     }); // 중괄호 추가
 };
 
-  return (
+ return (
     <div>
-      <PwTitle>비밀번호 변경</PwTitle>
-
-      <PwLine1 />
-
-      <PwVertical1>
-        <PwText>비밀번호 변경</PwText>
-      </PwVertical1>
-
-      <PwLine2 />
-
-      <PwVertical2 />
-
-      <PwLine3 />
-
-      <CurrentPwText>현재 비밀번호</CurrentPwText>
-      <PwInput1
-        type='password'
-        placeholder='기존 비밀번호를 입력해주세요.'
-        value={currentPw}
-        onChange={handleCurrentPwChange}
-      />
-
-      <ChangePwText>변경 비밀번호</ChangePwText>
-      <PwInput2
-        type='password'
-        placeholder='새로운 비밀번호를 입력해주세요.'
-        value={newPw}
-        onChange={handleNewPwChange}
-      />
-
-      <ConfirmPwText>비밀번호 확인</ConfirmPwText>
-      <PwInput3
-        type='password'
-        placeholder='새로운 비밀번호를 다시 입력하세요.'
-        value={confirmPw}
-        onChange={handleConfirmPwChange}
-      />
-
-      {!confirmPwValid && confirmPw.length > 0 && (
-        <ErrorMessage>비밀번호가 일치하지 않습니다</ErrorMessage>
-      )}
-
-      <PwChangeBtn disabled={!confirmPwValid} onClick={handlePwChange}>
-        변경하기
-      </PwChangeBtn>
+      <MediaQuery minWidth={767}>
+        <PwTitle>비밀번호 변경</PwTitle>
+        <PwLine1 />
+        <PwVertical1>
+          <PwText>비밀번호 변경</PwText>
+        </PwVertical1>
+        <PwLine2 />
+        <PwVertical2 />
+        <PwLine3 />
+        <CurrentPwText>현재 비밀번호</CurrentPwText>
+        <PwInput1
+          type='password'
+          placeholder='기존 비밀번호를 입력해주세요.'
+          value={currentPw}
+          onChange={handleCurrentPwChange}
+        />
+        <ChangePwText>변경 비밀번호</ChangePwText>
+        <PwInput2
+          type='password'
+          placeholder='새로운 비밀번호를 입력해주세요.'
+          value={newPw}
+          onChange={handleNewPwChange}
+        />
+        <ConfirmPwText>비밀번호 확인</ConfirmPwText>
+        <PwInput3
+          type='password'
+          placeholder='새로운 비밀번호를 다시 입력하세요.'
+          value={confirmPw}
+          onChange={handleConfirmPwChange}
+        />
+        {!confirmPwValid && confirmPw.length > 0 && (
+          <ErrorMessage>비밀번호가 일치하지 않습니다</ErrorMessage>
+        )}
+        <PwChangeBtn disabled={!isPwValid} onClick={handlePwChange}>
+          변경하기
+        </PwChangeBtn>
+      </MediaQuery>
+      <MediaQuery maxWidth={767}>
+        <MobileFrame>
+          <MobileHeader>
+            <MobileHeaderA>
+          <Link to="/" style={LinkStyle}>
+          <IoClose style={{ width: "100%", height: "100%" }}/>
+          </Link>
+          </MobileHeaderA>
+          <MobileHeaderB>
+            <MobilePwText>비밀번호 변경</MobilePwText>
+            </MobileHeaderB>
+            <MobileHeaderC/>
+          </MobileHeader>
+          <MobileMain>
+            <MobileMainA>
+            <MobileCurrentPwText>현재 비밀번호</MobileCurrentPwText>
+            <MobilePwInput
+              type='password'
+              placeholder='기존 비밀번호를 입력해주세요.'
+              value={currentPw}
+              onChange={handleCurrentPwChange}
+            />
+            </MobileMainA>
+            <MobileMainB>
+            <MobileChangePwText>변경 비밀번호</MobileChangePwText>
+            <MobilePwInput2
+              type='password'
+              placeholder='새로운 비밀번호를 입력해주세요.'
+              value={newPw}
+              onChange={handleNewPwChange}
+            />
+            </MobileMainB>
+            <MobileMainC>
+            <MobileConfirmPwText>비밀번호 확인</MobileConfirmPwText>
+            <MobilePwInput3
+              type='password'
+              placeholder='새로운 비밀번호를 다시 입력하세요.'
+              value={confirmPw}
+              onChange={handleConfirmPwChange}
+            />
+            {!confirmPwValid && confirmPw.length > 0 && (
+              <MobileErrorMessage>비밀번호가 일치하지 않습니다</MobileErrorMessage>
+            )}
+            </MobileMainC>
+            <MobilePwChangeBtn disabled={!isPwValid} onClick={handlePwChange}>
+              변경하기
+            </MobilePwChangeBtn>
+          </MobileMain>
+        </MobileFrame>
+      </MediaQuery>
     </div>
+
+
   );
 }
