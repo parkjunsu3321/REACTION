@@ -1,26 +1,15 @@
 import React from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-
 import MediaQuery from "react-responsive";
 import { FaLock } from "react-icons/fa";
 import { BiSolidWidget } from "react-icons/bi";
 import { ImMenu } from "react-icons/im";
 import { FaRankingStar } from "react-icons/fa6";
 import { FaUserLarge } from "react-icons/fa6";
-
 import MyInfo from './MyInfo';
 import PwChange from './PwChange';
 import Withdrawal from './Withdrawal';
-
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: antiquewhite;
-`;
 
 const TitleText = styled.div`
   position: absolute;
@@ -196,11 +185,14 @@ const IconStyle = {
   height: '30px',
 };
 
+
+
 export const MyPage = () => {
   return (
-      <>
+    <>
       <MediaQuery minWidth={767}>
         <TitleText>마이페이지</TitleText>
+
         <LeftBox>
           <LeftImage />
           <LeftName>사용자 이름</LeftName>
@@ -222,6 +214,7 @@ export const MyPage = () => {
             </li>
           </ul>
         </LeftBox>
+
         <RightBox>
           <Routes>
             <Route path="/" element={<MyInfo />} />
@@ -231,6 +224,7 @@ export const MyPage = () => {
           </Routes>
         </RightBox>
       </MediaQuery>
+
       <MediaQuery maxWidth={767}>
         <MobileContainer>
           <MobileHeader>
@@ -247,20 +241,25 @@ export const MyPage = () => {
               </MobileSignBtn>
             </MobileHeaderR>
           </MobileHeader>
+
           <MobileMain>
+
           <Routes>
             <Route path="/" element={<MyInfo />} />
             <Route path="내정보" element={<MyInfo />} />
             <Route path="비밀번호변경" element={<PwChange />} />
             <Route path="회원탈퇴" element={<Withdrawal />} />
           </Routes>
+
           </MobileMain>
+
           <MobileFooter>
           <Link to="/MyPage" style={LinkStyle}> <FaUserLarge style={IconStyle} /></Link>
           <BiSolidWidget style={IconStyle} />
           <FaRankingStar style={IconStyle} />
           <ImMenu style={IconStyle} />
           </MobileFooter>
+          
         </MobileContainer>
       </MediaQuery>
     </>

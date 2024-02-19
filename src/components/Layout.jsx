@@ -1,5 +1,3 @@
-import React from 'react';
-import { useEffect , useState } from 'react';
 import styled from 'styled-components'; //  백틱``을 이용한 간단한 css 작성을 위해 사용
 import { Link } from 'react-router-dom';    // react-router 사용
 import MediaQuery from 'react-responsive';
@@ -21,9 +19,8 @@ import { FaLock } from "react-icons/fa";
 import { FaUserLarge } from "react-icons/fa6";
 import { BiSolidWidget } from "react-icons/bi";
 import { ImMenu } from "react-icons/im";
-import axios from 'axios';
 // 여기까지가 아이콘 적용 라이브러리
-var login_b = false;
+
 
 const Container = styled.div`   
     width: 100vw;
@@ -308,39 +305,10 @@ const IconStyle = {
     height: '30px',
 };
 
-
-
 const Layout = ({ RightMainContent }) => {
-
-    const [logincheck, setLoginCheck] = useState(false); // useState 훅을 사용하여 상태 변수로 선언
-
-    useEffect(() => {
-        axios.get(process.env.REACT_APP_WAITLIST_API_URL + '/api')
-            .then(response => {
-                setLoginCheck(response.data); // logincheck를 상태로 설정
-            })
-            .catch(error => {
-                console.error('오류:', error);
-            });
-    }, []);
-
-    const handleSignBtnClick = () => {
-        axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/logout')
-            .then(response => {
-                if(response.data === true) {
-                    alert('로그아웃 되었습니다.');
-                    setLoginCheck(false); // 로그아웃 성공 시 logincheck 상태 변경
-                }
-            })
-            .catch(error => {
-                alert('로그아웃 중 오류가 발생했습니다.');
-                console.error('로그아웃 오류:', error);
-            });
-    };
-    
     return (
         <>
-                <MediaQuery minWidth={768}>
+            <MediaQuery minWidth={768}>
                 <Container>
                     <Frame>
                         <Header>
@@ -352,12 +320,12 @@ const Layout = ({ RightMainContent }) => {
                                 <HeaderRightL>
                                 </HeaderRightL>
                                 <HeaderRightR>
-                                    <Link to={logincheck ? "../" : "/SignIn"}  style={LinkStyle2}>
-                                        <SignBtn onClick={logincheck ? handleSignBtnClick : null}>
-                                            {logincheck ? '로그아웃' : '로그인 / 회원가입'}
-                                        </SignBtn>
+                                    <Link to="/SignIn" style={LinkStyle2}>
+                                        <SignBtn>로그인 / 회원가입</SignBtn>
                                     </Link>
-                                    <MypageBtn>마이페이지</MypageBtn>
+                                    <Link to="/MyInfo" style={LinkStyle2}>
+                                        <MypageBtn>마이페이지</MypageBtn>
+                                    </Link>
                                 </HeaderRightR>
                             </HeaderRight>
                         </Header>
@@ -366,31 +334,36 @@ const Layout = ({ RightMainContent }) => {
                                 <Link to="/" style={LinkStyle}>
                                     <ul><IoHomeOutline />홈</ul>
                                 </Link>
-                                <Link to={logincheck ? "/MyPage" : "/SignIn"} style={LinkStyle}>
-                                    <ul><FaChild />마이페이지 (테스트)</ul>
+
+                                <Link to="/MyInfo" style={LinkStyle}>
+                                    
                                 </Link>
+
                                 <hr></hr>
-                                <Link to={logincheck ? "/PopularSong" : "/SignIn"} style={LinkStyle}>
+
+                                <Link to="/PopularSong" style={LinkStyle}>
                                     <ul><ImFloppyDisk />대중가요 맞추기</ul>
                                 </Link>
 
                                 <ul><BsMusicPlayer />내취향 음악 맞추기</ul>
 
-                                <Link to={logincheck ? "/PopSong" : "/SignIn"} style={LinkStyle}>
+                                <Link to="/PopSong" style={LinkStyle}>
                                     <ul><FaGlobeAmericas />팝송 맞추기</ul>
                                 </Link>
 
-                                <Link to={logincheck ? "/JpopSong" : "/SignIn"} style={LinkStyle}>
+                                <Link to="/JpopSong" style={LinkStyle}>
                                     <ul><TbLanguageHiragana />JPOP 맞추기</ul>
                                 </Link>
 
                                     <ul><PiTelevisionSimpleBold />드라마 / 영화 노래 맞추기</ul>
 
-                                <Link to="/VideoPlayer">
-                                    <ul><TbDeviceAirpods />업데이트 예정</ul>
-                                </Link>                            
+                                    <ul><TbDeviceAirpods />업데이트 예정</ul>     
+
                                     <hr></hr>
+
+                                <Link to="/Ranking" style={LinkStyle}>
                                     <ul><FaRankingStar />명예의 전당</ul>
+                                </Link>
                                     <ul><MdFiberNew />업데이트 내역</ul>
                                     <ul><IoIosPeople />자유 게시판</ul>
                                     <ul><CiSquareQuestion />요청 게시판</ul>
@@ -425,9 +398,10 @@ const Layout = ({ RightMainContent }) => {
                             </FooterRight>
                         </Footer>
                     </Frame>
-                </Container>     
-            </MediaQuery>    
+                </Container>       
+            </MediaQuery>  
             
+
             <MediaQuery maxWidth={768}>
                 <MobileContainer>
                     <MobileHeader>
@@ -437,10 +411,9 @@ const Layout = ({ RightMainContent }) => {
                             </Link>
                         </MobileHeaderL>
                         <MobileHeaderR>
-                            <MobileSignBtn onClick={logincheck ? handleSignBtnClick : null}>
+                            <MobileSignBtn>
                                 <Link to="/SignIn" style={LinkStyle2}>
-                                    <FaLock style={{ width:'10px', height:'10px' }}/>
-                                     {logincheck ? 'LogOut' : 'SignIn'}
+                                    <FaLock style={{ width:'10px', height:'10px' }}/>SignIn
                                 </Link>
                             </MobileSignBtn>
                         </MobileHeaderR>
@@ -449,15 +422,23 @@ const Layout = ({ RightMainContent }) => {
                         {RightMainContent}
                     </MobileMain>
                     <MobileFooter>
-                        <FaUserLarge style={IconStyle}/>
-                        <BiSolidWidget style={IconStyle}/>
-                        <FaRankingStar style={IconStyle}/>
-                        <ImMenu style={IconStyle}/>
+                        <Link to="/MyInfo" style={LinkStyle}>
+                            <FaUserLarge style={IconStyle}/>
+                        </Link>
+                        <Link to="/" style={LinkStyle}>
+                            <BiSolidWidget style={IconStyle}/>
+                        </Link>
+                        <Link to="/Ranking" style={LinkStyle}>
+                            <FaRankingStar style={IconStyle}/>
+                        </Link>
+                        <Link to="/WithDrawal" style={LinkStyle}>
+                            <ImMenu style={IconStyle}/>
+                        </Link>
                     </MobileFooter>
                 </MobileContainer>
             </MediaQuery>
         </>
     );
-}
+};
 
 export default Layout;

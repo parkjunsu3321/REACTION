@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MediaQuery from "react-responsive";
 import { IoArrowBackOutline } from "react-icons/io5";
-import axios from 'axios';
 
 const User = {
-  userid: '20203206',
+  // 가상의 사용자 데이터 (임시로 추가) 삭제해도 댐
+  id: '20203206',
   pw: '1234'
-}
+};
 
 const BackgroundImage = styled.div`
   position: fixed;
@@ -319,12 +319,11 @@ const LinkStyle2 = {
   color: 'black',
 };
 
+
 export default function SignIn() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [notAllow, setNotAllow] = useState(true);
-
-  const history = useNavigate(); // useHistory를 사용하여 history 객체 가져오기
 
   const handleId = (e) => {
     const newId = e.target.value;
@@ -343,35 +342,12 @@ export default function SignIn() {
   };
 
   const onClickConfirmButton = () => {
-    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
-      id: id,
-      pass: pw,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-    if(response.data == true)
-    {
-      alert("로그인 성공");
-      history('../', { state: { login_b: true } });
+    if (id === User.id && pw === User.pw) {
+      alert('로그인에 성공했습니다.');
+    } else {
+      alert('등록되지 않은 회원입니다.');
     }
-    else
-    {
-      alert("아이디 또는 비밀번호가 잘못 되었습니다.");
-      setId('');
-      setPw('');
-    } 
-
-})
-.catch(error => {
-    alert('Error fetching data: ' + error); // 실패 알림
-    if (error.response) {
-        alert('Server response: ' + error.response.data);
-    }
-});
-  }
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !notAllow) {
@@ -379,7 +355,7 @@ export default function SignIn() {
     }
   };
 
- return (
+  return (
     <div>
       <MediaQuery minWidth={767}>
         <BackgroundImage />
@@ -396,6 +372,7 @@ export default function SignIn() {
                 onKeyDown={handleKeyDown}
               />
             </InputWrap>
+
             <InputTitle style={{ marginTop: '26px' }}>비밀번호</InputTitle>
             <InputWrap>
               <Input
@@ -407,17 +384,21 @@ export default function SignIn() {
               />
             </InputWrap>
           </ContentWrap>
+
           <ReactionWrap>
             <ReactionText>
               R<span>e</span>action
             </ReactionText>
           </ReactionWrap>
+
           <LoginButton onClick={onClickConfirmButton} disabled={notAllow}>
             로그인
           </LoginButton>
+
           <NoAccountMessage>
             <span >계정이 없으신가요?</span>
           </NoAccountMessage>
+
           <div className='SignUp'>
             <Link to='/SignUp'>
               <SignUpLink>회원가입</SignUpLink>
@@ -425,6 +406,7 @@ export default function SignIn() {
           </div>
         </Page>
       </MediaQuery>
+
       <MediaQuery maxWidth={767}>
         <MobileContainer>
           <MobileHeader>
@@ -433,11 +415,17 @@ export default function SignIn() {
                 <IoArrowBackOutline style={{ width: "100%", height: "100%", marginLeft: "10px" }} />
               </Link>
             </MobileHeaderL>
+
             <MobileHeaderM>
               <h1 style={{ fontFamily: "Itim-Regular" }}>Reaction</h1>
             </MobileHeaderM>
+
             <MobileHeaderR />
+
+
+
           </MobileHeader>
+
           <MobileMain>
             <MobileContentWrap>
               <MobileInputTitle1>
@@ -452,6 +440,7 @@ export default function SignIn() {
                   onKeyDown={handleKeyDown}
                 />
               </MobileInputWrap1>
+
               <MobileInputTitle2>
                 비밀번호
               </MobileInputTitle2>
@@ -465,20 +454,32 @@ export default function SignIn() {
                 />
               </MobileInputWrap2>
             </MobileContentWrap>
+
             <MobileLoginButton onClick={onClickConfirmButton} disabled={notAllow}>
               로그인
             </MobileLoginButton>
+
             <MobileNoAccountMessage>
               <MobileNoAccountMessageL>
                 계정이 없으신가요?
               </MobileNoAccountMessageL>
+
               <MobileNoAccountMessageR>
                 <Link to='/SignUp' style={LinkStyle}>회원가입</Link>
               </MobileNoAccountMessageR>
+
+
             </MobileNoAccountMessage>
+
+
+
           </MobileMain>
+
+
+
         </MobileContainer>
       </MediaQuery>
+
     </div>
   );
 }

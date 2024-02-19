@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import YouTube from "react-youtube";
 import MediaQuery from "react-responsive";
 import popularSongs from "../song/PopularSong.json";
-import axios from 'axios';
-
 
 const Frame = styled.div`
   width: 100%;
@@ -166,8 +165,8 @@ const InGameContent = () => {
   const [inputText, setInputText] = useState(""); // 텍스트박스 상태 관리
   const [isPlaying, setIsPlaying] = useState(true); // 재생되고있는지 상태 관리
   const [score, setScore] = useState(0); // 점수 상태 관리
-  const [answer, setAnswer] = useState("");
-  const [tag, setTag] = useState("");
+  
+  const navigate = useNavigate();
   const playerRef = useRef(null);
 
   useEffect(() => {
@@ -178,44 +177,28 @@ const InGameContent = () => {
   useEffect(() => {
     if (currentIndex !== null) {
       setVideoCode(popularSongs[currentIndex].code);
-      setAnswer(popularSongs[currentIndex].answer);
-      setTag(popularSongs[currentIndex].tags);
     }
   }, [currentIndex]);
 
+
+
   const handleCorrectClick = () => {
     const currentSong = popularSongs[currentIndex];
-    var time = 2.0;
-    const flaskUrl = 'https://port-0-flask-9zxht12blqjml81v.sel4.cloudtype.app/embedding';
-    const nextIndex = (currentIndex + 1) % popularSongs.length;
-    setCurrentIndex(nextIndex);
-    setInputText("");
-    // GET 요청을 보낼 쿼리 파라미터 설정
-    console.log("Current answer:", tag);
-    axios.get(flaskUrl, {
-  params: {
-    answer: answer[0],
-    user_answer: inputText,
-    tag: tag[0],
-    time: time
-  }
-})
-.then(response => {
-  // 서버에서 받은 응답을 처리합니다.
-  console.log("성공");
-})
-.catch(error => {
-  // 오류가 발생한 경우 처리합니다.
-  console.error('Error:', error);
-});
-
+    if (currentSong.answer.includes(inputText.trim().toLowerCase())) {
+      alert("정답입니다.");
+      const nextIndex = (currentIndex + 1) % popularSongs.length;
+      setCurrentIndex(nextIndex);
+      setInputText("");
+      setScore(score + 1); // 맞췄을 때 점수 증가
+    } else {
+      alert("틀렸습니다. 다시 시도해주세요.");
+    }
   };
 
   const handlePassClick = () => {
     const nextIndex = (currentIndex + 1) % popularSongs.length;
     setCurrentIndex(nextIndex);
     setInputText("");
-    console.log("passclick");
   };
 
   const handleReady = (event) => {

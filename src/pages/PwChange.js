@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import Layout from '../components/Layout';
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import MediaQuery from "react-responsive";
+import MediaQuery from 'react-responsive';
 import { IoClose } from "react-icons/io5";
 
 const WdTitle = styled.div` /*회원 탈퇴 타이틀 텍스트*/
@@ -254,11 +254,12 @@ const LinkStyle = {
   color: 'black',
 };
 
-export default function Withdrawal() {
+const PwChangeContent = () => {
+
   const [isChecked, setIsChecked] = useState(false);
   const [pw, setPw] = useState('');
   const history = useNavigate();
-  
+
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
@@ -267,8 +268,8 @@ export default function Withdrawal() {
     setPw(e.target.value);
   };
 
-  return (
-    <div>
+  const WithDrawalContent = (
+      <>
       <MediaQuery minWidth={767}>
         <WdTitle>회원 탈퇴</WdTitle>
         <WdLine1 />
@@ -356,6 +357,12 @@ export default function Withdrawal() {
           </MobileMain>
         </MobileFrame>
       </MediaQuery>
-    </div>
+    </>
+    )
+
+  return (
+    <Layout RightMainContent={<PwChangeContent />}/>
   );
-}
+};
+
+export default PwChangeContent;

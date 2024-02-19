@@ -1,7 +1,7 @@
+import Layout from '../components/Layout';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
 import MediaQuery from "react-responsive";
 import { Link } from 'react-router-dom';
 
@@ -301,6 +301,7 @@ margin-top: 18px;
 `;
 
 const MyInfo = () => {
+
   const [responseData, setResponseData] = useState([]);
 
   useEffect(() => {
@@ -313,9 +314,9 @@ const MyInfo = () => {
         console.error('오류:', error);
       });
   }, []);
-  
-  return (
-    <div>
+
+  const MyInfoContent = () => (
+    <>
       <MediaQuery minWidth={767}>
         <InfoTitle>내 정보</InfoTitle>
 
@@ -391,7 +392,11 @@ const MyInfo = () => {
 
         </MobileFrame>
       </MediaQuery>
-    </div>
+    </>
+  )
+  
+  return (
+    <Layout RightMainContent={<MyInfoContent />} />
   );
 };
 

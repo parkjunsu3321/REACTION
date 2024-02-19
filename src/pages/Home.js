@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Home.module.css';
+import '../styles/Home.css';
 import Layout from '../components/Layout';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -11,11 +11,11 @@ import JpopSong from '../pages/JpopSong';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import InGame from './InGame';
-import VideoPlayer from './VideoPlayer';
-import MyPage from '../components/MyPage';
-import MyInfo from '../components/MyInfo';
-import PwChange from '../components/PwChange';
-import Withdrawal from '../components/Withdrawal';
+import MyInfo from '../pages/MyInfo';
+import PwChange from '../pages/PwChange';
+import WithDrawal from '../pages/WithDrawal';
+import GameResult from '../pages/GameResult';
+import Ranking from '../pages/Ranking';
 
 const Frame = styled.div`
   width: 100%;
@@ -114,15 +114,11 @@ function Home() {
       <Route path="/Signin" element={<SignIn />} />
       <Route path="/Signup" element={<SignUp />} />
       <Route path="/InGame" element={<InGame />} />
-      <Route path="/VideoPlayer" element={<VideoPlayer />} />
-
-      {/* 마이페이지와 하위 페이지들 */}
-      <Route path="/mypage" element={<MyPage />}>
-        <Route index element={<MyInfo />} /> {/* /mypage에 들어갔을 때 기본적으로 보여지는 페이지 */}
-        <Route path="내정보" element={<MyInfo />} />
-        <Route path="비밀번호변경" element={<PwChange />} />
-        <Route path="회원탈퇴" element={<Withdrawal />} />
-      </Route>
+      <Route path="/GameResult" element={<GameResult />} />
+      <Route path="/MyInfo" element={<MyInfo />} />
+      <Route path="/PwChange" element={<PwChange />} />
+      <Route path="/WithDrawal" element={<WithDrawal />} />
+      <Route path="/Ranking" element={<Ranking />} />
     </Routes>
   );
 }
