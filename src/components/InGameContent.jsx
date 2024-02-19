@@ -5,6 +5,7 @@ import MediaQuery from "react-responsive";
 import popularSongs from "../song/PopularSong.json";
 import axios from 'axios';
 
+
 const Frame = styled.div`
   width: 100%;
   height: 100%;
