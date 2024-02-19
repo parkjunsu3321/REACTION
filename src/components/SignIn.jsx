@@ -344,7 +344,7 @@ export default function SignIn() {
 
   const onClickConfirmButton = () => {
     axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/login', {
-      id: userid,
+      id: id,
       pass: pw,
     }, {
       headers: {
