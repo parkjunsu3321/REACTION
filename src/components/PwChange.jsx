@@ -375,6 +375,11 @@ export default function PwChange() {
     setConfirmPwValid(newConfirmPw === newPw);
   };
 
+  // 새로운 비밀번호와 확인 값이 일치하는지 여부
+  const isPwMatch = newPw === confirmPw;
+  // 현재 비밀번호, 새 비밀번호, 새 비밀번호 확인 값이 비어 있지 않고, 새 비번과 확인 값이 일치하는 경우 변경 가능
+  const isPwValid = currentPw !== '' && newPw !== '' && isPwMatch;
+
   // 비밀번호 변경 버튼 클릭 핸들러임
   const handlePwChange = () => {
   axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', {
