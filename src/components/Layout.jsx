@@ -1,10 +1,10 @@
-import styled from 'styled-components'; //  백틱``을 이용한 간단한 css 작성을 위해 사용
-import { Link } from 'react-router-dom';    // react-router 사용
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
+
 // 여기서부터 아이콘 적용 라이브러리
 import { IoSearchSharp } from "react-icons/io5";
 import { IoHomeOutline } from "react-icons/io5";
-import { FaChild } from "react-icons/fa";
 import { BsMusicPlayer } from "react-icons/bs";
 import { ImFloppyDisk } from "react-icons/im";
 import { TbDeviceAirpods } from "react-icons/tb";
@@ -20,7 +20,6 @@ import { FaUserLarge } from "react-icons/fa6";
 import { BiSolidWidget } from "react-icons/bi";
 import { ImMenu } from "react-icons/im";
 // 여기까지가 아이콘 적용 라이브러리
-
 
 const Container = styled.div`   
     width: 100vw;
@@ -75,12 +74,12 @@ const HeaderRight = styled.div`
 const HeaderRightL = styled.div`
     width: 60%;
     height: 100%;
-`
+`;
 
 const HeaderRightR = styled.div`
     width: 40%;
     height: 100%;
-`
+`;
 
 const SearchContainer = styled.div`
     position: relative;
@@ -119,8 +118,6 @@ const SearchBox = () => {
             </SearchIcon>
         </SearchContainer>
     );
-
-    
 };
 
 const SignBtn = styled.button`
@@ -231,15 +228,20 @@ const CommonImageStyle = {
 const LinkStyle = {
     textDecoration: 'none',
     color: 'black',
+    cursor: 'pointer',
+    userSelect: 'none',
+    WebkitTapHighlightColor: 'transparent',
 };
 
 const LinkStyle2 = {
     textDecoration: 'none',
     color: 'black',
+    cursor: 'pointer',
+    userSelect: 'none',
+    WebkitTapHighlightColor: 'transparent',
 };
 
 // 여기서부터 모바일 환경 컴포넌트
-
 const MobileContainer = styled.div`
     width: 100vw;
     height: 100dvh; 
@@ -247,7 +249,7 @@ const MobileContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: white;
-`
+`;
 
 const MobileHeader = styled.div`
     height: 10%; 
@@ -255,13 +257,13 @@ const MobileHeader = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-`
+`;
 
 const MobileHeaderL = styled.div`
     width: 50%;
     height: auto;
     margin-left: 5%;
-`
+`;
 
 const MobileHeaderR = styled.div`
     width: 50%;
@@ -271,14 +273,13 @@ const MobileHeaderR = styled.div`
     align-items: center;
     justify-content: flex-end;
     margin-right: 3%;
-`
+`;
 
 const MobileMain = styled.div`
     height: 80%;
     background-color: white;
     display: flex;
-
-`
+`;
 
 const MobileFooter = styled.div`
     height: 10%;
@@ -286,7 +287,7 @@ const MobileFooter = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-`
+`;
 
 const MobileSignBtn = styled.button`
     width: auto;
@@ -298,17 +299,19 @@ const MobileSignBtn = styled.button`
     font-weight: bolder;
     cursor: pointer;
     margin-left: 5%;
-`
+`;
 
 const IconStyle = {
     width: '30px',
     height: '30px',
+    outline: 'none',
+    boxShadow: 'none' /* 클릭 효과 제거 */
 };
 
 const Layout = ({ RightMainContent }) => {
     return (
         <>
-            <MediaQuery minWidth={768}>
+            <MediaQuery minWidth={767}>
                 <Container>
                     <Frame>
                         <Header>
@@ -329,38 +332,28 @@ const Layout = ({ RightMainContent }) => {
                                 </HeaderRightR>
                             </HeaderRight>
                         </Header>
+
                         <Main>
                             <SideMenu>
                                 <Link to="/" style={LinkStyle}>
                                     <ul><IoHomeOutline />홈</ul>
                                 </Link>
-
-                                <Link to="/MyInfo" style={LinkStyle}>
-                                    
+                                <Link to="/MyInfo" style={LinkStyle}>    
                                 </Link>
-
                                 <hr></hr>
-
                                 <Link to="/PopularSong" style={LinkStyle}>
                                     <ul><ImFloppyDisk />대중가요 맞추기</ul>
                                 </Link>
-
                                 <ul><BsMusicPlayer />내취향 음악 맞추기</ul>
-
                                 <Link to="/PopSong" style={LinkStyle}>
                                     <ul><FaGlobeAmericas />팝송 맞추기</ul>
                                 </Link>
-
                                 <Link to="/JpopSong" style={LinkStyle}>
                                     <ul><TbLanguageHiragana />JPOP 맞추기</ul>
                                 </Link>
-
                                     <ul><PiTelevisionSimpleBold />드라마 / 영화 노래 맞추기</ul>
-
                                     <ul><TbDeviceAirpods />업데이트 예정</ul>     
-
                                     <hr></hr>
-
                                 <Link to="/Ranking" style={LinkStyle}>
                                     <ul><FaRankingStar />명예의 전당</ul>
                                 </Link>
@@ -372,6 +365,7 @@ const Layout = ({ RightMainContent }) => {
                                 {RightMainContent}
                             </RightMain>
                         </Main>
+
                         <Footer>
                             <FooterLeft>
                                 <ul>Project Reaction</ul>
@@ -401,18 +395,18 @@ const Layout = ({ RightMainContent }) => {
                 </Container>       
             </MediaQuery>  
             
-
-            <MediaQuery maxWidth={768}>
+            {/*여기부터 모바일 환경*/}
+            <MediaQuery maxWidth={767}>
                 <MobileContainer>
                     <MobileHeader>
                         <MobileHeaderL>
-                            <Link to="/" style={LinkStyle}>
+                            <Link to="/" style={LinkStyle} >
                                 <h1 style={{ fontFamily:"Itim-Regular" }}>Reaction</h1>
                             </Link>
                         </MobileHeaderL>
                         <MobileHeaderR>
                             <MobileSignBtn>
-                                <Link to="/SignIn" style={LinkStyle2}>
+                                <Link to="/SignIn" style={LinkStyle2} >
                                     <FaLock style={{ width:'10px', height:'10px' }}/>SignIn
                                 </Link>
                             </MobileSignBtn>
@@ -431,7 +425,7 @@ const Layout = ({ RightMainContent }) => {
                         <Link to="/Ranking" style={LinkStyle}>
                             <FaRankingStar style={IconStyle}/>
                         </Link>
-                        <Link to="/WithDrawal" style={LinkStyle}>
+                        <Link to="/UserStatus" style={LinkStyle}>
                             <ImMenu style={IconStyle}/>
                         </Link>
                     </MobileFooter>

@@ -5,7 +5,9 @@ import axios from 'axios';
 import MediaQuery from "react-responsive";
 import { Link } from 'react-router-dom';
 
-const InfoTitle = styled.div` /*내정보 타이틀 텍스트*/
+import { IoIosArrowForward } from "react-icons/io";
+
+const InfoTitle = styled.div`
   margin-top: 20px;
   font-size: 24px;
   font-weight: 700;
@@ -13,18 +15,18 @@ const InfoTitle = styled.div` /*내정보 타이틀 텍스트*/
   margin-left: 15px;
 `;
 
-const InfoLine1 = styled.hr` /*가로 라인*/
+const InfoLine1 = styled.hr`
   border: 1px solid lightgray;
 `;
 
-const InfoVertical1 = styled.div` /*박스 첫 번째 세로 라인*/
+const InfoVertical1 = styled.div`
   position: relative;
   border-left: 2px solid #d9d9d9;
   height: 49px;
   top: 6%;
 `;
 
-const InfoText = styled.div` /*박스 안 회원 정보 텍스트*/
+const InfoText = styled.div`
   position: relative;
   font-size: 18px;
   font-weight: 700;
@@ -33,7 +35,7 @@ const InfoText = styled.div` /*박스 안 회원 정보 텍스트*/
   top: 20%;
 `;
 
-const InfoLine2 = styled.hr` /*박스 첫 번째 두꺼운 가로 라인*/
+const InfoLine2 = styled.hr`
   position: relative;
   border: 2px solid #ff5000;
   margin-top: -30px;
@@ -41,7 +43,7 @@ const InfoLine2 = styled.hr` /*박스 첫 번째 두꺼운 가로 라인*/
   width: 15%;
 `;
 
-const InfoVertical2 = styled.div` /*박스 두 번째 세로 라인*/
+const InfoVertical2 = styled.div`
   position: relative;
   border-left: 2px solid #d9d9d9;
   height: 49px;
@@ -49,7 +51,7 @@ const InfoVertical2 = styled.div` /*박스 두 번째 세로 라인*/
   left: 182px;
 `;
 
-const InfoLine3 = styled.hr` /*박스 끝 마지막 가로 라인*/
+const InfoLine3 = styled.hr`
   position: relative;
   border: 1px solid #d9d9d9;
   margin-top: -8px;
@@ -57,7 +59,7 @@ const InfoLine3 = styled.hr` /*박스 끝 마지막 가로 라인*/
   width: 85%;
 `;
 
-const InfoText2 = styled.div` /*기본정보(필수) 텍스트*/
+const InfoText2 = styled.div`
   position: relative;
   font-size: 18px;
   font-weight: 700;
@@ -66,7 +68,7 @@ const InfoText2 = styled.div` /*기본정보(필수) 텍스트*/
   top: 10%;
 `;
 
-const NameText = styled.div` /*사용자명 텍스트*/
+const NameText = styled.div`
   position: relative;
   font-size: 16px;
   font-weight: 700;
@@ -75,7 +77,7 @@ const NameText = styled.div` /*사용자명 텍스트*/
   top: 25%;
 `;
 
-const NameLine = styled.hr` /*첫 번째 라인*/
+const NameLine = styled.hr`
   position: relative;
   border: 1px solid black;
   top: 100px;
@@ -83,7 +85,7 @@ const NameLine = styled.hr` /*첫 번째 라인*/
   left: -380px;
 `;
 
-const LoginName = styled.div` /*로그인 시 사용자명*/
+const LoginName = styled.div`
   position: relative;
   font-size: 24px;
   font-weight: 700;
@@ -92,7 +94,7 @@ const LoginName = styled.div` /*로그인 시 사용자명*/
   top: 25%;
 `;
 
-const IdText = styled.div` /*아이디 텍스트*/
+const IdText = styled.div`
   position: relative;
   font-size: 16px;
   font-weight: 700;
@@ -101,7 +103,7 @@ const IdText = styled.div` /*아이디 텍스트*/
   top: 37%;
 `;
 
-const IdLine = styled.hr` /*두 번째 라인*/
+const IdLine = styled.hr`
   position: relative;
   border: 1px solid black;
   top: 150px;
@@ -109,7 +111,7 @@ const IdLine = styled.hr` /*두 번째 라인*/
   left: -380px;
 `;
 
-const LoginId = styled.div` /*로그인 시 아이디*/
+const LoginId = styled.div`
   position: relative;
   font-size: 24px;
   font-weight: 700;
@@ -118,7 +120,7 @@ const LoginId = styled.div` /*로그인 시 아이디*/
   top: 39%;
 `;
 
-const NopText = styled.div` /*게임 참가 횟수 텍스트*/
+const NopText = styled.div`
   position: relative;
   font-size: 16px;
   font-weight: 700;
@@ -127,7 +129,7 @@ const NopText = styled.div` /*게임 참가 횟수 텍스트*/
   top: 50%;
 `;
 
-const NopLine = styled.hr` /*마지막 라인*/
+const NopLine = styled.hr`
   position: relative;
   border: 1px solid black;
   top: 200px;
@@ -135,7 +137,7 @@ const NopLine = styled.hr` /*마지막 라인*/
   left: -380px;
 `;
 
-const LoginNop = styled.div` /*로그인 시 게임 참가 횟수*/
+const LoginNop = styled.div`
   position: relative;
   font-size: 24px;
   font-weight: 700;
@@ -151,169 +153,216 @@ const MobileFrame = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-`
+`;
 
 const MobileHeader = styled.div`
   width: 100%;
-  height: 40%;
+  height: 35%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   background-color: antiquewhite;
-`
+`;
+
 const MobileHeaderA = styled.div`
-    width: 40%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-const MobileInfoTitle = styled.div` /*내정보 타이틀 텍스트*/
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MobileInfoTitle = styled.div`
   font-size: 20px;
   font-weight: 700;
   color: #333;
-  margin-top: 20px;
 `;
 
 const MobileHeaderB = styled.div`
-    height: 100%;
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MobileImage = styled.div`
   position: absolute;
-  margin-top:20px;
   width: 47%;
   left: -20%;
   height: 25%;
   background-image: url('/images/basic.jpg');
   background-size: cover;
-  background-position: 52% 50%;
+  background-position: 50% 50%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  transform: translate(100%, 0%) scaleX(0.7) scaleY(0.7);
-`;
-
-const MobileHeaderC = styled.div`
-    height: 100%;
-    width: 40%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
-
-const MobileName = styled.div`
-  font-size: 21px;
-  font-weight: 700;
-  color: #333;
-  margin-top: 30px;
+  transform: translate(100%,-5%) scaleX(0.7) scaleY(0.7);
 `;
 
 const MobileMain = styled.div`
-    width: 100%;
-    height:60%;
-    background-color: white;
-`;
-
-const MobileInfoText = styled.div` /*기본정보 텍스트*/
-  font-size: 23px;
-  font-weight:bold;
-  color: #333;
-  margin-top: 20px;
-  margin-left: 20px;
+  width: 100%;
+  height:65%;
+  background-color: white;
 `;
 
 const MobileMainA = styled.div`
-    width: 100%;
-    height:20%;
-    display: flex;
-    align-items: center;
+  width: 100%;
+  height:20%;
+  display: flex;
+  align-items: center;
 `;
 
-const MobileNameText = styled.div` /*사용자명 텍스트*/
- width:27%;
+const MobileNameText = styled.div`
+  width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
   font-size: 16px;
   font-weight: 700;
-  color: lightgray;
-  margin-top: 20px;
-  margin-left:20px;
+  color: #ff813a;
+  margin-left: 20px
 `;
 
-const MobileLoginName = styled.div` /*로그인 시 사용자명*/
-  font-size: 24px;
-  color: #ff813a;
+const MobileLoginName = styled.div`
+  display: flex;
+  align-items: center;
+  width: 65%;
+  height: 100%;
+  font-size: 16px;
+  color: #ababab;
   margin-left: 20px;
-  margin-top: 12px;
+  font-weight: 700;
 `;
 
 const MobileMainB = styled.div`
-width: 100%;
-height:20%;
-display: flex;
-align-items: center;
+  width: 100%;
+  height:20%;
+  display: flex;
+  align-items: center;
 `;
 
-const MobileIdText = styled.div` /*아이디 텍스트*/
-width:27%;
-font-size: 16px;
-font-weight: 700;
-color: lightgray;
-margin-top: 20px;
-margin-left:20px;
+const MobileIdText = styled.div`
+  width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ff813a;
+  margin-left: 20px
 `;
 
-const MobileLoginId = styled.div` /*로그인 시 아이디*/
-font-size: 24px;
-color: #ff813a;
-margin-left: 20px;
-margin-top: 15px;
+const MobileLoginId = styled.div`
+  display: flex;
+  align-items: center;
+  width: 65%;
+  height: 100%;
+  font-size: 16px;
+  color: #ababab;
+  margin-left: 20px;
+  font-weight: 700;
 `;
 
 const MobileMainC = styled.div`
-width: 100%;
-height:20%;
-display: flex;
-align-items: center;
-    
+  width: 100%;
+  height:20%;
+  display: flex;
+  align-items: center;
 `;
 
-const MobileNopText = styled.div` /*게임 참가 횟수 텍스트*/
-width:27%;
-font-size: 16px;
+const MobileNopText = styled.div`
+  width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
   font-weight: 700;
-  color: lightgray;
-  margin-top: 20px;
-  margin-left:20px;
-
+  color: #ff813a;
+  margin-left: 20px
 `;
 
-const MobileLoginNop = styled.div` /*로그인 시 게임 참가 횟수*/
-
-font-size: 24px;
-color: #ff813a;
-margin-left: 20px;
-margin-top: 18px;
-;
+const MobileLoginNop = styled.div`
+  display: flex;
+  align-items: center;
+  width: 65%;
+  height: 100%;
+  font-size: 16px;
+  color: #ababab;
+  margin-left: 20px;
+  font-weight: 700;
 `;
+
+const MobileMainD = styled.div`
+  width: 100%;
+  height:20%;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+`;
+
+const MobileMainDa = styled.div`
+  width: 100%;
+  height:20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+`;
+
+const MobilePwChangeBtn = styled.button`
+  width: 340px;
+  height: 50px;
+  border: none;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 15px;
+  color: orange;
+  font-size: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+`;
+
+const MobileMainE = styled.div`
+  width: 100%;
+  height:20%;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+`;
+
+const MobileMainEa = styled.div`
+  width: 100%;
+  height:20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+`;
+
+const MobileRemoveBtn = styled.button`
+  width: 340px;
+  height: 50px;
+  border: none;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 15px;
+  color: red;
+  font-size: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+`;
+
+const LinkStyle1 = {
+  textDecoration: 'none',
+};
 
 const MyInfo = () => {
-
-  const [responseData, setResponseData] = useState([]);
-
-  useEffect(() => {
-    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/info')
-      .then(response => {
-        setResponseData(response.data);
-        console.log(response.data); // 올바른 데이터를 확인하기 위해 responseData 대신 response.data를 출력합니다.
-      })
-      .catch(error => {
-        console.error('오류:', error);
-      });
-  }, []);
 
   const MyInfoContent = () => (
     <>
@@ -327,9 +376,7 @@ const MyInfo = () => {
         </InfoVertical1>
 
         <InfoLine2 />
-
         <InfoVertical2 />
-
         <InfoLine3 />
 
         <InfoText2>기본정보(필수)</InfoText2>
@@ -348,6 +395,7 @@ const MyInfo = () => {
 
       </MediaQuery>
 
+      {/*여기부터 모바일 환경*/}
       <MediaQuery maxWidth={767}>
         <MobileFrame>
           <MobileHeader>
@@ -359,42 +407,46 @@ const MyInfo = () => {
               <MobileImage />
             </MobileHeaderB>
 
-            <MobileHeaderC>
-              <MobileName>사용자 이름</MobileName>
-            </MobileHeaderC>
-
           </MobileHeader>
 
           <MobileMain>
-            <MobileInfoText>기본정보</MobileInfoText>
 
             <MobileMainA>
               <MobileNameText>사용자명</MobileNameText>
               <MobileLoginName>name</MobileLoginName>
             </MobileMainA>
 
-
             <MobileMainB>
               <MobileIdText>아이디</MobileIdText>
               <MobileLoginId>id</MobileLoginId>
             </MobileMainB>
-
 
             <MobileMainC>
               <MobileNopText>게임 참가 횟수</MobileNopText>
               <MobileLoginNop>0</MobileLoginNop>
             </MobileMainC>
 
-            <Link to='/mypage/비밀번호변경'>비밀번호 변경</Link>
-            <Link to='/mypage/회원탈퇴'>회원 탈퇴</Link>
+            <MobileMainD>
+              <MobileMainDa>
+                <Link to="/PwChange" style={LinkStyle1}>
+                <MobilePwChangeBtn>비밀번호 변경</MobilePwChangeBtn>
+                </Link>
+              </MobileMainDa>
+            </MobileMainD>
+
+            <MobileMainE>
+              <MobileMainEa>
+              <Link to="/WithDrawal" style={LinkStyle1}>
+              <MobileRemoveBtn>회원탈퇴</MobileRemoveBtn>
+                </Link>
+              </MobileMainEa>
+              </MobileMainE>
           </MobileMain>
-
-
         </MobileFrame>
       </MediaQuery>
     </>
   )
-  
+
   return (
     <Layout RightMainContent={<MyInfoContent />} />
   );

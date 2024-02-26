@@ -66,12 +66,11 @@ const LinkStyle = {
 };
 
 // 여기서부터 모바일 환경 컴포넌트
-
 const MobileFrame = styled.div`
     width: 100%;
     height: 100%;
     background-color: salmon;
-`
+`;
 
 const MobileHeader = styled.div`
     width: 100%;
@@ -80,7 +79,7 @@ const MobileHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-`
+`;
 
 const MobileMain = styled.div`
     width: 100%;
@@ -89,8 +88,7 @@ const MobileMain = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-`
-
+`;
 
 const MobileProbBtn = styled.button`
     width: 100px;
@@ -118,7 +116,7 @@ const MobileFooter = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+`;
 
 const MobileTextBox = styled.div`
     width: 90%;
@@ -129,7 +127,7 @@ const MobileTextBox = styled.div`
     display: flex; 
     align-items: center;
     text-align: center;
-`
+`;
 
 const GameMainSet = ({ headerContent, textBoxContent }) => {
     return (
@@ -139,26 +137,26 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
                     <Header>
                         {headerContent}
                     </Header>
+
                     <Main>
                         <Link to="/Ingame" style={LinkStyle}>
                             <ProbBtn>Easy</ProbBtn>
                         </Link>
-                        
                         <Link to="/Ingame" style={LinkStyle}>
                             <ProbBtn>Normal</ProbBtn>
                         </Link>
-
                         <Link to="/Ingame" style={LinkStyle}>
                             <ProbBtn>Hard</ProbBtn>
                         </Link>
-
                     </Main>
+
                     <Footer>
                         <TextBox>{textBoxContent}</TextBox>
                     </Footer>
                 </Frame>
             </MediaQuery>
 
+            {/*여기부터 모바일 환경*/}
             <MediaQuery maxWidth={768}>
                 <MobileFrame>
                     <MobileHeader>

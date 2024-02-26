@@ -16,6 +16,7 @@ import PwChange from '../pages/PwChange';
 import WithDrawal from '../pages/WithDrawal';
 import GameResult from '../pages/GameResult';
 import Ranking from '../pages/Ranking';
+import UserStatus from '../pages/UserStatus';
 
 const Frame = styled.div`
   width: 100%;
@@ -25,7 +26,7 @@ const Frame = styled.div`
   flex-wrap: wrap;
   overflow: scroll;
   align-items: center;
-`
+`;
 
 const imgStyle = {
   width: '100%',
@@ -49,11 +50,13 @@ const TagBox = styled.div`
     align-items: center;
     justify-content: center;
   }
-`
+`;
 
 const LinkStyle = {
   textDecoration: 'none',
   color: 'black',
+  userSelect: 'none',
+  WebkitTapHighlightColor: 'transparent',
 };
 
 function Home() {
@@ -71,28 +74,27 @@ function Home() {
               <h3>대중가요 맞추기</h3>
             </Link>
           </TagBox>
+
           <TagBox>
-            <Link to="PopularSong" style={LinkStyle}>
               <img src="/images/drama.jpg" style={imgStyle}/>
               <h3>OST 맞추기</h3>`
-            </Link>
           </TagBox>
+
           <TagBox>
-            <Link to="PopularSong" style={LinkStyle}>
               <img src="/images/lemon.jpg" style={imgStyle}/>
               <h3>JPOP 맞추기</h3>
-            </Link>
           </TagBox>
+
           <TagBox>
-            <Link to="PopularSong" style={LinkStyle}>
               <img src="/images/stay.jpg" style={imgStyle}/>
               <h3>POP송 맞추기</h3>
-            </Link>
           </TagBox>
+
           <TagBox>
             <img src="/images/discospaghetti.gif" style={imgStyle}/>
             <h3>업데이트 예정</h3>
           </TagBox>
+
           <TagBox>
             <img src="/images/discospaghetti.gif" style={imgStyle}/>
             <h3>업데이트 예정</h3>
@@ -119,6 +121,7 @@ function Home() {
       <Route path="/PwChange" element={<PwChange />} />
       <Route path="/WithDrawal" element={<WithDrawal />} />
       <Route path="/Ranking" element={<Ranking />} />
+      <Route path="/UserStatus" element={<UserStatus />} />
     </Routes>
   );
 }

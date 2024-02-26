@@ -3,10 +3,7 @@ import InGameContent from '../components/InGameContent';
 
 const InGame = () => {
   return (
-    <Layout RightMainContent=
-    {
-        <InGameContent />
-    }/>
+    <Layout RightMainContent={<InGameContent />}/>
   );
 };
 

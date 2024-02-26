@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
-import MediaQuery from 'react-responsive';
+import axios from 'axios';
+import MediaQuery from "react-responsive";
 import { IoClose } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
-const WdTitle = styled.div` /*회원 탈퇴 타이틀 텍스트*/
+import { FaLock } from "react-icons/fa";
+import { BiSolidWidget } from "react-icons/bi";
+import { FaRankingStar } from "react-icons/fa6";
+import { FaUserLarge } from "react-icons/fa6";
+import { ImMenu } from "react-icons/im";
+
+const PwTitle = styled.div`
   margin-top: 20px;
   font-size: 24px;
   font-weight: 700;
@@ -13,11 +20,51 @@ const WdTitle = styled.div` /*회원 탈퇴 타이틀 텍스트*/
   margin-left: 15px;
 `;
 
-const WdLine1 = styled.hr` /*가로 라인*/
+const PwLine1 = styled.hr`
   border: 1px solid lightgray;
 `;
 
-const CurrentPwText = styled.div` /*pwchagne.css에 있는 것과 중복되는 텍스트*/
+const PwVertical1 = styled.div`
+  position: relative;
+  border-left: 2px solid #d9d9d9;
+  height: 49px;
+  top: 3%;
+`;
+
+const PwText = styled.div`
+  position: relative;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin-left: 30px;
+  top: 25%;
+`;
+
+const PwLine2 = styled.hr`
+  position: relative;
+  border: 2px solid #ff5000;
+  margin-top: -30px;
+  margin-left: 0px;
+  width: 15%;
+`;
+
+const PwVertical2 = styled.div`
+  position: relative;
+  border-left: 2px solid #d9d9d9;
+  height: 49px;
+  top: -1%;
+  left: 182px;
+`;
+
+const PwLine3 = styled.hr`
+  position: relative;
+  border: 1px solid #d9d9d9;
+  margin-top: -8px;
+  margin-left: 182px;
+  width: 85%;
+`;
+
+const CurrentPwText = styled.div`
   margin-top: 40px;
   font-size: 18px;
   font-weight: 700;
@@ -25,7 +72,7 @@ const CurrentPwText = styled.div` /*pwchagne.css에 있는 것과 중복되는 �
   margin-left: 30px;
 `;
 
-const CurrentPwInput = styled.input` /*현재 비밀번호 텍스트 입력 박스 디자인*/
+const PwInput1 = styled.input`
   border-radius: 10px;
   padding: 18px;
   margin-top: 15px;
@@ -34,41 +81,69 @@ const CurrentPwInput = styled.input` /*현재 비밀번호 텍스트 입력 박�
   border: 1px solid #ccc;
   width: 100%;
   max-width: 700px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   position: relative;
 `;
 
-const RemoveText = styled.div` /*삭제 텍스트*/
-  margin-top: 60px;
+const ChangePwText = styled.div`
+  margin-top: 40px;
   font-size: 18px;
   font-weight: 700;
-  color: red;
+  color: #333;
   margin-left: 30px;
 `;
 
-const Agree = styled.div` /*체크 박스 삭제하시겠습니까 텍스트*/
+const PwInput2 = styled.input`
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 15px;
+  margin-left: 25px;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   position: relative;
-  top: 20px;
-  left: 27px;
 `;
 
-const Checkbox = styled.input` /*체크 박스 디자인*/
-  margin-left:5px;
+const ConfirmPwText = styled.div`
+  margin-top: 40px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin-left: 30px;
 `;
 
-const Label = styled.label` /*삭제하겠습니다 텍스트*/
-  margin-left:5px;
+const PwInput3 = styled.input`
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 15px;
+  margin-left: 25px;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  position: relative;
 `;
 
-const RemoveBtn = styled.button` /*삭제하기 버튼*/
+const ErrorMessage = styled.div`
+  position: absolute;
+  margin-left: 30px;
+  margin-top: 7px;
+  color: red;
+  font-size: 14px;
+`;
+
+const PwChangeBtn = styled.button`
   width: 15%;
   height: 48px;
   border: none;
   font-weight: 700;
-  background-color: #a30e26;
+  background-color: #289951;
   border-radius: 15px;
   color: white;
-  margin-top: 320px;
+  margin-top: 79px;
   cursor: pointer;
   transition: background-color 0.3s;
   display: block;
@@ -85,11 +160,35 @@ const RemoveBtn = styled.button` /*삭제하기 버튼*/
 //여기서부터 모바일 환경 컴포넌트
 const MobileFrame = styled.div`
   width: 100vw;
-  height: 80dvh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   background-color: white;
-`
+`;
+
+const RealMobileHeader = styled.div`
+    height: 10%; 
+    background-color: lightsalmon;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
+
+const MobileHeaderL = styled.div`
+    width: 50%;
+    height: auto;
+    margin-left: 5%;
+`;
+
+const MobileHeaderR = styled.div`
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 3%;
+`;
 
 const MobileHeader = styled.div`
   width: 100%;
@@ -102,151 +201,202 @@ const MobileHeader = styled.div`
 `;
 
 const MobileHeaderA = styled.div`
-    width: 10%;
-    height: 100%;
-    display: flex-start;
-    justify-content: center;
-    align-items: center;
-`
+  width: 10%;
+  height: 100%;
+  display: flex-start;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MobileHeaderB = styled.div`
-    height: 100%;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+  height: 100%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-const MobilePwText = styled.div` /*박스 안 비밀번호 변경 텍스트*/
+const MobileHeaderC = styled.div`
+  height: 100%;
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MobilePwText = styled.div`
   font-size: 16px;
   font-weight: 700;
   color: #333;
 `;
 
-const MobileHeaderC = styled.div`
-    height: 100%;
-    width: 10%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
-
 const MobileMain = styled.div`
-    width: 100%;
-    height:90%;
-    background-color: white;
-    display: flex;
+  width: 100%;
+  height:70%;
+  background-color: white;
+  display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const MobileMainA = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height:10%;
-    margin-top:40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height:20%;
+  margin-top:20px;
 `;
 
-const MobileCurrentPwText = styled.div` /*pwchagne.css에 있는 것과 중복되는 텍스트*/
-font-size: 18px;
-font-weight: 700;
-color: #333;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content:center;
+const MobileCurrentPwText = styled.div`
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+`;
+
+const MobilePwInput = styled.input`
+  display: flex; 
+  align-items: center; 
+  justify-content:center;
+  border-radius: 20px;
+  padding: 16px;
+  margin-top: 20px;
+  width: 80%;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+
+  &:focus-within {
+    border: 1px solid #9e30f4;
+    box-shadow: 0 0 10px rgba(158, 48, 244, 0.3);
+  }
 `;
 
 const MobileMainB = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content:center;
-width: 100%;
-height:20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height:20%;
 `;
 
-const MobileCurrentPwInput = styled.input` /*현재 비밀번호 텍스트 입력 박스 디자인*/
-display: flex; 
-align-items: center; 
-justify-content:center;
-border-radius: 20px;
-padding: 16px;
-width: 80%;
-background-color: white;
-border: 1px solid #ccc;
-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-
-&:focus-within {
-  border: 1px solid #9e30f4;
-  box-shadow: 0 0 10px rgba(158, 48, 244, 0.3);
-}
-`;
-
-const MobileRemoveText = styled.div` /*삭제 텍스트*/
-  margin-top:15px;
-  font-size: 12px;
+const MobileChangePwText = styled.div`
+  font-size: 18px;
   font-weight: 700;
-  color: red;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  margin-top: 10px;
 `;
 
+const MobilePwInput2 = styled.input`
+  display: flex; 
+  align-items: center; 
+  justify-content:center;
+  border-radius: 20px;
+  padding: 16px;
+  margin-top: 20px;
+  width: 80%;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+
+  &:focus-within {
+    border: 1px solid #9e30f4;
+    box-shadow: 0 0 10px rgba(158, 48, 244, 0.3);
+  }
+`;
 
 const MobileMainC = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height:20%;
+`;
+
+const MobileConfirmPwText = styled.div`
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  margin-top: 20px;
+`;
+
+const MobilePwInput3 = styled.input`
+  display: flex; 
+  align-items: center; 
+  justify-content:center;
+  border-radius: 20px;
+  padding: 16px;
+  margin-top: 20px;
+  width: 80%;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+
+  &:focus-within {
+    border: 1px solid #9e30f4;
+    box-shadow: 0 0 10px rgba(158, 48, 244, 0.3);
+  }
+`;
+
+const MobileErrorMessage = styled.div`
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+`;
+
+const MobilePwChangeBtn = styled.button`
+  width: 90%;
+  height: 60px;
+  border: none;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 15px;
+  color: #ff813a;
+  margin-top: 75px;
+  font-size: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgray;
+
+  &:disabled {
+    background-color: #dadada;
+    color: white;
+  }
+`;
+
+const MobileFooter = styled.div`
+    height: 10%;
+    background-color: lightsalmon;
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    width: 100%;
-    height:20%;
-    margin-top:20px;
 `;
 
-const MobileAgree = styled.div` /*체크 박스 삭제하시겠습니까 텍스트*/
-display: flex;
-flex-direction: row;
-align-items: center;
-`;
-
-const MobileCheckbox = styled.input` /*체크 박스 디자인*/
-  width: 17px;
-  height: 17px;
-`; 
-
-const MobileLabel = styled.label` /*삭제하겠습니다 텍스트*/
-  margin-left:5px;
-`;
-
-const MobileMainD = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height:20%;
-    margin-top:20px;
-`;
-
-const MobileRemoveBtn = styled.button` /*삭제하기 버튼*/
-width: 90%;
-height: 60px;
-border: none;
-font-weight: bold;
-background-color: white;
-border-radius: 15px;
-color: red; /* 텍스트 색상 */
-margin-top: 40px;
-font-size: 20px;
-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
-
-border-width: 1px; /* 테두리의 두께 */
-border-style: solid; /* 테두리의 스타일을 실선으로 지정 */
-border-color: lightgray; /* 테두리의 색상을 검정색으로 지정 */
-
-&:disabled {
-  background-color: #dadada;
-  color: white;
-}
+const MobileSignBtn = styled.button`
+    width: auto;
+    height: 30px;
+    background-color: orange;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    font-weight: bolder;
+    cursor: pointer;
+    margin-left: 5%;
 `;
 
 const LinkStyle = {
@@ -254,115 +404,196 @@ const LinkStyle = {
   color: 'black',
 };
 
-const PwChangeContent = () => {
+const LinkStyle2 = {
+  textDecoration: 'none',
+  color: 'black',
+};
 
-  const [isChecked, setIsChecked] = useState(false);
-  const [pw, setPw] = useState('');
-  const history = useNavigate();
+const IconStyle = {
+  width: '30px',
+  height: '30px',
+};
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+export default function PwChange() {
+  const [currentPw, setCurrentPw] = useState('');
+  const [newPw, setNewPw] = useState('');
+  const [confirmPw, setConfirmPw] = useState('');
+  const [confirmPwValid, setConfirmPwValid] = useState(false);
+
+  // 현재 비밀번호 입력값 변경 핸들러
+  const handleCurrentPwChange = (e) => {
+    setCurrentPw(e.target.value);
   };
 
-  const handlePwChange = (e) => {
-    setPw(e.target.value);
+  // 새로운 비밀번호 입력값 변경 핸들러
+  const handleNewPwChange = (e) => {
+    setNewPw(e.target.value);
   };
 
-  const WithDrawalContent = (
-      <>
+  // 새로운 비밀번호 확인 입력값 변경 핸들러
+  const handleConfirmPwChange = (e) => {
+    const newConfirmPw = e.target.value;
+    setConfirmPw(newConfirmPw);
+    setConfirmPwValid(newConfirmPw === newPw);
+  };
+
+  // 새로운 비밀번호와 확인 값이 일치하는지 여부
+  const isPwMatch = newPw === confirmPw;
+  // 현재 비밀번호, 새 비밀번호, 새 비밀번호 확인 값이 비어 있지 않고, 새 비번과 확인 값이 일치하는 경우 변경 가능
+  const isPwValid = currentPw !== '' && newPw !== '' && isPwMatch;
+
+  const handlePwChange = () => {
+    axios
+      .post(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', {
+        pw: currentPw,
+        newPw: newPw,
+      })
+      .then((response) => {
+        if (response.data === true) {
+          alert('비밀번호 변경이 완료되었습니다.');
+        } else {
+          alert('비밀번호 변경중 오류가 발생하였습니다.');
+        }
+        setCurrentPw('');
+        setConfirmPw('');
+        setNewPw('');
+      })
+      .catch((error) => {
+        alert('Error fetching data: ' + error);
+        if (error.response) {
+          alert('Server response: ' + error.response.data);
+        }
+      });
+  };
+
+  return (
+    <>
+
       <MediaQuery minWidth={767}>
-        <WdTitle>회원 탈퇴</WdTitle>
-        <WdLine1 />
+        <PwTitle>비밀번호 변경</PwTitle>
+        <PwLine1 />
+        <PwVertical1>
+          <PwText>비밀번호 변경</PwText>
+        </PwVertical1>
+        <PwLine2 />
+        <PwVertical2 />
+        <PwLine3 />
         <CurrentPwText>현재 비밀번호</CurrentPwText>
-        <CurrentPwInput
+        <PwInput1
           type='password'
-          placeholder='계정을 삭제하려면 현재 사용중인 비밀번호를 입력하세요'
-          value={pw}
-          onChange={handlePwChange}
+          placeholder='기존 비밀번호를 입력해주세요.'
+          value={currentPw}
+          onChange={handleCurrentPwChange}
         />
-        <RemoveText>계정삭제 시 모든 회원정보가 삭제되며 복구 불가능합니다.</RemoveText>
-        <Agree>
-          <Checkbox
-            className='checkbox'
-            type='checkbox'
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-          />
-          <Label>삭제하겠습니다.</Label>
-        </Agree>
-        <RemoveBtn
-          disabled={!isChecked || pw === ''}
-          onClick={() => {
-            if (isChecked) {
-              alert('계정이 삭제되었습니다.');
-            } else {
-              alert('동의하지 않거나 비밀번호를 입력하지 않으면 삭제할 수 없습니다.');
-            }
-          }}
-        >
-          계정 삭제
-        </RemoveBtn>
+        <ChangePwText>변경 비밀번호</ChangePwText>
+        <PwInput2
+          type='password'
+          placeholder='새로운 비밀번호를 입력해주세요.'
+          value={newPw}
+          onChange={handleNewPwChange}
+        />
+        <ConfirmPwText>비밀번호 확인</ConfirmPwText>
+        <PwInput3
+          type='password'
+          placeholder='새로운 비밀번호를 다시 입력하세요.'
+          value={confirmPw}
+          onChange={handleConfirmPwChange}
+        />
+        {!confirmPwValid && confirmPw.length > 0 && (
+          <ErrorMessage>비밀번호가 일치하지 않습니다</ErrorMessage>
+        )}
+        <PwChangeBtn disabled={!isPwValid} onClick={handlePwChange}>
+          변경하기
+        </PwChangeBtn>
       </MediaQuery>
+
+      {/*여기부터 모바일 환경*/}
       <MediaQuery maxWidth={767}>
         <MobileFrame>
+          <RealMobileHeader>
+            <MobileHeaderL>
+              <Link to="/" style={LinkStyle} >
+                <h1 style={{ fontFamily: "Itim-Regular" }}>Reaction</h1>
+              </Link>
+            </MobileHeaderL>
+            <MobileHeaderR>
+              <MobileSignBtn>
+                <Link to="/SignIn" style={LinkStyle2} >
+                  <FaLock style={{ width: '10px', height: '10px' }} />SignIn
+                </Link>
+              </MobileSignBtn>
+            </MobileHeaderR>
+          </RealMobileHeader>
+
           <MobileHeader>
             <MobileHeaderA>
-              <Link to="/" style={LinkStyle}>
+              <Link to="/MyInfo" style={LinkStyle}>
                 <IoClose style={{ width: "100%", height: "100%" }} />
               </Link>
             </MobileHeaderA>
+
             <MobileHeaderB>
-              <MobilePwText>회원 탈퇴</MobilePwText>
+              <MobilePwText>비밀번호 변경</MobilePwText>
             </MobileHeaderB>
+
             <MobileHeaderC />
           </MobileHeader>
+
           <MobileMain>
             <MobileMainA>
               <MobileCurrentPwText>현재 비밀번호</MobileCurrentPwText>
-            </MobileMainA>
-            <MobileMainB>
-              <MobileCurrentPwInput
+              <MobilePwInput
                 type='password'
-                placeholder='현재 사용중인 비밀번호를 입력하세요.'
-                value={pw}
-                onChange={handlePwChange}
+                placeholder='기존 비밀번호를 입력해주세요.'
+                value={currentPw}
+                onChange={handleCurrentPwChange}
               />
-              <MobileRemoveText>계정삭제 시 모든 회원정보가 삭제되며 복구 불가능합니다.</MobileRemoveText>
+            </MobileMainA>
+
+            <MobileMainB>
+              <MobileChangePwText>변경 비밀번호</MobileChangePwText>
+              <MobilePwInput2
+                type='password'
+                placeholder='새로운 비밀번호를 입력해주세요.'
+                value={newPw}
+                onChange={handleNewPwChange}
+              />
             </MobileMainB>
+
             <MobileMainC>
-              <MobileAgree>
-                <MobileCheckbox
-                  className='checkbox'
-                  type='checkbox'
-                  checked={isChecked}
-                  onChange={handleCheckboxChange}
-                />
-                <MobileLabel>삭제하겠습니다.</MobileLabel>
-              </MobileAgree>
+              <MobileConfirmPwText>비밀번호 확인</MobileConfirmPwText>
+              <MobilePwInput3
+                type='password'
+                placeholder='새로운 비밀번호를 다시 입력하세요.'
+                value={confirmPw}
+                onChange={handleConfirmPwChange}
+              />
+              {!confirmPwValid && confirmPw.length > 0 && (
+                <MobileErrorMessage>비밀번호가 일치하지 않습니다</MobileErrorMessage>
+              )}
             </MobileMainC>
-            <MobileMainD>
-              <MobileRemoveBtn
-                disabled={!isChecked || pw === ''}
-                onClick={() => {
-                  if (isChecked) {
-                    alert('계정이 삭제되었습니다.');
-                  } else {
-                    alert('동의하지 않거나 비밀번호를 입력하지 않으면 삭제할 수 없습니다.');
-                  }
-                }}
-              >
-                탈퇴하기
-              </MobileRemoveBtn>
-            </MobileMainD>
+
+            <MobilePwChangeBtn disabled={!isPwValid} onClick={handlePwChange}>
+              변경하기
+            </MobilePwChangeBtn>
           </MobileMain>
+
+          <MobileFooter>
+            <Link to="/MyInfo" style={LinkStyle}>
+              <FaUserLarge style={IconStyle} />
+            </Link>
+            <Link to="/" style={LinkStyle}>
+              <BiSolidWidget style={IconStyle} />
+            </Link>
+            <Link to="/Ranking" style={LinkStyle}>
+              <FaRankingStar style={IconStyle} />
+            </Link>
+            <Link to="/UserStatus" style={LinkStyle}>
+              <ImMenu style={IconStyle} />
+            </Link>
+          </MobileFooter>
         </MobileFrame>
       </MediaQuery>
     </>
-    )
-
-  return (
-    <Layout RightMainContent={<PwChangeContent />}/>
-  );
-};
-
-export default PwChangeContent;
+  )
+}

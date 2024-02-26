@@ -5,7 +5,7 @@ import MediaQuery from "react-responsive";
 import { IoArrowBackOutline } from "react-icons/io5";
 
 const User = {
-  // 가상의 사용자 데이터 (임시로 추가) 삭제해도 댐
+  // 가상의 사용자 데이터 (임시로 추가)
   id: '20203206',
   pw: '1234'
 };
@@ -16,7 +16,7 @@ const BackgroundImage = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/images/back.jpg'); /* 배경 이미지 파일 경로에 맞게 수정 */
+  background-image: url('/images/back.jpg');
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -150,64 +150,64 @@ const SignUpLink = styled.span`
 `;
 
 const NoAccountMessage = styled.span`
-position: absolute;
-color: #808080;
-margin-left: 255px;
-top: 92.7%;
+  position: absolute;
+  color: #808080;
+  margin-left: 255px;
+  top: 92.7%;
 `;
 
 //여기서부터 모바일 환경 컴포넌트
 const MobileContainer = styled.div`
-    width: 100vw;
-    height: 100dvh;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-`
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+`;
 
 const MobileHeader = styled.div`
-    width: 100%;
-    height: 10%; 
-    background-color: lightsalmon;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
+  width: 100%;
+  height: 10%; 
+  background-color: lightsalmon;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MobileHeaderL = styled.div`
-    width: 10%;
-    height: 100%;
-    display: flex-start;
-    justify-content: center;
-    align-items: center;
-`
+  width: 10%;
+  height: 100%;
+  display: flex-start;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MobileHeaderM = styled.div`
-    height: 100%;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+  height: 100%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MobileHeaderR = styled.div`
-    height: 100%;
-    width: 10%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
+  height: 100%;
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MobileMain = styled.div`
-    width: 100%;
-    height: 90%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 수평 가운데 정렬을 위해 사용 */
+  width: 100%;
+  height: 90%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MobileContentWrap = styled.div`
@@ -283,42 +283,47 @@ const MobileLoginButton = styled.button`
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   transition: background-color 0.3s;
   font-size: 15px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const MobileNoAccountMessage = styled.div`
-    display: flex;
-    width: 100%;
-    color: #808080;
-    margin-top: 20px;
+  display: flex;
+  width: 100%;
+  color: #808080;
+  margin-top: 20px;
 `;
 
 const MobileNoAccountMessageL = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    width: 70%;
-    height: auto;
-    margin-left: 50px;
+  display: flex;
+  justify-content: flex-end;
+  width: 70%;
+  height: auto;
+  margin-left: 50px;
 `;
 
 const MobileNoAccountMessageR = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    width: 30%;
-    height: auto;
-    margin-right: 32px;
-
+  display: flex;
+  justify-content: flex-end;
+  width: 30%;
+  height: auto;
+  margin-right: 32px;
 `;
 
 const LinkStyle = {
   textDecoration: 'none',
   color: '#65997c',
+  userSelect: 'none',
+  WebkitTapHighlightColor: 'transparent',
 };
 
 const LinkStyle2 = {
   textDecoration: 'none',
   color: 'black',
+  cursor: 'pointer',
+  userSelect: 'none',
+  WebkitTapHighlightColor: 'transparent',
 };
-
 
 export default function SignIn() {
   const [id, setId] = useState('');
@@ -374,6 +379,7 @@ export default function SignIn() {
             </InputWrap>
 
             <InputTitle style={{ marginTop: '26px' }}>비밀번호</InputTitle>
+
             <InputWrap>
               <Input
                 type='password'
@@ -384,11 +390,12 @@ export default function SignIn() {
               />
             </InputWrap>
           </ContentWrap>
-
           <ReactionWrap>
+
             <ReactionText>
               R<span>e</span>action
             </ReactionText>
+
           </ReactionWrap>
 
           <LoginButton onClick={onClickConfirmButton} disabled={notAllow}>
@@ -407,6 +414,7 @@ export default function SignIn() {
         </Page>
       </MediaQuery>
 
+      {/*여기부터 모바일 환경*/}
       <MediaQuery maxWidth={767}>
         <MobileContainer>
           <MobileHeader>
@@ -415,15 +423,12 @@ export default function SignIn() {
                 <IoArrowBackOutline style={{ width: "100%", height: "100%", marginLeft: "10px" }} />
               </Link>
             </MobileHeaderL>
-
             <MobileHeaderM>
-              <h1 style={{ fontFamily: "Itim-Regular" }}>Reaction</h1>
+              <Link to="/" style={LinkStyle2}>
+                <h1 style={{ fontFamily: "Itim-Regular" }}>Reaction</h1>
+              </Link>
             </MobileHeaderM>
-
             <MobileHeaderR />
-
-
-
           </MobileHeader>
 
           <MobileMain>
@@ -431,6 +436,7 @@ export default function SignIn() {
               <MobileInputTitle1>
                 아이디
               </MobileInputTitle1>
+
               <MobileInputWrap1>
                 <Input
                   type='text'
@@ -444,6 +450,7 @@ export default function SignIn() {
               <MobileInputTitle2>
                 비밀번호
               </MobileInputTitle2>
+
               <MobileInputWrap2>
                 <Input
                   type='password'
@@ -467,19 +474,10 @@ export default function SignIn() {
               <MobileNoAccountMessageR>
                 <Link to='/SignUp' style={LinkStyle}>회원가입</Link>
               </MobileNoAccountMessageR>
-
-
             </MobileNoAccountMessage>
-
-
-
           </MobileMain>
-
-
-
         </MobileContainer>
       </MediaQuery>
-
     </div>
   );
 }

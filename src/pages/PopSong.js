@@ -8,7 +8,7 @@ function PopSong() {
     <>
       <MediaQuery minWidth={767}>
         <img 
-          src="../images/Younha.jpg"
+          src="../images/TaylorSwift.jpg"
           alt="Header Image" 
           style={{ width: '20%' }}
         />
@@ -16,7 +16,7 @@ function PopSong() {
       
       <MediaQuery maxWidth={767}>
         <img 
-          src="../images/Younha.jpg"
+          src="../images/TaylorSwift.jpg"
           alt="Header Image" 
           style={{ width: '80%' }}
           />

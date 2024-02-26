@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // useHistory 추가
+import { Link, useNavigate } from 'react-router-dom';
 import MediaQuery from "react-responsive";
 import styled from 'styled-components';
 import { IoArrowBackOutline } from "react-icons/io5";
@@ -11,7 +11,7 @@ const BackgroundImage = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('/images/back.jpg'); /* 배경 이미지 파일 경로에 맞게 수정 */
+  background-image: url('/images/back.jpg');
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -160,95 +160,71 @@ const SignUpButton = styled.button`
 
 //여기서부터 모바일 환경 컴포넌트
 const MobileContainer = styled.div`
-    width: 100vw;
-    height: 100dvh;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-`
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+`;
 
 const MobileHeader = styled.div`
-    width: 100%;
-    height: 10%; 
-    background-color: lightsalmon;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
+  width: 100%;
+  height: 10%; 
+  background-color: lightsalmon;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 const MobileHeaderL = styled.div`
-    width: 10%;
-    height: 100%;
-    display: flex-start;
-    justify-content: center;
-    align-items: center;
+  width: 10%;
+  height: 100%;
+  display: flex-start;
+  justify-content: center;
+  align-items: center;
 `
 
 const MobileHeaderM = styled.div`
-    height: 100%;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+  height: 100%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MobileHeaderR = styled.div`
-    height: 100%;
-    width: 10%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
+  height: 100%;
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 
 const MobileMain = styled.div`
-    width: 100%;
-    height: 90%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 수평 가운데 정렬을 위해 사용 */
+  width: 100%;
+  height: 90%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MobileInputTitle1 = styled.div`
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
-  margin-top: 8%;
+  margin-top: 6%;
   color: #333;
   width: 100%;
   margin-left: 15%;
+  margin-top: 50px;
 `;
 
 const MobileInputWrap1 = styled.div`
   display: flex; 
   align-items: center; 
-  border-radius: 8px;
-  padding: 16px;
-  margin-top: 3%;
-  width: 80%;
-  max-width: 400px;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-
-  &:focus-within {
-    border: 1px solid #9e30f4;
-    box-shadow: 0 0 10px rgba(158, 48, 244, 0.3);
-  }
-`;
-
-const MobileInputTitle2 = styled.div`
-  font-size: 17px;
-  font-weight: 600;
-  margin-top: 8%;
-  color: #333;
-  width: 100%;
-  margin-left: 15%;
-`;
-
-const MobileInputWrap2 = styled.div`
-  display: flex; 
   border-radius: 8px;
   padding: 16px;
   margin-top: 3%;
@@ -284,16 +260,16 @@ const MobileErrorMessageWrap1 = styled.div`
   font-size: 14px;
 `;
 
-const MobileInputTitle3 = styled.div`
-  font-size: 17px;
+const MobileInputTitle2 = styled.div`
+  font-size: 15px;
   font-weight: 600;
-  margin-top: 8%;
+  margin-top: 6%;
   color: #333;
   width: 100%;
   margin-left: 15%;
 `;
 
-const MobileInputWrap3 = styled.div`
+const MobileInputWrap2 = styled.div`
   display: flex; 
   align-items: center; 
   border-radius: 8px;
@@ -321,16 +297,16 @@ const MobileErrorMessageWrap2 = styled.div`
   font-size: 14px;
 `;
 
-const MobileInputTitle4 = styled.div`
-  font-size: 17px;
+const MobileInputTitle3 = styled.div`
+  font-size: 15px;
   font-weight: 600;
-  margin-top: 8%;
+  margin-top: 6%;
   color: #333;
   width: 100%;
   margin-left: 15%;
 `;
 
-const MobileInputWrap4 = styled.div`
+const MobileInputWrap3 = styled.div`
   display: flex; 
   align-items: center; 
   border-radius: 8px;
@@ -379,7 +355,6 @@ const LinkStyle = {
 
 export default function SignUp() {
   // 사용자 이름, 아이디, 비밀번호, 비밀번호 확인 변수 선언
-  const [name, setName] = useState('');
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
@@ -389,23 +364,16 @@ export default function SignUp() {
   const [idValid, setIdValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const [confirmPwValid, setConfirmPwValid] = useState(false);
-  
+
   // 전체 유효성 검사를 위한 변수임
   const [notAllow, setNotAllow] = useState(true);
-
-  // 사용자명 입력 핸들러임
-  const handleName = (e) => {
-    const newName = e.target.value;
-    setName(newName);
-    updateButtonState(newName, id, pw, confirmPw);
-  };
 
   // 아이디 입력 핸들러임
   const handleId = (e) => {
     const newId = e.target.value;
     setId(newId);
     setIdValid(newId.length >= 7);
-    updateButtonState(name, newId, pw, confirmPw);
+    updateButtonState(newId, pw, confirmPw);
   };
 
   // 비밀번호 입력 핸들러임
@@ -413,7 +381,7 @@ export default function SignUp() {
     const newPassword = e.target.value;
     setPw(newPassword);
     setPwValid(newPassword.length >= 4);
-    updateButtonState(name, id, newPassword, confirmPw);
+    updateButtonState(id, newPassword, confirmPw);
   };
 
   // 비밀번호 확인 입력 핸들러임
@@ -421,14 +389,13 @@ export default function SignUp() {
     const newConfirmPassword = e.target.value;
     setConfirmPw(newConfirmPassword);
     setConfirmPwValid(newConfirmPassword === pw);
-    updateButtonState(name, id, pw, newConfirmPassword);
+    updateButtonState(id, pw, newConfirmPassword);
   };
 
   // 전체 유효성을 갱신하는 함수임
-  const updateButtonState = (newName, newId, newPassword, newConfirmPassword) => {
+  const updateButtonState = (newId, newPassword, newConfirmPassword) => {
     setNotAllow(
       !(
-        newName.length > 0 &&
         newId.length >= 7 &&
         newPassword.length >= 4 &&
         newConfirmPassword === newPassword
@@ -440,35 +407,31 @@ export default function SignUp() {
   const onClickSignUpButton = () => {
     if (!notAllow) {
       axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/join', {
-      id: id,
-      pw: pw,
-      name : name,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-	      if(response.data == true)
-	      {
-      		alert('회원가입에 성공했습니다.');
-		history('/SignIn');
-	      }
-	       else
-	      {
-		alert('회원가입 중에 오류가 발생했습니다.');
-		setName('');
-		setId('');
-		setPw('');
-		setConfirmPw('');
-	      }
+        id: id,
+        pw: pw,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        if (error.response) {
-          alert('Server response:', error.response.data);
-        }
-      });
+        .then(response => {
+          if (response.data == true) {
+            alert('회원가입에 성공했습니다.');
+            history('/SignIn');
+          }
+          else {
+            alert('회원가입 중에 오류가 발생했습니다.');
+            setId('');
+            setPw('');
+            setConfirmPw('');
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          if (error.response) {
+            alert('Server response:', error.response.data);
+          }
+        });
     }
   };
 
@@ -480,30 +443,28 @@ export default function SignUp() {
   };
 
   const onClickCheckId = () => {
-	axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/checkid', {
-        id: id,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/checkid', {
+      id: id,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (response.data == true) {
+          alert("사용가능한 아이디 입니다.");
+        }
+        else {
+          alert("중복되는 아이디 입니다.");
+        }
       })
-        .then(response => {
-          if(response.data == true)
-          {
-            alert("사용가능한 아이디 입니다.");
-          }
-          else
-          {
-            alert("중복되는 아이디 입니다.");
-          }
-        })
-        .catch(error => {
-          alert('Error fetching data:', error);
-          if (error.response) {
-            alert('Server response:', error.response.data);
-          }
-        });
-  };	
+      .catch(error => {
+        alert('Error fetching data:', error);
+        if (error.response) {
+          alert('Server response:', error.response.data);
+        }
+      });
+  };
 
   return (
     <div>
@@ -511,19 +472,9 @@ export default function SignUp() {
         <BackgroundImage />
         <Page>
           <TitleWrap>회원가입</TitleWrap>
-
           <ContentWrap>
-            <InputTitle>사용자명</InputTitle>
-            <InputWrap>
-              <Input
-                type='text'
-                placeholder='사용자명 입력'
-                value={name}
-                onChange={handleName}
-              />
-            </InputWrap>
-
             <InputTitle>아이디</InputTitle>
+
             <InputWrap>
               <Input
                 type='text'
@@ -539,6 +490,7 @@ export default function SignUp() {
             </ErrorMessageWrap>
 
             <InputTitle>비밀번호</InputTitle>
+
             <InputWrap>
               <Input
                 type='password'
@@ -553,6 +505,7 @@ export default function SignUp() {
             </ErrorMessageWrap>
 
             <InputTitle>비밀번호 확인</InputTitle>
+
             <InputWrap>
               <Input
                 type='password'
@@ -566,12 +519,14 @@ export default function SignUp() {
             <ErrorMessageWrap>
               {!confirmPwValid && confirmPw.length > 0 && <div>비밀번호가 일치하지 않습니다</div>}
             </ErrorMessageWrap>
-          </ContentWrap>
 
+          </ContentWrap>
           <ReactionWrap>
+
             <ReactionText>
               R<span>e</span>action
             </ReactionText>
+
           </ReactionWrap>
 
           <SignUpButton onClick={onClickSignUpButton} disabled={notAllow}>
@@ -579,7 +534,8 @@ export default function SignUp() {
           </SignUpButton>
         </Page>
       </MediaQuery>
-
+      
+      {/*여기부터 모바일 환경*/}
       <MediaQuery maxWidth={767}>
         <MobileContainer>
           <MobileHeader>
@@ -590,25 +546,18 @@ export default function SignUp() {
             </MobileHeaderL>
 
             <MobileHeaderM>
-              <h1 style={{ fontFamily: "Itim-Regular" }}>Reaction</h1>
+            <Link to="/" style={LinkStyle}>
+                <h1 style={{ fontFamily: "Itim-Regular" }}>Reaction</h1>
+              </Link>
             </MobileHeaderM>
 
             <MobileHeaderR />
           </MobileHeader>
 
           <MobileMain>
-            <MobileInputTitle1>사용자명</MobileInputTitle1>
-            <MobileInputWrap1>
-              <Input
-                type='text'
-                placeholder='사용자명 입력'
-                value={name}
-                onChange={handleName}
-              />
-            </MobileInputWrap1>
+            <MobileInputTitle1>아이디</MobileInputTitle1>
 
-            <MobileInputTitle2>아이디</MobileInputTitle2>
-            <MobileInputWrap2>
+            <MobileInputWrap1>
               <Input
                 type='text'
                 placeholder='아이디 입력'
@@ -616,28 +565,30 @@ export default function SignUp() {
                 onChange={handleId}
               />
               <MobileOverLapButton disabled={!idValid}>중복확인</MobileOverLapButton>
-            </MobileInputWrap2>
+            </MobileInputWrap1>
 
             <MobileErrorMessageWrap1>
               {!idValid && id.length > 0 && <div>7자 이상 입력하세요</div>}
             </MobileErrorMessageWrap1>
 
-            <MobileInputTitle3>비밀번호</MobileInputTitle3>
-            <MobileInputWrap3>
+            <MobileInputTitle2>비밀번호</MobileInputTitle2>
+
+            <MobileInputWrap2>
               <Input
                 type='password'
                 placeholder='비밀번호 입력'
                 value={pw}
                 onChange={handlePassword}
               />
-            </MobileInputWrap3>
+            </MobileInputWrap2>
 
             <MobileErrorMessageWrap2>
               {!pwValid && pw.length > 0 && <div>4자 이상 입력하세요</div>}
             </MobileErrorMessageWrap2>
 
-            <MobileInputTitle4>비밀번호 확인</MobileInputTitle4>
-            <MobileInputWrap4>
+            <MobileInputTitle3>비밀번호 확인</MobileInputTitle3>
+
+            <MobileInputWrap3>
               <Input
                 type='password'
                 placeholder='비밀번호 확인 입력'
@@ -645,18 +596,16 @@ export default function SignUp() {
                 onChange={handleConfirmPassword}
                 onKeyDown={handleKeyDown}
               />
-            </MobileInputWrap4>
+            </MobileInputWrap3>
 
             <MobileErrorMessageWrap3>
               {!confirmPwValid && confirmPw.length > 0 && <div>비밀번호가 일치하지 않습니다</div>}
             </MobileErrorMessageWrap3>
 
             <MobileSignUpButton onClick={onClickSignUpButton} disabled={notAllow}>
-            회원가입
-          </MobileSignUpButton>
-
+              회원가입
+            </MobileSignUpButton>
           </MobileMain>
-
         </MobileContainer>
       </MediaQuery>
     </div>
