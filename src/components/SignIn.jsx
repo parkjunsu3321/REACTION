@@ -6,8 +6,8 @@ import { IoArrowBackOutline } from "react-icons/io5";
 
 const User = {
   // 가상의 사용자 데이터 (임시로 추가)
-  id: '20203206',
-  pw: '1234'
+  id: '',
+  pw: ''
 };
 
 const BackgroundImage = styled.div`
@@ -347,10 +347,18 @@ export default function SignIn() {
   };
 
   const onClickConfirmButton = () => {
-    if (id === User.id && pw === User.pw) {
-      alert('로그인에 성공했습니다.');
-    } else {
-      alert('등록되지 않은 회원입니다.');
+     const formData = {user_name:id ,user_password:pw }
+     try {
+        const response = await axios.post(FAST_API_KEY+'/users/login', formData);
+        const token = response.data.token;
+
+        // 토큰을 로컬 스토리지에 저장
+        localStorage.setItem('token', token);
+        console.log(response.data);
+    } 
+     catch (error) 
+     {
+        console.error('Error:', error.response.data);
     }
   };
 
