@@ -30,8 +30,8 @@ jobs:
               docbase: /build
               spa: true
               buildenv:
-                - name: REACT_APP_WAITLIST_API_URL
-                  value: https://port-0-java-springboot23-hkty2alqiwtpix.sel4.cloudtype.app/
+                - name: FAST_API_KEY
+                  value: https://port-0-fastapi-hkty2alqiwtpix.sel4.cloudtype.app/api
             context:
               git:
                 url: git@github.com:${{ github.repository }}.git
