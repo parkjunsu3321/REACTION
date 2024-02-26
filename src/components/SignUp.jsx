@@ -404,34 +404,18 @@ export default function SignUp() {
   };
 
   // 회원가입 버튼 클릭 핸들러임
-  const onClickSignUpButton = () => {
-    if (!notAllow) {
-      axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/join', {
-        id: id,
-        pw: pw,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then(response => {
-          if (response.data == true) {
-            alert('회원가입에 성공했습니다.');
-            history('/SignIn');
-          }
-          else {
-            alert('회원가입 중에 오류가 발생했습니다.');
-            setId('');
-            setPw('');
-            setConfirmPw('');
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-          if (error.response) {
-            alert('Server response:', error.response.data);
-          }
-        });
+  const onClickSignUpButton =  async (e) => {
+    e.preventDefault();
+    const formData = 
+    {
+        user_name: id,
+        user_password: pw,
+    }
+    try {
+      const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/create', formData);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error:', error.response.data);
     }
   };
 
@@ -442,28 +426,18 @@ export default function SignUp() {
     }
   };
 
-  const onClickCheckId = () => {
-    axios.post(process.env.REACT_APP_WAITLIST_API_URL + '/api/checkid', {
-      id: id,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        if (response.data == true) {
-          alert("사용가능한 아이디 입니다.");
-        }
-        else {
-          alert("중복되는 아이디 입니다.");
-        }
-      })
-      .catch(error => {
-        alert('Error fetching data:', error);
-        if (error.response) {
-          alert('Server response:', error.response.data);
-        }
-      });
+  const onClickCheckId =  async () => {
+    const formData = {user_name:  id, user_password: pw}
+    try {
+      const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/checkId', formData);
+      if (response.data === true) {
+        alert('사용 가능한 아이디입니다.');
+      } else {
+        alert('사용 불가한 아이디입니다.');
+      }
+    } catch (error) {
+      console.error('Error:', error.response ? error.response.data : error.message);
+    }
   };
 
   return (
@@ -564,7 +538,7 @@ export default function SignUp() {
                 value={id}
                 onChange={handleId}
               />
-              <MobileOverLapButton disabled={!idValid}>중복확인</MobileOverLapButton>
+              <MobileOverLapButton onClick={onClickCheckId} disabled={!idValid}>중복확인</MobileOverLapButton>
             </MobileInputWrap1>
 
             <MobileErrorMessageWrap1>
