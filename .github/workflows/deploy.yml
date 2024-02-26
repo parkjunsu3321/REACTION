@@ -29,8 +29,7 @@ jobs:
               nodeversion: 14
               docbase: /build
               spa: true
-              buildenv:
-                - name: FAST_API_KEY
+              buildenv: REACT_APP_FAST_API_KEY
                   value: https://port-0-fastapi-hkty2alqiwtpix.sel4.cloudtype.app
             context:
               git:
