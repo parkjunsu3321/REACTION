@@ -351,7 +351,7 @@ export default function SignIn() {
     const formData = { user_name: id, user_password: pw };
     console.log(process.env.FAST_API_KEY)
     try {
-        const response = await axios.post(process.env.FAST_API_KEY + '/api/users/login', formData);
+        const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/login', formData);
         const token = response.data.token;
 
         // 토큰을 로컬 스토리지에 저장
