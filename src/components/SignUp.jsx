@@ -358,7 +358,7 @@ export default function SignUp() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   // 입력 유효성 검사를 위한 변수들임
   const [idValid, setIdValid] = useState(false);
@@ -367,6 +367,7 @@ export default function SignUp() {
 
   // 전체 유효성 검사를 위한 변수임
   const [notAllow, setNotAllow] = useState(true);
+
 
   // 아이디 입력 핸들러임
   const handleId = (e) => {
@@ -414,6 +415,7 @@ export default function SignUp() {
     try {
       const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/create', formData);
       console.log(response.data);
+      navigate("/SignIn");
     } catch (error) {
       console.error('Error:', error.response.data);
     }
