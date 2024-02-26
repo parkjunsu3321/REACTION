@@ -310,16 +310,20 @@ const IconStyle = {
     boxShadow: 'none' /* 클릭 효과 제거 */
 };
 
-// 로그아웃 시 토큰을 삭제하는 함수
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false); // 로그아웃 상태로 설정
-    navigate("../"); // Home.js 페이지로 이동
-  };
+
 
 const Layout = ({ RightMainContent }) => {
 
 const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+
+const navigate = useNavigate();
+
+// 로그아웃 시 토큰을 삭제하는 함수
+const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false); // 로그아웃 상태로 설정
+    navigate("../"); // Home.js 페이지로 이동
+  };
 
     return (
         <>
