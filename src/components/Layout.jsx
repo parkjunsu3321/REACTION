@@ -311,8 +311,9 @@ const IconStyle = {
 
 // 로그아웃 시 토큰을 삭제하는 함수
 const handleLogout = () => {
-  // 토큰 삭제 로직 추가
   localStorage.removeItem('token');
+  setIsLoggedIn(false); // 로그아웃 상태로 설정
+  navigate("./");
 };
 
 const Layout = ({ RightMainContent }) => {
