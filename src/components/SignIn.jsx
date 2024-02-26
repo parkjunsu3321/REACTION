@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import MediaQuery from "react-responsive";
 import { IoArrowBackOutline } from "react-icons/io5";
@@ -349,18 +349,21 @@ export default function SignIn() {
 
   const onClickConfirmButton = async () => {
     const formData = { user_name: id, user_password: pw };
-    console.log(process.env.FAST_API_KEY)
     try {
-        const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/login', formData);
-        const token = response.data.token;
+      const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/login', formData);
+      const token = response.data.token;
 
-        // 토큰을 로컬 스토리지에 저장
-        localStorage.setItem('token', token);
-        console.log(response.data);
+      localStorage.setItem('token', token);
+      console.log(response.data);
+
+      // 로그인 성공 시 Home.js 페이지로 이동
+      navigate('/Home');
     } catch (error) {
-        console.error('Error:', error.response.data);
+      console.error('Error:', error.response.data);
+      // 로그인 실패 시 알림 등을 표시
+      alert('로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.');
     }
-};
+  };
 
 
   const handleKeyDown = (e) => {
