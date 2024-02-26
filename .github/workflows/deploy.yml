@@ -30,7 +30,9 @@ jobs:
               docbase: /build
               spa: true
               buildenv:
-                REACT_APP_FAST_API_KEY value: https://port-0-fastapi-hkty2alqiwtpix.sel4.cloudtype.app
+                REACT_APP_FAST_API_KEY 
+              value: 
+                https://port-0-fastapi-hkty2alqiwtpix.sel4.cloudtype.app
             context:
               git:
                 url: git@github.com:${{ github.repository }}.git
