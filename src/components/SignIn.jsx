@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import MediaQuery from "react-responsive";
@@ -330,8 +330,18 @@ export default function SignIn() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [notAllow, setNotAllow] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 추가
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 로컬 스토리지에서 토큰을 가져옴
+    const token = localStorage.getItem('token');
+    if (token) {
+      // 토큰이 있다면 로그인 상태로 설정
+      setIsLoggedIn(true);
+    }
+  }, []);
   
   const handleId = (e) => {
     const newId = e.target.value;
@@ -369,6 +379,12 @@ export default function SignIn() {
     }
   };
 
+  const handleLogout = () => {
+    // 로그아웃 클릭 시 로컬 스토리지에서 토큰 제거 및 로그인 상태 변경
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    navigate('/SignIn');
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !notAllow) {
@@ -478,9 +494,8 @@ export default function SignIn() {
               </MobileInputWrap2>
             </MobileContentWrap>
 
-            <MobileLoginButton onClick={onClickConfirmButton} disabled={notAllow}>
-              로그인
-            </MobileLoginButton>
+            {isLoggedIn ? <MobileLoginButton onClick={handleLogout}>로그아웃</MobileLoginButton> : <MobileLoginButton onClick={onClickConfirmButton} disabled={notAllow}>로그인</MobileLoginButton>}
+
 
             <MobileNoAccountMessage>
               <MobileNoAccountMessageL>
