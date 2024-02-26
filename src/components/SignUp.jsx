@@ -456,7 +456,7 @@ export default function SignUp() {
                 value={id}
                 onChange={handleId}
               />
-              <OverLapButton disabled={!idValid}>중복확인</OverLapButton>
+              <OverLapButton onClick={onClickCheckId} disabled={!idValid}>중복확인</OverLapButton>
             </InputWrap>
 
             <ErrorMessageWrap>
