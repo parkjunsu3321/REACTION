@@ -32,7 +32,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://port-0-java-springboot23-hkty2alqiwtpix.sel4.cloudtype.app",
+  "proxy": "https://port-0-java-springboot23-hkty2alqiwtpix.sel4.cloudtype.app/",
   "browserslist": {
     "production": [
       ">0.2%",
