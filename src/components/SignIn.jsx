@@ -358,10 +358,12 @@ export default function SignIn() {
 
       // 로그인 성공 시 Home.js 페이지로 이동
       navigate('/Home');
+      console.log("홈으로 이동");
     } catch (error) {
       console.error('Error:', error.response.data);
       // 로그인 실패 시 알림 등을 표시
       alert('로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.');
+      console.log("로그인 실패");
     }
   };
 
