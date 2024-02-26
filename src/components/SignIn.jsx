@@ -346,21 +346,20 @@ export default function SignIn() {
     setNotAllow(!(newId.length >= 1 && newPw.length >= 1));
   };
 
-  const onClickConfirmButton = () => {
-     const formData = {user_name:id ,user_password:pw }
-     try {
-        const response = await axios.post(FAST_API_KEY+'/users/login', formData);
+  const onClickConfirmButton = async () => {
+    const formData = { user_name: id, user_password: pw };
+    try {
+        const response = await axios.post(FAST_API_KEY + '/users/login', formData);
         const token = response.data.token;
 
         // 토큰을 로컬 스토리지에 저장
         localStorage.setItem('token', token);
         console.log(response.data);
-    } 
-     catch (error) 
-     {
+    } catch (error) {
         console.error('Error:', error.response.data);
     }
-  };
+};
+
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !notAllow) {
