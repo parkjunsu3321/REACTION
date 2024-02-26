@@ -349,6 +349,7 @@ export default function SignIn() {
 
   const onClickConfirmButton = async () => {
     const formData = { user_name: id, user_password: pw };
+    console.log(process.env.FAST_API_KEY)
     try {
         const response = await axios.post(process.env.FAST_API_KEY + '/api/users/login', formData);
         const token = response.data.token;
