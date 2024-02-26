@@ -31,7 +31,7 @@ jobs:
               spa: true
               buildenv:
                 - name: FAST_API_KEY
-                  value: https://port-0-fastapi-hkty2alqiwtpix.sel4.cloudtype.app/api
+                  value: https://port-0-fastapi-hkty2alqiwtpix.sel4.cloudtype.app
             context:
               git:
                 url: git@github.com:${{ github.repository }}.git
