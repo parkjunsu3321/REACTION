@@ -331,6 +331,8 @@ export default function SignIn() {
   const [pw, setPw] = useState('');
   const [notAllow, setNotAllow] = useState(true);
 
+  const navigate = useNavigate();
+  
   const handleId = (e) => {
     const newId = e.target.value;
     setId(newId);
