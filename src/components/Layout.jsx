@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 
@@ -308,7 +309,16 @@ const IconStyle = {
     boxShadow: 'none' /* 클릭 효과 제거 */
 };
 
+// 로그아웃 시 토큰을 삭제하는 함수
+const handleLogout = () => {
+  // 토큰 삭제 로직 추가
+  localStorage.removeItem('token');
+};
+
 const Layout = ({ RightMainContent }) => {
+
+const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+
     return (
         <>
             <MediaQuery minWidth={767}>
@@ -405,11 +415,15 @@ const Layout = ({ RightMainContent }) => {
                             </Link>
                         </MobileHeaderL>
                         <MobileHeaderR>
-                            <MobileSignBtn>
-                                <Link to="/SignIn" style={LinkStyle2} >
-                                    <FaLock style={{ width:'10px', height:'10px' }}/>SignIn
-                                </Link>
-                            </MobileSignBtn>
+                            {isLoggedIn ? (
+                                <MobileSignBtn onClick={handleLogout}>Logout</MobileSignBtn>
+                              ) : (
+                                <MobileSignBtn>
+                                  <Link to="/SignIn" style={LinkStyle2}>
+                                    <FaLock style={{ width: '10px', height: '10px' }} /> SignIn
+                                  </Link>
+                                </MobileSignBtn>
+                              )}
                         </MobileHeaderR>
                     </MobileHeader>
                     <MobileMain>
