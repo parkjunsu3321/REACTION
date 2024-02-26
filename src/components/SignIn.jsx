@@ -359,7 +359,7 @@ export default function SignIn() {
       console.log(response.data);
 
       // 로그인 성공 시 Home.js 페이지로 이동
-      navigate('/Home');
+      navigate('../');
       console.log("홈으로 이동");
     } catch (error) {
       console.error('Error:', error.response.data);
