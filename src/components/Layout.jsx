@@ -314,7 +314,7 @@ const IconStyle = {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false); // 로그아웃 상태로 설정
-    navigate("/"); // Home.js 페이지로 이동
+    navigate("../"); // Home.js 페이지로 이동
   };
 
 const Layout = ({ RightMainContent }) => {
