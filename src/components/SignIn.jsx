@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MediaQuery from "react-responsive";
 import { IoArrowBackOutline } from "react-icons/io5";
+import axios from 'axios';
 
 const User = {
   // 가상의 사용자 데이터 (임시로 추가)
@@ -349,7 +350,7 @@ export default function SignIn() {
   const onClickConfirmButton = async () => {
     const formData = { user_name: id, user_password: pw };
     try {
-        const response = await axios.post(FAST_API_KEY + '/users/login', formData);
+        const response = await axios.post(process.env.FAST_API_KEY + '/users/login', formData);
         const token = response.data.token;
 
         // 토큰을 로컬 스토리지에 저장
