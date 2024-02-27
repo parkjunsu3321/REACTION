@@ -137,9 +137,8 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
         try {
           const config = {
             headers: {
-              "Authorization": Bearer ${token}
+              "Authorization": `Bearer ${token}`
             }
-           }
           };
           const requestData = { level: difficulty};
           const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/create_list', requestData, config);
