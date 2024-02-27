@@ -4,6 +4,7 @@ import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import { FaCircleUser } from "react-icons/fa6";
 import { RiVipCrownFill } from "react-icons/ri";
+import axios from 'axios';
 
 //여기서부터 모바일 환경 컴포넌트
 const MobileFrame = styled.div`
