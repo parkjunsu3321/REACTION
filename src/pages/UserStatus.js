@@ -320,7 +320,7 @@ const UserStatus = () => {
     // 모달 열기/닫기 함수
     const toggleModal = () => {
       setIsModalOpen(!isModalOpen);
-      if(isModalOpean)
+      if(isModalOpen)
       {
         handleGenreInput();
       }
