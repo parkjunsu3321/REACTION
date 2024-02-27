@@ -326,7 +326,7 @@ export default function WithDrawal() {
         }
       };
       const requestData = { user_password: pw };
-      const response = await axios.post(process.env.REACT_APP_FAST_API_KEY +'/api/users/delete_user', requestData, config);
+      const response = await axios.delelte(process.env.REACT_APP_FAST_API_KEY +'/api/users/delete_user', requestData, config);
       if (response.data === true) 
       {
         alert("탈퇴 성공");
