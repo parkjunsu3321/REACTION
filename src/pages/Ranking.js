@@ -377,7 +377,7 @@ const Ranking = () => {
         try 
         {
             const response = await axios.get(process.env.FAST_API_KEY+'/api/result/all');
-	    const gameResults = response.data.data;
+	    const gameResults = response.data;
 	    console.log(gameResults);
         }
         catch (error) 
