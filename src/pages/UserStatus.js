@@ -302,7 +302,9 @@ const UserStatus = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [selectedGenres, setSelectedGenres] = useState(Array(5).fill(null));
-
+  const [genredata, setgenredata] = useState({
+        genredata: []
+      });
   const handleGenreSelect = (index, genre) => {
     // 이미 선택된 장르인지 확인
     if (selectedGenres.some(item => item && item.value === genre.value)) {
@@ -318,13 +320,10 @@ const UserStatus = () => {
     // 모달 열기/닫기 함수
     const toggleModal = () => {
       setIsModalOpen(!isModalOpen);
-      handleGenreInpur();
+      handleGenreInput();
     };  
 
-    const handleGenreInpur = async () => { // 변경된 부분
-      const [genredata, setgenredata] = useState({
-        genredata: []
-      });
+    const handleGenreInput = async () => { // 변경된 부분
       setgenredata({ ...forData, genres: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
       const [forData, setForData] = useState({
         genres: []
