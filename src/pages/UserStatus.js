@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
@@ -329,7 +329,7 @@ const UserStatus = () => {
       }
     };
     const handleGenreInput = async () => { // 변경된 부분
-      setForData({ ...forData, first_genre: selectedGenres[0].value, second_genre: selectedGenres[1].value, third_genre: selectedGenres[2].value});
+      setForData({ ...forData, first_genre: selectedGenres.Array(0).value, second_genre: selectedGenres.Array(1).value, third_genre: selectedGenres.Array(2).value});
       const token = localStorage.getItem('token');
       try {
         const config = {
