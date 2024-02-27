@@ -300,7 +300,16 @@ const InGameContent = () => {
   const [playedIndexes, setPlayedIndexes] = useState([]); // 이미 재생된 인덱스 체크
   const [playedSongs, setPlayedSongs] = useState([]); // 이미 재생된 노래를 추적하기 위한 상태
   const [modalPlaying, setModalPlaying] = useState(false); // 모달 창의 노래 제어 상태
-
+	
+	// 장르별 맞춘 개수를 추적할 상태
+  const [genreCounts, setGenreCounts] = useState({
+    "발라드": 0,
+    "댄스": 0,
+    "R&B": 0,
+    "락": 0,
+    "힙합": 0
+  });
+	
   const navigate = useNavigate();
 
   const closeModal = () => {  //  모달 닫는 함수
@@ -418,7 +427,14 @@ const InGameContent = () => {
     console.log("Response from server:", response.data);
     
     const currentSong = PopularSong[currentVideoIndex];
-    
+
+      // 장르별 맞춘 개수 업데이트
+    const currentGenre = currentSong.tags[0]; // 장르는 배열의 첫 번째 요소로 가정
+    setGenreCounts(prevCounts => ({
+      ...prevCounts,
+      [currentGenre]: prevCounts[currentGenre] + 1
+    }));
+	  
     if (response.data === true) {
       playCorrectSound();
       setInputText("");
@@ -563,6 +579,7 @@ const InGameContent = () => {
 
           <MobileHeader>
             <h4>현재까지 당신의 점수는 {score} 점입니다!</h4> 
+	     <h6>발라드: {genreCounts["발라드"]}, 댄스: {genreCounts["댄스"]}, R&B: {genreCounts["R&B"]}, 락: {genreCounts["락"]}, 힙합: {genreCounts["힙합"]}</h6>
             <ReactPlayer
               url={currentVideoUrl}
               width='1px'
