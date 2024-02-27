@@ -111,16 +111,6 @@ const MobileHeaderL = styled.div`
     margin-left: 5%;
 `;
 
-const MobileHeaderR = styled.div`
-    width: 50%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 3%;
-`;
-
 const MobileHeader = styled.div`
   width: 100%;
   height: 10%;
@@ -399,13 +389,6 @@ try {
                 <h1 style={{ fontFamily: "Itim-Regular" }}>Reaction</h1>
               </Link>
             </MobileHeaderL>
-            <MobileHeaderR>
-              <MobileSignBtn>
-                <Link to="/SignIn" style={LinkStyle2} >
-                  <FaLock style={{ width: '10px', height: '10px' }} />SignIn
-                </Link>
-              </MobileSignBtn>
-            </MobileHeaderR>
           </RealMobileHeader>
 
           <MobileHeader>
