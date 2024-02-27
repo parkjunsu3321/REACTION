@@ -376,21 +376,20 @@ const Ranking = () => {
     
     const [gameResults, setGameResults] = useState([]);
 
-    useEffect(async () => {
-        try 
-        {
+    useEffect(() => {
+    const fetchData = async () => {
+        try {
             const response = await axios.get(process.env.REACT_APP_FAST_API_KEY+'/api/result/all');
-	    const gameR = response.data;
-	    console.log(gameR[0].game_result_player_id);
-	    console.log(gameR);
-	    setGameResults(gameR);
-	    console.log(gameResults);
+            setGameResults(response.data);
+            console.log(response.data[0].game_result_player_id);
+            console.log(gameResults);
+        } catch (error) {
+            console.error('Error fetching game results:', error);
         }
-        catch (error) 
-	{
-             console.error('Error fetching game results:', error);
-        }
-    });
+    };
+
+    fetchData();
+}, []);
 	
     const RankingContent = (
         <>
