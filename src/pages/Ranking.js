@@ -380,10 +380,11 @@ const Ranking = () => {
         try 
         {
             const response = await axios.get(process.env.REACT_APP_FAST_API_KEY+'/api/result/all');
-	    setGameResults(response.data);
-	    console.log(gameResults[0].game_result_player_id);
+	    const gameR = response.data;
+	    console.log(gameR[0].game_result_player_id);
+	    console.log(gameR);
+	    setGameResults(gameR);
 	    console.log(gameResults);
-        return gameResults;
         }
         catch (error) 
 	{
