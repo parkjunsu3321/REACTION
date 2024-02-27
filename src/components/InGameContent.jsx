@@ -443,6 +443,8 @@ const InGameContent = () => {
     if (!acc[rowIndex]) {
         acc[rowIndex] = []; // 새로운 행 생성
     }
+    console.log(rowIndex);
+    console.log(colIndex);
     acc[rowIndex][colIndex] = cur; // 데이터 삽입
     return acc;
 }, []);
