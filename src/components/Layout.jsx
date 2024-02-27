@@ -314,7 +314,7 @@ const IconStyle = {
 
 const Layout = ({ RightMainContent }) => {
 const Login = false
-useEffect(() => {
+const useEffect(() = async () => {
         const token = localStorage.getItem('token');
     try {
       const config = {
