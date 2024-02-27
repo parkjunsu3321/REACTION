@@ -414,10 +414,29 @@ const InGameContent = () => {
   
   const chooseRandomSong = () => {
     if (playedIndexes.length === PopularSong.length) {
+      gameresultinput();
       navigate('/GameResult', { state: { score } });
       return;
     }
-  
+    
+    const gameresultinput = async () => {
+        const token = localStorage.getItem('token');
+        try {
+          const config = {
+            headers: {
+              "Authorization": `Bearer ${token}`
+            }
+          };
+    
+          const request_datam = {score: score}
+          const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/input_result', request_datam, config);
+          alert(response.data);
+        } 
+        catch (error) 
+        {
+          console.error('Error:', error.response.data);
+        }
+      };
     // 이미 재생된 노래를 제외하고 랜덤하게 노래 선택
     const availableIndexes = PopularSong.reduce((acc, _, index) => {
       if (!playedIndexes.includes(index)) {
