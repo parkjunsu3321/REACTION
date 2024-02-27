@@ -313,12 +313,33 @@ const IconStyle = {
 };
 
 export default function WithDrawal() {
-
+  
   const [isChecked, setIsChecked] = useState(false);
   const [pw, setPw] = useState('');
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+  const handleCheckboxChange =  = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      };
+      const requestData = { user_password: pw };
+      const response = await axios.post(process.env.REACT_APP_FAST_API_KEY +'/api/users/delete_user', requestData, config);
+      if (response.data === true) 
+      {
+        alert("탈퇴 성공");
+      } 
+      else 
+      {
+        alert("탈퇴 실패");
+      }
+    } 
+    catch (error) 
+    {
+      console.error('Error:', error.response.data);
+    }
   };
 
   const handlePwChange = (e) => {
