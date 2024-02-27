@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import MediaQuery from "react-responsive";
 import { Link } from 'react-router-dom';
-import { IoIosArrowForward } from "react-icons/io";
 
+import { IoIosArrowForward } from "react-icons/io";
 
 const InfoTitle = styled.div`
   margin-top: 20px;
@@ -363,6 +363,11 @@ const LinkStyle1 = {
 };
 
 const MyInfo = () => {
+
+  useEffect(() => {
+    console.log("이거 지우고 형님 하고싶은거 적으셈")
+  });
+
   const MyInfoContent = () => (
     <>
       <MediaQuery minWidth={767}>
