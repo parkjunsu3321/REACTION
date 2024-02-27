@@ -373,6 +373,9 @@ const NullSpace = styled.div`
 `;
 
 const Ranking = () => {
+    
+    const [gameResults, setGameResults] = useState([]);
+
     useEffect(async () => {
         try 
         {
@@ -380,6 +383,7 @@ const Ranking = () => {
 	    const gameResults = response.data;
 	    console.log(gameResults[0].game_result_player_id);
 	    console.log(gameResults);
+        return gameResults;
         }
         catch (error) 
 	{
