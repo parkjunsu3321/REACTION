@@ -433,7 +433,6 @@ const InGameContent = () => {
 
 const chooseRandomSong = () => {
   if (playedIndexes.length === PopularSong.length) {
-    gameresultinput();
     navigate('/GameResult', { state: { score } });
     return;
   }
@@ -441,7 +440,6 @@ const chooseRandomSong = () => {
   // gameresultinput 함수 호출
   gameresultinput(score);
 };
-
     // 이미 재생된 노래를 제외하고 랜덤하게 노래 선택
     const availableIndexes = PopularSong.reduce((acc, _, index) => {
       if (!playedIndexes.includes(index)) {
