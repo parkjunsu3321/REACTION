@@ -2,6 +2,7 @@ import React from "react";
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const Frame = styled.div`
     width: 100%;
@@ -130,6 +131,24 @@ const MobileTextBox = styled.div`
 `;
 
 const GameMainSet = ({ headerContent, textBoxContent }) => {
+    const handleLinkClick = async (difficulty) => { // 변경된 부분
+        const token = localStorage.getItem('token');
+        try {
+          const config = {
+            headers: {
+              "Authorization": `Bearer ${token}`
+            }
+          };
+          const requestData = { level: difficulty};
+          const response = await axios.post('https://port-0-fastapi-dc9c2nlsw04cjb.sel5.cloudtype.app/api/users/create_list', requestData, config);
+          localStorage.setItem('revalue', response.data);
+        }
+        catch (error) 
+        {
+          console.error('Error:', error.response.data);
+        }
+      };
+
     return (
         <>
             <MediaQuery minWidth={768}>
@@ -139,14 +158,14 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
                     </Header>
 
                     <Main>
-                        <Link to="/Ingame" style={LinkStyle}>
-                            <ProbBtn>Easy</ProbBtn>
+                        <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick(1)}>
+                            <button>Easy</button>
                         </Link>
-                        <Link to="/Ingame" style={LinkStyle}>
-                            <ProbBtn>Normal</ProbBtn>
+                        <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick(2)}>
+                            <button>Normal</button>
                         </Link>
-                        <Link to="/Ingame" style={LinkStyle}>
-                            <ProbBtn>Hard</ProbBtn>
+                        <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick(3)}>
+                            <button>Hard</button>
                         </Link>
                     </Main>
 
@@ -163,15 +182,15 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
                         {headerContent}
                     </MobileHeader>
                     <MobileMain>
-                        <Link to="/Ingame" style={LinkStyle2}>
-                            <MobileProbBtn>Easy</MobileProbBtn>
-                        </Link>
-                        <Link to="/Ingame" style={LinkStyle2}>
-                            <MobileProbBtn>Normal</MobileProbBtn>
-                        </Link>
-                        <Link to="/Ingame" style={LinkStyle2}>
-                            <MobileProbBtn>Hard</MobileProbBtn>
-                        </Link>
+                    <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick('Easy')}>
+                        <ProbBtn>Easy</ProbBtn>
+                    </Link>
+                    <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick('Normal')}>
+                        <ProbBtn>Normal</ProbBtn>
+                    </Link>
+                    <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick('Hard')}>
+                        <ProbBtn>Hard</ProbBtn>
+                    </Link>
                     </MobileMain>
                     <MobileFooter>
                         <MobileTextBox>{textBoxContent}</MobileTextBox>
