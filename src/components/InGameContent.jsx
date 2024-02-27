@@ -95,6 +95,76 @@ const MobileHeader = styled.div`
 	justify-content: center;
 `;
 
+const MobileHeaderA = styled.div`
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	display: flex;
+  flex-direction: row;
+	align-items: center;
+	justify-content: center;
+`;
+
+const MobileHeaderAa = styled.div`
+	width: 17%;
+	height: 100%;
+	background-color: white;
+	display: flex;
+  flex-direction: row;
+	align-items: center;
+	justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+`;
+
+const MobileHeaderAb = styled.div`
+	width: 17%;
+	height: 100%;
+	background-color: white;
+	display: flex;
+  flex-direction: row;
+	align-items: center;
+	justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+`;
+
+const MobileHeaderAc = styled.div`
+	width: 17%;
+	height: 100%;
+	background-color: white;
+	display: flex;
+  flex-direction: row;
+	align-items: center;
+	justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+`;
+
+const MobileHeaderAd = styled.div`
+	width: 17%;
+	height: 100%;
+	background-color: white;
+	display: flex;
+  flex-direction: row;
+	align-items: center;
+	justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+`;
+
+const MobileHeaderAe = styled.div`
+	width: 17%;
+	height: 100%;
+	background-color: white;
+	display: flex;
+  flex-direction: row;
+	align-items: center;
+	justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+`;
+
 const MobileMain = styled.div`
 	height: 10%;
 	background-color: white;
@@ -579,7 +649,13 @@ const InGameContent = () => {
 
           <MobileHeader>
             <h4>현재까지 당신의 점수는 {score} 점입니다!</h4> 
-	     <h6>발라드: {genreCounts["발라드"]}, 댄스: {genreCounts["댄스"]}, R&B: {genreCounts["R&B"]}, 락: {genreCounts["락"]}, 힙합: {genreCounts["힙합"]}</h6>
+	                 <MobileHeaderA>
+              <MobileHeaderAa>발라드: {genreCounts["발라드"]}</MobileHeaderAa>
+               <MobileHeaderAb>댄스: {genreCounts["댄스"]}</MobileHeaderAb>
+               <MobileHeaderAc> R&B: {genreCounts["R&B"]}</MobileHeaderAc>
+               <MobileHeaderAd>락: {genreCounts["락"]} </MobileHeaderAd>
+                <MobileHeaderAe>힙합: {genreCounts["힙합"]}</MobileHeaderAe>
+            </MobileHeaderA>
             <ReactPlayer
               url={currentVideoUrl}
               width='1px'
