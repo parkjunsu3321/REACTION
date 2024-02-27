@@ -389,13 +389,7 @@ const Ranking = () => {
         fetchData();
     }, []);
 
-    const playerNames = Array.from({ length: 7 }, (_, index) => {
-        if (index < gameResults.length) {
-            return gameResults[index].game_result_player_id;
-        } else {
-            return "";
-        }
-    });
+     const first_player = gameResults.length > 0 ? gameResults[0].game_result_player_id : "";
 	
     const RankingContent = (
         <>
@@ -434,7 +428,9 @@ const Ranking = () => {
                             <MobileMainBb/>
 
                             <MobileMainBc>
-				{playerNames.map((name, 0) => (<h1 key={0}>{name}</h1>))}
+				<h1>
+				  {first_player}
+				</h1>
                             </MobileMainBc>
                         </MobileMainB>
 
