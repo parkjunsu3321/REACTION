@@ -9,6 +9,7 @@ import { FaRankingStar } from "react-icons/fa6";
 import { FaUserLarge } from "react-icons/fa6";
 import { ImMenu } from "react-icons/im";
 import { FaLock } from "react-icons/fa";
+import axios from 'axios';
 
 const WdTitle = styled.div`
   margin-top: 20px;
