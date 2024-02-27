@@ -132,28 +132,15 @@ const MobileTextBox = styled.div`
 
 const GameMainSet = ({ headerContent, textBoxContent }) => {
     const handleLinkClick = async (difficulty) => { // 변경된 부분
-        const level = 0;
-        if(difficulty === 'Easy')
-        {
-            level = 1;
-        }
-        else if(difficulty === 'Normal')
-        {
-            level = 2;
-        }
-        else
-        {
-            level = 3;
-        }
         console.log(difficulty);
         const token = localStorage.getItem('token');
         try {
           const config = {
             headers: {
-              "Authorization": `Bearer ${token}`
+              "Authorization": Bearer ${token}
             }
           };
-          const requestData = { level: level};
+          const requestData = { level: difficulty};
           const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/create_list', requestData, config);
           localStorage.setItem('revalue', response.data);
         }
