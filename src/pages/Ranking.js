@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
@@ -371,7 +372,20 @@ const NullSpace = styled.div`
 `;
 
 const Ranking = () => {
+    useEffect(async () => {
+        try 
+        {
+            const response = await axios.post(process.env.FAST_API_KEY+'/api/result/all')
+            const { game_result_player_id } = response.data.data;
+            const { game_result_score } = response.data.data;
+            console.log(game_result_player_id);
+            console.log(game_result_score);
+        }
+        finally
+        {
 
+        }
+    });
     const RankingContent = (
         <>
             <MediaQuery minWidth={767}/>
