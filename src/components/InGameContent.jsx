@@ -410,13 +410,17 @@ const InGameContent = () => {
     }, 300); // 0.3초 뒤에 재생 시작
   }
 
-  const handleAnswerCheck = () => {
-    // 입력값이 비어 있는지 확인하고, 비어 있다면 함수 종료
-    if (inputText.trim() === "") {
-      toast.error("정답을 입력하세요.",{ autoClose: 1000 }); // 토스트 메시지로 변경
-      playEmptySound();
-      return;
+  const handleAnswerCheck = async () => {
+    const requestData = { input: formData.user_name, answer: '헤어지자 말해요' };
+    try {
+      const response = await axios.get('https://port-0-fastapi-dc9c2nlsw04cjb.sel5.cloudtype.app/api/users/textembedding', {
+        params: requestData
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error:', error.message);
     }
+  };
   
     const currentSong = PopularSong[currentVideoIndex];
     if (currentSong.answer.includes(inputText.trim().toLowerCase())) {
