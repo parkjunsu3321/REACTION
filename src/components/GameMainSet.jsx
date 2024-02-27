@@ -132,19 +132,6 @@ const MobileTextBox = styled.div`
 
 const GameMainSet = ({ headerContent, textBoxContent }) => {
     const handleLinkClick = async (difficulty) => { // 변경된 부분
-        const level = 0;
-        if(difficulty === 'Easy')
-        {
-            level = 1;
-        }
-        else if(difficulty === 'Normal')
-        {
-            level = 2;
-        }
-        else
-        {
-            level = 3;
-        }
         console.log(difficulty);
         const token = localStorage.getItem('token');
         try {
@@ -153,7 +140,7 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
               "Authorization": `Bearer ${token}`
             }
           };
-          const requestData = { level: level};
+          const requestData = { level: difficulty};
           const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/create_list', requestData, config);
           localStorage.setItem('revalue', response.data);
         }
@@ -196,13 +183,13 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
                         {headerContent}
                     </MobileHeader>
                     <MobileMain>
-                    <Link to="/Ingame" style={LinkStyle2} onClick={() => handleLinkClick('Easy')}>
+                    <Link to="/Ingame" style={LinkStyle2} onClick={() => handleLinkClick(1)}>
                         <ProbBtn>Easy</ProbBtn>
                     </Link>
-                    <Link to="/Ingame" style={LinkStyle2} onClick={() => handleLinkClick('Normal')}>
+                    <Link to="/Ingame" style={LinkStyle2} onClick={() => handleLinkClick(2)}>
                         <ProbBtn>Normal</ProbBtn>
                     </Link>
-                    <Link to="/Ingame" style={LinkStyle2} onClick={() => handleLinkClick('Hard')}>
+                    <Link to="/Ingame" style={LinkStyle2} onClick={() => handleLinkClick(3)}>
                         <ProbBtn>Hard</ProbBtn>
                     </Link>
                     </MobileMain>
