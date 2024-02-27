@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
@@ -307,6 +307,7 @@ const UserStatus = () => {
         second_genre: '',
         third_genre: ''
       });
+      
   const handleGenreSelect = (index, genre) => {
     // 이미 선택된 장르인지 확인
     if (selectedGenres.some(item => item && item.value === genre.value)) {
@@ -317,19 +318,27 @@ const UserStatus = () => {
     const newSelectedGenres = [...selectedGenres];
     newSelectedGenres[index] = genre;
     setSelectedGenres(newSelectedGenres);
-    console.log(selectedGenres[index].value);
   };
   
     // 모달 열기/닫기 함수
-    const toggleModal = () => {
-      setIsModalOpen(!isModalOpen);
-      if(isModalOpen)
-      {
-        handleGenreInput();
-      }
+    const toggleOpenModal = () => {
+      setIsModalOpen(true);
+    };  
+
+    const toggleCloseModal = () => {
+      handleGenreInput();
+      setIsModalOpen(false)
+      console.log(selectedGenres);
     };
-    const handleGenreInput = async () => { // 변경된 부분
-      setForData({ ...forData, first_genre: selectedGenres.Array(0).value, second_genre: selectedGenres.Array(1).value, third_genre: selectedGenres.Array(2).value});
+
+    const handleGenreInput = async () => {
+      const forDataValues = {
+        first_genre: selectedGenres[0] ? selectedGenres[0].value : '',
+        second_genre: selectedGenres[1] ? selectedGenres[1].value : '',
+        third_genre: selectedGenres[2] ? selectedGenres[2].value : ''
+      };
+      setForData(forDataValues);
+    
       const token = localStorage.getItem('token');
       try {
         const config = {
@@ -337,20 +346,15 @@ const UserStatus = () => {
             "Authorization": `Bearer ${token}`
           }
         };
-        console.log(forData);
-        const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/Input_Genre', forData, config);
-  
-        if (response.data === true) 
-        {
+        console.log(forDataValues);
+        const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/Input_Genre', forDataValues, config);
+    
+        if (response.data === true) {
           alert("성공");
-        } 
-        else 
-        {
+        } else {
           alert("실패");
         }
-      } 
-      catch (error) 
-      {
+      } catch (error) {
         console.error('Error:', error.response.data);
       }
     };
@@ -466,7 +470,7 @@ const UserStatus = () => {
               </DropdownArea>
             </ModalBoxArea>
             <StyledButton2 style={{marginTop:"30px"}} onClick={handleReset}>초기화</StyledButton2>
-            <StyledButton2 style={{marginTop:"30px"}} onClick={toggleModal} disabled={!areAllGenresSelected()}>닫기</StyledButton2>
+            <StyledButton2 style={{marginTop:"30px"}} onClick={toggleCloseModal} disabled={!areAllGenresSelected()}>닫기</StyledButton2>
           </ModalContent>
         </ModalContainer>
       )}
@@ -560,7 +564,7 @@ const UserStatus = () => {
           <h6 style={{ margin: "0px", padding: "0px" }}>
             목표 장르를 선택하고 싶다면 버튼을 클릭해 주세요
           </h6>
-          <StyledButton onClick={toggleModal}>장르선택</StyledButton>
+          <StyledButton onClick={toggleOpenModal}>장르선택</StyledButton>
         </MobileFooter>
       </MobileFrame>
     </MobileContainer>
