@@ -368,7 +368,7 @@ const MyInfo = () => {
   const fetchData = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.post(process.env.FAST_API_KEY+'/api/users/getInfo',
+      const response = await axios.get(process.env.FAST_API_KEY+'/api/users/getInfo',
         {},
         {
           headers: {
