@@ -132,6 +132,7 @@ const MobileTextBox = styled.div`
 
 const GameMainSet = ({ headerContent, textBoxContent }) => {
     const handleLinkClick = async (difficulty) => { // 변경된 부분
+        console.log(difficulty);
         const token = localStorage.getItem('token');
         try {
           const config = {
