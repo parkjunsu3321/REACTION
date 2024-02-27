@@ -447,7 +447,7 @@ const InGameContent = () => {
     return acc;
 }, []);
 
-  console.log(dataArray);
+  console.log(dataArray[0][0]);
 
   return (
     <>
