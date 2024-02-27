@@ -376,7 +376,7 @@ const Ranking = () => {
     useEffect(async () => {
         try 
         {
-            const response = await axios.get(process.env.FAST_API_KEY+'/api/result/all');
+            const response = await axios.get(process.env.REACT_APP_FAST_API_KEY+'/api/result/all');
 	    const gameResults = response.data;
 	    console.log(gameResults);
         }
