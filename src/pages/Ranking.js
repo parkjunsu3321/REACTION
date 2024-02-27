@@ -390,19 +390,19 @@ const Ranking = () => {
     }, []);
 
      const first_player = gameResults.length > 0 ? gameResults[0].game_result_player_id : "";
-     const first_score = gameResults.length > 0 ? gameResults[0].game_result_score : "";
+     const first_score = gameResults.length > 0 ? gameResults[0].game_result_score : 0;
      const second_Player = gameResults.length > 0 ? gameResults[1].game_result_player_id : "";
-     const second_score = gameResults.length > 0 ? gameResults[1].game_result_score : "";
+     const second_score = gameResults.length > 0 ? gameResults[1].game_result_score : 0;
      const third_player = gameResults.length > 0 ? gameResults[2].game_result_player_id : "";
-     const third_score = gameResults.length > 0 ? gameResults[2].game_result_score : "";
+     const third_score = gameResults.length > 0 ? gameResults[2].game_result_score : 0;
      const fourth_player = gameResults.length > 0 ? gameResults[3].game_result_player_id : "";
-     const fourth_score = gameResults.length > 0 ? gameResults[3].game_result_score : "";
+     const fourth_score = gameResults.length > 0 ? gameResults[3].game_result_score : 0;
      const fifth_player = gameResults.length > 0 ? gameResults[4].game_result_player_id : "";
-     const fifth_score = gameResults.length > 0 ? gameResults[4].game_result_score : "";
+     const fifth_score = gameResults.length > 0 ? gameResults[4].game_result_score : 0;
      const sixth_player = gameResults.length > 0 ? gameResults[5].game_result_player_id : "";
-     const sixth_score = gameResults.length > 0 ? gameResults[5].game_result_score : "";
+     const sixth_score = gameResults.length > 0 ? gameResults[5].game_result_score : 0;
      const seventh_player = gameResults.length > 0 ? gameResults[6].game_result_player_id : "";
-     const seventh_score = gameResults.length > 0 ? gameResults[6].game_result_score : "";
+     const seventh_score = gameResults.length > 0 ? gameResults[6].game_result_score : 0;
 
 	
     const RankingContent = (
