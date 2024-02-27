@@ -448,7 +448,6 @@ const InGameContent = () => {
 }, []);
 
   console.log(dataArray[0][0]);
-  console.log(dataArray[5][1]);
 
   return (
     <>
