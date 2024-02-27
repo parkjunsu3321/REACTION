@@ -363,66 +363,65 @@ const LinkStyle1 = {
 };
 
 const MyInfo = () => {
-
   const [userInfo, setUserInfo] = useState(null); // 유저 정보를 담을 상태
 
   useEffect(() => {
-  const fetchData = async () => {
-    const token = localStorage.getItem('token');
-    try {
-      const response = await axios.get(process.env.REACT_APP_FAST_API_KEY+'/api/users/getInfo',
-        {},
-        {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const response = await axios.get(process.env.REACT_APP_FAST_API_KEY+'/api/users/getInfo', {
           headers: {
             Authorization: `Bearer ${token}`
           }
-        }
-      );
-      setUserInfo(response.data.data);
-      const { name, flavor_genre_first, flavor_genre_second, flavor_genre_third } = response.data.data;
-    } 
-    catch (error) 
-    {
-      console.error('Error fetching user info:', error);
-    }
-  };
+        });
+        setUserInfo(response.data.data);
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+      }
+    };
 
-  fetchData(); // Call the async function
-}, []); 
+    fetchData(); // Call the async function
+  }, []); 
 
-  const MyInfoContent = () => (
-    <>
-      <MediaQuery minWidth={767}>
-        <InfoTitle>내 정보</InfoTitle>
+  return (
+    <Layout RightMainContent={<MyInfoContent userInfo={userInfo} />} />
+  );
+};
 
-        <InfoLine1 />
+const MyInfoContent = ({ userInfo }) => (
+  <>
+    <MediaQuery minWidth={767}>
+      {userInfo && (
+        <>
+          <InfoTitle>내 정보</InfoTitle>
 
-        <InfoVertical1>
-          <InfoText>회원 정보</InfoText>
-        </InfoVertical1>
+          <InfoLine1 />
+          <InfoVertical1>
+            <InfoText>회원 정보</InfoText>
+          </InfoVertical1>
+          <InfoLine2 />
+          <InfoVertical2 />
+          <InfoLine3 />
+          <InfoText2>기본정보(필수)</InfoText2>
 
-        <InfoLine2 />
-        <InfoVertical2 />
-        <InfoLine3 />
+          <NameText>사용자명</NameText>
+          <NameLine />
+          <LoginName>{userInfo.name}</LoginName>
 
-        <InfoText2>기본정보(필수)</InfoText2>
+          <IdText>아이디</IdText>
+          <IdLine />
+          <LoginId>{userInfo.id}</LoginId>
 
-        <NameText>사용자명</NameText>
-        <NameLine />
-        <LoginName>name</LoginName>
+          <NopText>게임 참가 횟수</NopText>
+          <NopLine />
+          <LoginNop>{userInfo.game_count}</LoginNop>
+        </>
+      )}
+    </MediaQuery>
 
-        <IdText>아이디</IdText>
-        <IdLine />
-        <LoginId>id</LoginId>
-
-        <NopText>게임 참가 횟수</NopText>
-        <NopLine />
-        <LoginNop>0</LoginNop>
-
-      </MediaQuery>
-
-      {/*여기부터 모바일 환경*/}
-      <MediaQuery maxWidth={767}>
+    {/*여기부터 모바일 환경*/}
+    <MediaQuery maxWidth={767}>
+      {userInfo && (
         <MobileFrame>
           <MobileHeader>
             <MobileHeaderA>
@@ -432,20 +431,23 @@ const MyInfo = () => {
             <MobileHeaderB>
               <MobileImage />
             </MobileHeaderB>
-
           </MobileHeader>
 
           <MobileMain>
-
             <MobileMainA>
-              <MobileIdText>아이디</MobileIdText>
-              <MobileLoginId>{userInfo.name}</MobileLoginId>
+              <MobileNameText>사용자명</MobileNameText>
+              <MobileLoginName>{userInfo.name}</MobileLoginName>
             </MobileMainA>
 
             <MobileMainB>
+              <MobileIdText>아이디</MobileIdText>
+              <MobileLoginId>{userInfo.id}</MobileLoginId>
+            </MobileMainB>
+
+            <MobileMainC>
               <MobileNopText>1순위</MobileNopText>
               <MobileLoginNop>{userInfo.flavor_genre_first}</MobileLoginNop>
-            </MobileMainB>
+            </MobileMainC>
 
             <MobileMainC>
               <MobileNopText>2순위</MobileNopText>
@@ -460,27 +462,23 @@ const MyInfo = () => {
             <MobileMainD>
               <MobileMainDa>
                 <Link to="/PwChange" style={LinkStyle1}>
-                <MobilePwChangeBtn>비밀번호 변경</MobilePwChangeBtn>
+                  <MobilePwChangeBtn>비밀번호 변경</MobilePwChangeBtn>
                 </Link>
               </MobileMainDa>
             </MobileMainD>
 
             <MobileMainE>
               <MobileMainEa>
-              <Link to="/WithDrawal" style={LinkStyle1}>
-              <MobileRemoveBtn>회원탈퇴</MobileRemoveBtn>
+                <Link to="/WithDrawal" style={LinkStyle1}>
+                  <MobileRemoveBtn>회원탈퇴</MobileRemoveBtn>
                 </Link>
               </MobileMainEa>
-              </MobileMainE>
+            </MobileMainE>
           </MobileMain>
         </MobileFrame>
-      </MediaQuery>
-    </>
-  )
-
-  return (
-    <Layout RightMainContent={<MyInfoContent />} />
-  );
-};
+      )}
+    </MediaQuery>
+  </>
+);
 
 export default MyInfo;
