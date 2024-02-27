@@ -9,6 +9,7 @@ import { Chart as ChartJS } from 'chart.js/auto';
 import { FiActivity } from "react-icons/fi";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { FcExpand } from "react-icons/fc";
+import axios from 'axios';
 
 const MobileContainer = styled.div`
   width: 100%;
@@ -317,7 +318,41 @@ const UserStatus = () => {
     // 모달 열기/닫기 함수
     const toggleModal = () => {
       setIsModalOpen(!isModalOpen);
+      handleGenreInpur();
     };  
+
+    const handleGenreInpur = async () => { // 변경된 부분
+      const [genredata, setgenredata] = useState({
+        genredata: []
+      });
+      setgenredata({ ...forData, genres: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
+      const [forData, setForData] = useState({
+        genres: []
+      });
+      const token = localStorage.getItem('token');
+      try {
+        const config = {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        };
+        setForData({ ...forData, genres:  genredata});
+        const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/Input_Genre', forData, config);
+  
+        if (response.data === true) 
+        {
+          alert("성공");
+        } 
+        else 
+        {
+          alert("실패");
+        }
+      } 
+      catch (error) 
+      {
+        console.error('Error:', error.response.data);
+      }
+    };
 
     const handleReset = () => {
       setSelectedGenres(Array(5).fill(null));
