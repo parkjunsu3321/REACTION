@@ -2,6 +2,7 @@ import React from "react";
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const Frame = styled.div`
     width: 100%;
