@@ -391,7 +391,25 @@ const Ranking = () => {
 
      const first_player = gameResults.length > 0 ? gameResults[0].game_result_player_id : "";
      const first_score = gameResults.length > 0 ? gameResults[0].game_result_score : "";
-	
+     
+     const second_player = gameResults.length > 0 ? gameResults[1].game_result_player_id : "";
+     const second_score = gameResults.length > 0 ? gameResults[1].game_result_score : "";
+
+     const third_player = gameResults.length > 0 ? gameResults[2].game_result_player_id : "";
+     const third_score = gameResults.length > 0 ? gameResults[2].game_result_score : "";
+
+     const fourth_player = gameResults.length > 0 ? gameResults[3].game_result_player_id : "";
+     const fourth_score = gameResults.length > 0 ? gameResults[3].game_result_score : "";
+
+     const fifth_player = gameResults.length > 0 ? gameResults[4].game_result_player_id : "";
+     const fitfh_score = gameResults.length > 0 ? gameResults[4].game_result_score : "";
+
+     const sixth_player = gameResults.length > 0 ? gameResults[5].game_result_player_id : "";
+     const sixth_score = gameResults.length > 0 ? gameResults[5].game_result_score : "";
+
+     const seventh_player = gameResults.length > 0 ? gameResults[6].game_result_player_id : "";
+     const seventh_score = gameResults.length > 0 ? gameResults[6].game_result_score : "";
+
     const RankingContent = (
         <>
             <MediaQuery minWidth={767}/>
@@ -411,13 +429,13 @@ const Ranking = () => {
                     <NullSpace/>
                         <MobileMainA>
                             <MobileMainAa>
-                            <h1>99점</h1>
+                            <h1>{second_score}</h1>
                             </MobileMainAa>
 
                             <MobileMainAb/>
 
                             <MobileMainAc>
-                            <h1>박준수</h1>
+                            <h1>{second_player}</h1>
                             </MobileMainAc>
                         </MobileMainA>
 
@@ -437,13 +455,13 @@ const Ranking = () => {
 
                         <MobileMainC>
                             <MobileMainCa>
-                            <h1>95점</h1>
+                            <h1>{third_score}</h1>
                             </MobileMainCa>
 
                             <MobileMainCb/>
 
                             <MobileMainCc>
-                            <h1>조우주</h1>
+                            <h1>{third_player}</h1>
                             </MobileMainCc>
                         </MobileMainC>
 
@@ -461,11 +479,11 @@ const Ranking = () => {
                             </MobileFooterAb>
 
                             <MobileFooterAc>
-                            <Text>수상남</Text>
+                            <Text>{fourth_player}</Text>
                             </MobileFooterAc>
 
                             <MobileFooterAd>
-                                <h1>90</h1>
+                                <h1>{fourth_score}</h1>
                             </MobileFooterAd>
                         </MobileFooterA>
 
@@ -479,11 +497,11 @@ const Ranking = () => {
                             </MobileFooterBb>
 
                             <MobileFooterBc>
-                            <Text>이승훈</Text>
+                            <Text>{fifth_player}</Text>
                             </MobileFooterBc>
 
                             <MobileFooterBd>
-                                <h1>88</h1>
+                                <h1>{fitfh_score}</h1>
                             </MobileFooterBd>
                         </MobileFooterB>
 
@@ -497,11 +515,11 @@ const Ranking = () => {
                             </MobileFooterCb>
 
                             <MobileFooterCc>
-                            <Text>Ho8</Text>
+                            <Text>{sixth_player}</Text>
                             </MobileFooterCc>
 
                             <MobileFooterCd>
-                                <h1>80</h1>
+                                <h1>{sixth_score}</h1>
                             </MobileFooterCd>
                         </MobileFooterC>
 
@@ -515,11 +533,11 @@ const Ranking = () => {
                             </MobileFooterDb>
 
                             <MobileFooterDc>
-                            <Text>Unreal 뉴비</Text>
+                            <Text>{seventh_player}</Text>
                             </MobileFooterDc>
 
                             <MobileFooterDd>
-                                <h1>79</h1>
+                                <h1>{seventh_score}</h1>
                             </MobileFooterDd>
                         </MobileFooterD>
                     </MobileFooter>
