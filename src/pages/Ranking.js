@@ -389,7 +389,7 @@ const Ranking = () => {
     };
 
     fetchData();
-}, []);
+}, [gameResults]);
 	
     const RankingContent = (
         <>
