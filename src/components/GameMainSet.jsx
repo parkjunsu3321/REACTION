@@ -92,7 +92,7 @@ const MobileMain = styled.div`
 `;
 
 const MobileProbBtn = styled.button`
-    width: 100px;
+    width: 330px;
     height: 50px;
     background-color: salmon;
     color: black;
@@ -101,14 +101,8 @@ const MobileProbBtn = styled.button`
     margin: 1px;
     font-weight: bold;
     text-decoration: none; 
+    font-size: 20px;
 `;
-
-const LinkStyle2 = {
-    padding: '1%',
-    textDecoration: 'none',
-    color: 'black',
-    display: 'inline',
-}
 
 const MobileFooter = styled.div`
     width: 100%;
@@ -184,13 +178,7 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
                     </MobileHeader>
                     <MobileMain>
                     <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick(1)}>
-                        <MobileProbBtn>Easy</MobileProbBtn>
-                    </Link>
-                    <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick(2)}>
-                        <MobileProbBtn>Normal</MobileProbBtn>
-                    </Link>
-                    <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick(3)}>
-                        <MobileProbBtn>Hard</MobileProbBtn>
+                        <MobileProbBtn>Game Start</MobileProbBtn>
                     </Link>
                     </MobileMain>
                     <MobileFooter>
