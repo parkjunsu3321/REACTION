@@ -439,7 +439,7 @@ const InGameContent = () => {
 
   const dataArray = musicList.split(',').reduce((acc, cur, index) => {
     const rowIndex = Math.floor(index / 10); // 행 인덱스 계산
-    const colIndex = index % 10; // 열 인덱스 계산
+    const colIndex = index / rowIndex; // 열 인덱스 계산
     if (!acc[rowIndex]) {
         acc[rowIndex] = []; // 새로운 행 생성
     }
