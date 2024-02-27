@@ -207,7 +207,7 @@ const MobileMain = styled.div`
 
 const MobileMainA = styled.div`
   width: 100%;
-  height:20%;
+  height:15%;
   display: flex;
   align-items: center;
 `;
@@ -236,7 +236,7 @@ const MobileLoginName = styled.div`
 
 const MobileMainB = styled.div`
   width: 100%;
-  height:20%;
+  height:15%;
   display: flex;
   align-items: center;
 `;
@@ -265,7 +265,7 @@ const MobileLoginId = styled.div`
 
 const MobileMainC = styled.div`
   width: 100%;
-  height:20%;
+  height:15%;
   display: flex;
   align-items: center;
 `;
@@ -412,18 +412,23 @@ const MyInfo = () => {
           <MobileMain>
 
             <MobileMainA>
-              <MobileNameText>사용자명</MobileNameText>
-              <MobileLoginName>name</MobileLoginName>
+              <MobileIdText>아이디</MobileIdText>
+              <MobileLoginId>id</MobileLoginId>
             </MobileMainA>
 
             <MobileMainB>
-              <MobileIdText>아이디</MobileIdText>
-              <MobileLoginId>id</MobileLoginId>
+              <MobileNopText>1순위</MobileNopText>
+              <MobileLoginNop>힙합</MobileLoginNop>
             </MobileMainB>
 
             <MobileMainC>
-              <MobileNopText>게임 참가 횟수</MobileNopText>
-              <MobileLoginNop>0</MobileLoginNop>
+              <MobileNopText>2순위</MobileNopText>
+              <MobileLoginNop>댄스</MobileLoginNop>
+            </MobileMainC>
+
+            <MobileMainC>
+              <MobileNopText>3순위</MobileNopText>
+              <MobileLoginNop>락</MobileLoginNop>
             </MobileMainC>
 
             <MobileMainD>
