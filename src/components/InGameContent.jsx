@@ -448,7 +448,9 @@ const InGameContent = () => {
 }, []);
 
   console.log(dataArray[0][0]);
-  console.log(dataArray[0][1]);
+  console.log(dataArray[2][2]);
+  console.log(musicList);
+  console.log(dataArray);
 
   return (
     <>
