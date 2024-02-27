@@ -302,9 +302,6 @@ const UserStatus = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [selectedGenres, setSelectedGenres] = useState(Array(5).fill(null));
-  const [genredata, setgenredata] = useState({
-        genredata: []
-      });
   const [forData, setForData] = useState({
         genres: []
       });
@@ -330,7 +327,7 @@ const UserStatus = () => {
     };  
 
     const handleGenreInput = async () => { // 변경된 부분
-      setgenredata({ ...genredata, genredata: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
+      setForData({ ...forData, genres: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
       const token = localStorage.getItem('token');
       try {
         const config = {
@@ -338,8 +335,6 @@ const UserStatus = () => {
             "Authorization": `Bearer ${token}`
           }
         };
-        console.log(genredata);
-        setForData({ ...forData, genres:  genredata});
         console.log(forData);
         const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/Input_Genre', forData, config);
   
