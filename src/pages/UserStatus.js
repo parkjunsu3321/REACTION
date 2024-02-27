@@ -323,14 +323,14 @@ const UserStatus = () => {
     // 모달 열기/닫기 함수
     const toggleModal = () => {
       setIsModalOpen(!isModalOpen);
-      if(!isModalOpen)
+      if(isModalOpen)
       {
         handleGenreInput()
       }
     };  
 
     const handleGenreInput = async () => { // 변경된 부분
-      setgenredata({ ...forData, genredata: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
+      setgenredata({ ...genredata, genredata: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
       const token = localStorage.getItem('token');
       try {
         const config = {
@@ -340,6 +340,7 @@ const UserStatus = () => {
         };
         console.log(genredata);
         setForData({ ...forData, genres:  genredata});
+        console.log(forData);
         const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/Input_Genre', forData, config);
   
         if (response.data === true) 
