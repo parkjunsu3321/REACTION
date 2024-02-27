@@ -2,7 +2,6 @@ import React from "react";
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import axios from 'axios';
 
 const Frame = styled.div`
     width: 100%;
@@ -140,7 +139,7 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
             }
           };
           const requestData = { level: difficulty};
-          const response = await axios.post('https://port-0-fastapi-dc9c2nlsw04cjb.sel5.cloudtype.app/api/users/create_list', requestData, config);
+          const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/create_list', requestData, config);
           localStorage.setItem('revalue', response.data);
         }
         catch (error) 
