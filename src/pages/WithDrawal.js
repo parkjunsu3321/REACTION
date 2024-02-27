@@ -338,7 +338,8 @@ try {
   console.error('Error:', error.response.data);
 }
 
-  };
+  }
+};
 
   const handlePwChange = (e) => {
     setPw(e.target.value);
