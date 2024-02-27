@@ -320,10 +320,6 @@ const UserStatus = () => {
     // 모달 열기/닫기 함수
     const toggleModal = () => {
       setIsModalOpen(!isModalOpen);
-      if(isModalOpen)
-      {
-        handleGenreInput()
-      }
     };  
 
     const handleGenreInput = async () => { // 변경된 부분
@@ -355,6 +351,7 @@ const UserStatus = () => {
 
     const handleReset = () => {
       setSelectedGenres(Array(5).fill(null));
+      handleGenreInput();
     };
     
     const areAllGenresSelected = () => {
