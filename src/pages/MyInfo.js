@@ -364,9 +364,25 @@ const LinkStyle1 = {
 
 const MyInfo = () => {
 
-  useEffect(() => {
-    console.log("이거 지우고 형님 하고싶은거 적으셈")
-  });
+  useEffect(() async () => {
+  const token = localStorage.getItem('token');
+  try {
+    const response = await axios.post(process.env.FAST_API_KEY+'/api/users/getInfo',
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    const { name } = response.data.data;
+    const { flavor_genre_first } = response.data.data;
+    const { flavor_genre_second } = response.data.data;
+    const { flavor_genre_third } = response.data.data;
+  } catch (error) {
+    console.error('Error fetching user info:', error);
+  }
+});
 
   const MyInfoContent = () => (
     <>
