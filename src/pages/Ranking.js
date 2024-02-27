@@ -377,19 +377,19 @@ const Ranking = () => {
     const [gameResults, setGameResults] = useState([]);
 
     useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const response = await axios.get(process.env.REACT_APP_FAST_API_KEY+'/api/result/all');
-            setGameResults(response.data);
-            console.log(response.data[0].game_result_player_id);
-            console.log(gameResults);
-        } catch (error) {
-            console.error('Error fetching game results:', error);
-        }
-    };
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(process.env.REACT_APP_FAST_API_KEY+'/api/result/all');
+                setGameResults(response.data);
+            } catch (error) {
+                console.error('Error fetching game results:', error);
+            }
+        };
 
-    fetchData();
-}, [gameResults]);
+        fetchData();
+    }, []);
+
+    const playerName = gameResults.length > 0 ? gameResults[0].game_result_player_id : "";
 	
     const RankingContent = (
         <>
@@ -428,7 +428,7 @@ const Ranking = () => {
                             <MobileMainBb/>
 
                             <MobileMainBc>
-                            <h1>현지훈</h1>
+                            <h1>{playerName}</h1>
                             </MobileMainBc>
                         </MobileMainB>
 
