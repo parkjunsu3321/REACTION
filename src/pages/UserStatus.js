@@ -303,7 +303,9 @@ const UserStatus = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [selectedGenres, setSelectedGenres] = useState(Array(5).fill(null));
   const [forData, setForData] = useState({
-        genres: []
+        first_genre: '',
+        second_genre: '',
+        third_genre: ''
       });
   const handleGenreSelect = (index, genre) => {
     // 이미 선택된 장르인지 확인
@@ -325,9 +327,9 @@ const UserStatus = () => {
         handleGenreInput();
       }
     };  
-
+    console.log(selectedGenres);
     const handleGenreInput = async () => { // 변경된 부분
-      setForData({ ...forData, genres: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
+      setForData({ ...forData, first_genre: selectedGenres[0], second_genre: selectedGenres[1], third_genre: selectedGenres[2]});
       const token = localStorage.getItem('token');
       try {
         const config = {
