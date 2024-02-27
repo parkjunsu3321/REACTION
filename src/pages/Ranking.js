@@ -385,6 +385,7 @@ const Ranking = () => {
              console.error('Error fetching game results:', error);
         }
     });
+	
     const RankingContent = (
         <>
             <MediaQuery minWidth={767}/>
