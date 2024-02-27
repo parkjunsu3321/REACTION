@@ -313,9 +313,24 @@ const IconStyle = {
 
 
 const Layout = ({ RightMainContent }) => {
-
+const Login = false
 useEffect(() => {
-        
+        const token = localStorage.getItem('token');
+    try {
+      const config = {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      };
+      
+      const response = await axios.post('https://port-0-fastapi-hkty2alqiwtpix.sel4.cloudtype.app/api/users/checklogin', null, config);
+      Login = response.data
+    } 
+    catch (error) 
+    {
+      console.error('Error:', error.response.data);
+    }
+    
     }, []);
     
 const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
