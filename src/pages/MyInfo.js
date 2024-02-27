@@ -368,7 +368,7 @@ const MyInfo = () => {
   const fetchData = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.get(process.env.FAST_API_KEY+'/api/users/getInfo',
+      const response = await axios.get(process.env.REACT_APP_FAST_API_KEY+'/api/users/getInfo',
         {},
         {
           headers: {
@@ -376,7 +376,7 @@ const MyInfo = () => {
           }
         }
       );
-      const { name, flavor_genre_first, flavor_genre_second, flavor_genre_third } = response.data;
+      const { name, flavor_genre_first, flavor_genre_second, flavor_genre_third } = response.data.data;
     } 
     catch (error) 
     {
