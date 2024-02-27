@@ -364,6 +364,8 @@ const LinkStyle1 = {
 
 const MyInfo = () => {
 
+  const [userInfo, setUserInfo] = useState(null); // 유저 정보를 담을 상태
+
   useEffect(() => {
   const fetchData = async () => {
     const token = localStorage.getItem('token');
@@ -376,6 +378,7 @@ const MyInfo = () => {
           }
         }
       );
+      setUserInfo(response.data.data);
       const { name, flavor_genre_first, flavor_genre_second, flavor_genre_third } = response.data.data;
     } 
     catch (error) 
@@ -436,22 +439,22 @@ const MyInfo = () => {
 
             <MobileMainA>
               <MobileIdText>아이디</MobileIdText>
-              <MobileLoginId>id</MobileLoginId>
+              <MobileLoginId>{userInfo.name}</MobileLoginId>
             </MobileMainA>
 
             <MobileMainB>
               <MobileNopText>1순위</MobileNopText>
-              <MobileLoginNop>힙합</MobileLoginNop>
+              <MobileLoginNop>{userInfo.flavor_genre_first}</MobileLoginNop>
             </MobileMainB>
 
             <MobileMainC>
               <MobileNopText>2순위</MobileNopText>
-              <MobileLoginNop>댄스</MobileLoginNop>
+              <MobileLoginNop>{userInfo.flavor_genre_second}</MobileLoginNop>
             </MobileMainC>
 
             <MobileMainC>
               <MobileNopText>3순위</MobileNopText>
-              <MobileLoginNop>락</MobileLoginNop>
+              <MobileLoginNop>{userInfo.flavor_genre_third}</MobileLoginNop>
             </MobileMainC>
 
             <MobileMainD>
