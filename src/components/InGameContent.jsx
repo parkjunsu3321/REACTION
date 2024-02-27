@@ -6,6 +6,11 @@ import MediaQuery from "react-responsive";
 import PopularSong from "../song/PopularSong.json";
 import button from "../audio/button.mp3";
 import correct from "../audio/correct.mp3";
+import wrong from "../audio/wrong.mp3";
+import axios from "axios";
+
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Frame = styled.div`
   width: 100%;
@@ -371,6 +376,20 @@ const InGameContent = () => {
     audio.volume = 0.2; // 볼륨을 절반으로 설정
     audio.play();
   }
+
+  // 오답일시 사운드 재생 함수
+  const playWrongSound = () => {
+    const audio = new Audio(wrong);
+    audio.volume = 0.2; // 볼륨을 절반으로 설정
+    audio.play();
+  }
+
+  // 정답 안적을 시 사운드 재생 함수
+  const playEmptySound = () => {
+    const audio = new Audio(wrong);
+    audio.volume = 0.2; // 볼륨을 절반으로 설정
+    audio.play();
+  }
     
   const handlePlayBtn = () => {
     playButtonClickSound(); // 버튼 클릭음 재생
@@ -394,7 +413,8 @@ const InGameContent = () => {
   const handleAnswerCheck = () => {
     // 입력값이 비어 있는지 확인하고, 비어 있다면 함수 종료
     if (inputText.trim() === "") {
-      alert("정답을 입력하세요.");
+      toast.error("정답을 입력하세요.",{ autoClose: 1000 }); // 토스트 메시지로 변경
+      playEmptySound();
       return;
     }
   
@@ -402,17 +422,31 @@ const InGameContent = () => {
     if (currentSong.answer.includes(inputText.trim().toLowerCase())) {
       playCorrectSound();
       setInputText("");
-      alert("정답입니다.");
+      toast.success("정답입니다.",{ autoClose: 1000 }); // 토스트 메시지로 변경
       setScore(score + 1); // 맞췄을 때 점수 증가
   
       // 다음 곡으로 이동
       handleNextBtn();
     } else {
-      alert("틀렸습니다. 다시 시도해주세요.");
+      toast.error("틀렸습니다. 다시 시도해주세요.",{ autoClose: 1000 }); // 토스트 메시지로 변경
+      playWrongSound();
     }
   };
 
   const currentVideoUrl = `https://www.youtube.com/watch?v=${PopularSong[currentVideoIndex].code}`;
+
+  const musicList = localStorage.getItem("revalue");
+
+  const dataArray = musicList.split(',').reduce((acc, cur, index) => { 
+    const rowIndex = 2; // 행 인덱스 계산
+    const colIndex = 10; // 열 인덱스 계산
+    if (!acc[rowIndex]) {
+        acc[rowIndex] = []; // 새로운 행 생성
+    }
+    acc[rowIndex][colIndex] = cur; // 데이터 삽입
+    console.log(dataArray);
+    return acc;
+}, []);
 
   return (
     <>
@@ -485,6 +519,7 @@ const InGameContent = () => {
 
       {/*여기부터 모바일 환경*/}
       <MediaQuery maxWidth={767}>
+      <ToastContainer />
         <MobileFrame>
           {showModal && (
           <Modal>
