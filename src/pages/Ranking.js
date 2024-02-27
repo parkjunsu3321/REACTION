@@ -424,7 +424,7 @@ const Ranking = () => {
                             <MobileMainBb/>
 
                             <MobileMainBc>
-                            <h1>gameResults[0].game_result_player_id</h1>
+                            <h1>{gameResults.length > 0 ? gameResults[0].game_result_player_id : ''}</h1>
                             </MobileMainBc>
                         </MobileMainB>
 
