@@ -314,6 +314,10 @@ const IconStyle = {
 
 const Layout = ({ RightMainContent }) => {
 
+useEffect(() => {
+        
+    }, []);
+    
 const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
 const navigate = useNavigate();
