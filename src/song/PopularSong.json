@@ -1,66 +1,81 @@
 [
 	{
-			"index": 1,
-			"name": "헤어지자 말해요",
-			"code": "5BNXmOlRgzI",
-			"start": 1,
-			"tags": ["발라드"],
-			"answer": ["헤어지자 말해요"]
-	},
-	{
-			"index": 2,
-			"name": "술 한잔 해요",
-			"code": "8nm8fg3iFuw",
-			"start": 1,
-			"tags": ["발라드"],
-			"answer": ["술 한잔 해요"]
-	},
-	{
+		"index": 1,
+        "name": "야생화",
+        "code": "ZtcM3KhgF-s",
+        "start": 0,
+        "tags": ["발라드"],
+        "answer": ["야생화"]
+    },
+    {
+		"index": 2,
+        "name": "다정히 내 이름을 부르면",
+        "code": "z127C11tKsg ",
+        "start": 0,
+        "tags": ["발라드"],
+        "answer": ["다정히 내 이름을 부르면"]
+    },
+    {
 		"index": 3,
-			"name": "내 손을 잡아",
-			"code": "r_-GQjN9Tpc",
-			"start": 1,
-			"tags": ["발라드"],
-			"answer": ["내 손을 잡아"]
-	},
-	{
+        "name": "Shut Down",
+        "code": "950BdJKBhGo",
+        "start": 0,
+        "tags": ["힙합"],
+        "answer": ["Shut Down", "셧 다운", "shut down"]
+    },
+    {
 		"index": 4,
-		"name": "취기를 빌려",
-		"code": "2COAu1l6hUQ",
-		"start": 1,
-		"tags": ["ballade"],
-		"answer": ["취기를 빌려"]
-},
-{
+        "name": "시차",
+        "code": "pJ-IGZKyfpU",
+        "start": 0,
+        "tags": ["힙합"],
+        "answer": ["시차"]
+    },
+    {
 		"index": 5,
-		"name": "밤하늘의 별을",
-		"code": "ZAHtwfJrJp0",
-		"start": 1,
-		"tags": ["ballade"],
-		"answer": ["밤하늘의 별을"]
-},
-{
-		"index": 6,
-		"name": "다정히 내 이름을 부르면",
-		"code": "z127C11tKsg",
-		"start": 1,
-		"tags": ["ballade"],
-		"answer": ["다정히 내 이름을 부르면"]
-},
-{
+        "name": "애상",
+        "code": "3YSfRCtZ-AY",
+        "start": 0,
+        "tags": ["댄스"],
+        "answer": ["애상"]
+    },
+	{
+        "name": "Hype Boy",
+        "code": "ghrlZIMDzbM",
+        "start": 6,
+        "tags": ["댄스"],
+        "answer": ["Hype Boy", "하입보이", "hype boy","하입 보이"]
+    },
+    {
 		"index": 7,
-		"name": "광화문에서",
-		"code": "GAdFpZHTh1I",
-		"start": 1,
-		"tags": ["ballade"],
-		"answer": ["광화문에서"]
-},
-{
+        "name": "한 페이지가 될 수 있게",
+        "code": "-9fC6oDFl5k",
+        "start": 0,
+        "tags": ["락"],
+        "answer": ["한 페이지가 될 수 있게"]
+    },
+    {
 		"index": 8,
-		"name": "거리에서",
-		"code": "wcuWIz6CI1U",
-		"start": 1,
-		"tags": ["ballade"],
-		"answer": ["거리에서"]
-}
+        "name": "사건의 지평선",
+        "code": "j1uXcHwLhHM",
+        "start": 0,
+        "tags": ["락"],
+        "answer": ["사건의 지평선"]
+    },
+    {
+		"index": 9,
+        "name": "팔레트",
+        "code": "2C1Jg04INb4",
+        "start": 0,
+        "tags": ["R&B"],
+        "answer": ["팔레트"]
+    },
+	{
+		"index": 10,
+        "name": "눈, 코, 입",
+        "code": "QvvfN3ZSh38",
+        "start": 0,
+        "tags": ["R&B"],
+        "answer": ["눈, 코, 입", "눈코입", "눈 코 입"]
+    }
 ]
