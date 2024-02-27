@@ -427,19 +427,18 @@ const InGameContent = () => {
     console.log("Response from server:", response.data);
     
     const currentSong = PopularSong[currentVideoIndex];
-
-      // 장르별 맞춘 개수 업데이트
-    const currentGenre = currentSong.tags[0]; // 장르는 배열의 첫 번째 요소로 가정
-    setGenreCounts(prevCounts => ({
-      ...prevCounts,
-      [currentGenre]: prevCounts[currentGenre] + 1
-    }));
 	  
     if (response.data === true) {
       playCorrectSound();
       setInputText("");
       toast.success("정답입니다.", { autoClose: 1000 });
       setScore(score + 1);
+    // 장르별 맞춘 개수 업데이트
+    const currentGenre = currentSong.tags[0]; // 장르는 배열의 첫 번째 요소로 가정
+    setGenreCounts(prevCounts => ({
+      ...prevCounts,
+      [currentGenre]: prevCounts[currentGenre] + 1
+    }));
       handleNextBtn();
     } else {
       playWrongSound();
