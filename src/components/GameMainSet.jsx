@@ -137,7 +137,7 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
         {
             level = 1;
         }
-        else if(difficulty === 'Normal'
+        else if(difficulty === 'Normal')
         {
             level = 2;
         }
