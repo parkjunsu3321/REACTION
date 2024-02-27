@@ -315,6 +315,7 @@ const UserStatus = () => {
     const newSelectedGenres = [...selectedGenres];
     newSelectedGenres[index] = genre;
     setSelectedGenres(newSelectedGenres);
+    handleGenreInput();
   };
   
     // 모달 열기/닫기 함수
@@ -355,7 +356,6 @@ const UserStatus = () => {
     
     const areAllGenresSelected = () => {
       return selectedGenres.every(genre => genre !== null);
-      handleGenreInput();
     };
 
   const options = [
