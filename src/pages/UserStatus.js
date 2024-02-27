@@ -315,12 +315,15 @@ const UserStatus = () => {
     const newSelectedGenres = [...selectedGenres];
     newSelectedGenres[index] = genre;
     setSelectedGenres(newSelectedGenres);
-    handleGenreInput();
   };
   
     // 모달 열기/닫기 함수
     const toggleModal = () => {
       setIsModalOpen(!isModalOpen);
+      if(isModalOpean)
+      {
+        handleGenreInput();
+      }
     };  
 
     const handleGenreInput = async () => { // 변경된 부분
