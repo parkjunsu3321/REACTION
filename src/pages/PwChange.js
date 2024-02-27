@@ -450,7 +450,7 @@ export default function PwChange() {
           "Authorization": `Bearer ${token}`
         }
       };
-      const checkrequestData = { new_password: currentPw}; // 변경된 부분
+      const checkrequestData = { user_password: currentPw}; // 변경된 부분
       const response = await axios.post(process.env.REACT_APP_FAST_API_KEY+'/api/users/check_passwrod', checkrequestData, config);
       if(response.data === true)
       {
