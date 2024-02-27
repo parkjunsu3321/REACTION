@@ -417,44 +417,30 @@ const InGameContent = () => {
         params: requestData
       });
       console.log(response.data);
-    } catch (error) {
-      console.error('Error:', error.message);
-    }
-  };
+ 
   
     const currentSong = PopularSong[currentVideoIndex];
-    if (currentSong.answer.includes(inputText.trim().toLowerCase())) {
+    if (response.data===true) 
+    {
       playCorrectSound();
       setInputText("");
       toast.success("정답입니다.",{ autoClose: 1000 }); // 토스트 메시지로 변경
       setScore(score + 1); // 맞췄을 때 점수 증가
-  
       // 다음 곡으로 이동
       handleNextBtn();
-    } else {
+    } 
+    else 
+    {
       toast.error("틀렸습니다. 다시 시도해주세요.",{ autoClose: 1000 }); // 토스트 메시지로 변경
       playWrongSound();
+    }
+    }
+	catch (error) {
+      console.error('Error:', error.message);
     }
   };
 
   const currentVideoUrl = `https://www.youtube.com/watch?v=${PopularSong[currentVideoIndex].code}`;
-
-  const musicList = localStorage.getItem("revalue");
-
-  const dataArray = musicList.split(',').reduce((acc, cur, index) => {
-    const rowIndex = Math.floor(index / 10); // 행 인덱스 계산
-    const colIndex = index % 10; // 열 인덱스 계산
-    if (!acc[rowIndex]) {
-        acc[rowIndex] = []; // 새로운 행 생성
-    }
-    console.log(rowIndex);
-    console.log(colIndex);
-    acc[rowIndex][colIndex] = cur; // 데이터 삽입
-    return acc;
-}, []);
-
-  console.log(dataArray[0][0]);
-  console.log(dataArray[1][9]);
 
   return (
     <>
