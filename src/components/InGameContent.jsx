@@ -411,9 +411,9 @@ const InGameContent = () => {
   }
 
   const handleAnswerCheck = async () => {
-    const requestData = { input: formData.user_name, answer: '헤어지자 말해요' };
+    const requestData = { input: inputText, answer: '헤어지자 말해요' };
     try {
-      const response = await axios.get('https://port-0-fastapi-dc9c2nlsw04cjb.sel5.cloudtype.app/api/users/textembedding', {
+      const response = await axios.get(process.env.REACT_APP_FAST_API_KEY + '/api/users/textembedding', {
         params: requestData
       });
       console.log(response.data);
