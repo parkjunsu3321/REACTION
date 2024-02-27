@@ -411,34 +411,46 @@ const InGameContent = () => {
   }
 
   const handleAnswerCheck = async () => {
+  try {
     const requestData = { input: inputText, answer: '헤어지자 말해요' };
-    try {
-      const response = await axios.get(process.env.REACT_APP_FAST_API_KEY + '/api/users/textembedding', {
-        params: requestData
-      });
-      console.log(response.data);
- 
-  
+    const response = await axios.get(`${process.env.REACT_APP_FAST_API_KEY}/api/users/textembedding`, {
+      params: requestData
+    });
+
+    console.log("Response from server:", response.data);
+
     const currentSong = PopularSong[currentVideoIndex];
-    if (response.data===true) 
-    {
+
+    if (response.data === true) {
       playCorrectSound();
       setInputText("");
-      toast.success("정답입니다.",{ autoClose: 1000 }); // 토스트 메시지로 변경
-      setScore(score + 1); // 맞췄을 때 점수 증가
-      // 다음 곡으로 이동
+      toast.success("정답입니다.", { autoClose: 1000 });
+      setScore(score + 1);
       handleNextBtn();
-    } 
-    else 
-    {
-      toast.error("틀렸습니다. 다시 시도해주세요.",{ autoClose: 1000 }); // 토스트 메시지로 변경
+    } else {
       playWrongSound();
+      toast.error("틀렸습니다. 다시 시도해주세요.", { autoClose: 1000 });
     }
+  } catch (error) {
+    console.error('Error:', error.message);
+    // Log the error response if available
+    if (error.response) {
+      console.error('Error Response:', error.response.data);
     }
-	catch (error) {
-      console.error('Error:', error.message);
+    // Handle specific error types if needed
+    if (error.response && error.response.status === 422) {
+      // Handle 422 error
+      console.error('Validation Error:', error.response.data);
+      // Display validation errors to the user if available
+      // Example: toast.error(error.response.data.message);
+    } else {
+      // Handle other types of errors
+      console.error('Unhandled Error:', error);
+      // Display a generic error message to the user
+      // Example: toast.error("An error occurred. Please try again later.");
     }
-  };
+  }
+};
 
   const currentVideoUrl = `https://www.youtube.com/watch?v=${PopularSong[currentVideoIndex].code}`;
 
