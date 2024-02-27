@@ -196,13 +196,13 @@ const GameMainSet = ({ headerContent, textBoxContent }) => {
                         {headerContent}
                     </MobileHeader>
                     <MobileMain>
-                    <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick('Easy')}>
+                    <Link to="/Ingame" style={LinkStyle2} onClick={() => handleLinkClick('Easy')}>
                         <ProbBtn>Easy</ProbBtn>
                     </Link>
-                    <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick('Normal')}>
+                    <Link to="/Ingame" style={LinkStyle2} onClick={() => handleLinkClick('Normal')}>
                         <ProbBtn>Normal</ProbBtn>
                     </Link>
-                    <Link to="/Ingame" style={LinkStyle} onClick={() => handleLinkClick('Hard')}>
+                    <Link to="/Ingame" style={LinkStyle2} onClick={() => handleLinkClick('Hard')}>
                         <ProbBtn>Hard</ProbBtn>
                     </Link>
                     </MobileMain>
