@@ -458,7 +458,7 @@ const MyInfoContent = ({userInfo }) => (
         <MobileFrame>
           <MobileHeader>
             <MobileHeaderA>
-              <MobileInfoTitle>{userInfo.name}</MobileInfoTitle>
+              <MobileInfoTitle>내정보</MobileInfoTitle>
             </MobileHeaderA>
 
             <MobileHeaderB>
@@ -470,7 +470,7 @@ const MyInfoContent = ({userInfo }) => (
 
             <MobileMainA>
               <MobileIdText>아이디</MobileIdText>
-              <MobileLoginId>{userInfo.id}</MobileLoginId>
+              <MobileLoginId>{userInfo.name}</MobileLoginId>
             </MobileMainA>
 
             <MobileMainB>
