@@ -1,72 +1,72 @@
 [
 	{
-	"index": 1,
+		"index": 1,
         "name": "야생화",
         "code": "ZtcM3KhgF-s",
         "start": 0,
-        "tags": ["발라드"],
+        "tags": ["발라드"]
     },
     {
-	"index": 2,
+		"index": 2,
         "name": "다정히 내 이름을 부르면",
         "code": "z127C11tKsg ",
         "start": 0,
-        "tags": ["발라드"],
+        "tags": ["발라드"]
     },
     {
-	"index": 3,
+		"index": 3,
         "name": "shut down",
         "code": "950BdJKBhGo",
         "start": 0,
-        "tags": ["힙합"],
+        "tags": ["힙합"]
     },
     {
-	"index": 4,
+		"index": 4,
         "name": "시차",
         "code": "pJ-IGZKyfpU",
         "start": 0,
-        "tags": ["힙합"],
+        "tags": ["힙합"]
     },
     {
-	"index": 5,
+		"index": 5,
         "name": "애상",
         "code": "3YSfRCtZ-AY",
         "start": 0,
-        "tags": ["댄스"],
+        "tags": ["댄스"]
     },
 	{
-	"index": 6,
+		"index": 6,
         "name": "hype boy",
         "code": "ghrlZIMDzbM",
         "start": 0,
-        "tags": ["댄스"],
+        "tags": ["댄스"]
     },
     {
-	"index": 7,
+		"index": 7,
         "name": "한 페이지가 될 수 있게",
         "code": "-9fC6oDFl5k",
         "start": 0,
-        "tags": ["락"],
+        "tags": ["락"]
     },
     {
-	"index": 8,
+		"index": 8,
         "name": "사건의 지평선",
         "code": "j1uXcHwLhHM",
         "start": 0,
-        "tags": ["락"],
+        "tags": ["락"]
     },
     {
-	"index": 9,
+		"index": 9,
         "name": "팔레트",
         "code": "2C1Jg04INb4",
         "start": 0,
-        "tags": ["R&B"],
+        "tags": ["R&B"]
     },
 	{
-	"index": 10,
+		"index": 10,
         "name": "눈, 코, 입",
         "code": "QvvfN3ZSh38",
         "start": 0,
-        "tags": ["R&B"],
+        "tags": ["R&B"]
     }
 ]
