@@ -212,35 +212,6 @@ const MobileMainA = styled.div`
   align-items: center;
 `;
 
-const MobileNameText = styled.div`
-  width: 35%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 700;
-  color: #ff813a;
-  margin-left: 20px
-`;
-
-const MobileLoginName = styled.div`
-  display: flex;
-  align-items: center;
-  width: 65%;
-  height: 100%;
-  font-size: 16px;
-  color: #ababab;
-  margin-left: 20px;
-  font-weight: 700;
-`;
-
-const MobileMainB = styled.div`
-  width: 100%;
-  height:15%;
-  display: flex;
-  align-items: center;
-`;
-
 const MobileIdText = styled.div`
   width: 35%;
   height: 100%;
@@ -263,14 +234,14 @@ const MobileLoginId = styled.div`
   font-weight: 700;
 `;
 
-const MobileMainC = styled.div`
+const MobileMainB = styled.div`
   width: 100%;
-  height:15%;
+  height: 15%;
   display: flex;
   align-items: center;
 `;
 
-const MobileNopText = styled.div`
+const MobileRankText1 = styled.div`
   width: 35%;
   height: 100%;
   display: flex;
@@ -281,7 +252,37 @@ const MobileNopText = styled.div`
   margin-left: 20px
 `;
 
-const MobileLoginNop = styled.div`
+const MobileLoginRank1 = styled.div`
+  display: flex;
+  align-items: center;
+  width: 65%;
+  height: 100%;
+  font-size: 16px;
+  color: #ababab;
+  margin-left: 20px;
+  font-weight: 700;
+`;
+
+const MobileMainC = styled.div`
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+`;
+
+const MobileRankText2 = styled.div`
+  width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ff813a;
+  margin-left: 20px
+`;
+
+const MobileLoginRank2 = styled.div`
   display: flex;
   align-items: center;
   width: 65%;
@@ -294,13 +295,43 @@ const MobileLoginNop = styled.div`
 
 const MobileMainD = styled.div`
   width: 100%;
-  height:20%;
+  height: 15%;
   display: flex;
   align-items: center;
   font-weight: 600;
 `;
 
-const MobileMainDa = styled.div`
+const MobileRankText3 = styled.div`
+  width: 35%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ff813a;
+  margin-left: 20px
+`;
+
+const MobileLoginRank3 = styled.div`
+  display: flex;
+  align-items: center;
+  width: 65%;
+  height: 100%;
+  font-size: 16px;
+  color: #ababab;
+  margin-left: 20px;
+  font-weight: 700;
+`;
+
+const MobileMainE = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+`;
+
+const MobileMainEa = styled.div`
   width: 100%;
   height:20%;
   display: flex;
@@ -325,15 +356,15 @@ const MobilePwChangeBtn = styled.button`
   border-color: lightgray;
 `;
 
-const MobileMainE = styled.div`
+const MobileMainF = styled.div`
   width: 100%;
-  height:20%;
+  height: 20%;
   display: flex;
   align-items: center;
   font-weight: 600;
 `;
 
-const MobileMainEa = styled.div`
+const MobileMainFa = styled.div`
   width: 100%;
   height:20%;
   display: flex;
@@ -363,6 +394,7 @@ const LinkStyle1 = {
 };
 
 const MyInfo = () => {
+
   const [userInfo, setUserInfo] = useState(null); // 유저 정보를 담을 상태
 
   useEffect(() => {
@@ -389,7 +421,7 @@ const MyInfo = () => {
   );
 };
 
-const MyInfoContent = ({ userInfo }) => (
+const MyInfoContent = ({userInfo }) => (
   <>
     <MediaQuery minWidth={767}>
       {userInfo && (
@@ -407,26 +439,26 @@ const MyInfoContent = ({ userInfo }) => (
 
           <NameText>사용자명</NameText>
           <NameLine />
-          <LoginName>{userInfo.name}</LoginName>
+          <LoginName>{}</LoginName>
 
           <IdText>아이디</IdText>
           <IdLine />
-          <LoginId>{userInfo.id}</LoginId>
+          <LoginId>{}</LoginId>
 
           <NopText>게임 참가 횟수</NopText>
           <NopLine />
-          <LoginNop>{userInfo.game_count}</LoginNop>
+          <LoginNop>{}</LoginNop>
         </>
       )}
     </MediaQuery>
 
     {/*여기부터 모바일 환경*/}
     <MediaQuery maxWidth={767}>
-      {userInfo && (
+       {userInfo && (
         <MobileFrame>
           <MobileHeader>
             <MobileHeaderA>
-              <MobileInfoTitle>내 정보</MobileInfoTitle>
+              <MobileInfoTitle>{userInfo.name}</MobileInfoTitle>
             </MobileHeaderA>
 
             <MobileHeaderB>
@@ -435,49 +467,45 @@ const MyInfoContent = ({ userInfo }) => (
           </MobileHeader>
 
           <MobileMain>
+
             <MobileMainA>
-              <MobileNameText>사용자명</MobileNameText>
-              <MobileLoginName>{userInfo.name}</MobileLoginName>
+              <MobileIdText>아이디</MobileIdText>
+              <MobileLoginId>{userInfo.id}</MobileLoginId>
             </MobileMainA>
 
             <MobileMainB>
-              <MobileIdText>아이디</MobileIdText>
-              <MobileLoginId>{userInfo.id}</MobileLoginId>
+              <MobileRankText1>1순위</MobileRankText1>
+              <MobileLoginRank1>{userInfo.flavor_genre_first}</MobileLoginRank1>
             </MobileMainB>
 
             <MobileMainC>
-              <MobileNopText>1순위</MobileNopText>
-              <MobileLoginNop>{userInfo.flavor_genre_first}</MobileLoginNop>
-            </MobileMainC>
-
-            <MobileMainC>
-              <MobileNopText>2순위</MobileNopText>
-              <MobileLoginNop>{userInfo.flavor_genre_second}</MobileLoginNop>
-            </MobileMainC>
-
-            <MobileMainC>
-              <MobileNopText>3순위</MobileNopText>
-              <MobileLoginNop>{userInfo.flavor_genre_third}</MobileLoginNop>
+              <MobileRankText2>2순위</MobileRankText2>
+              <MobileLoginRank2>{userInfo.flavor_genre_second}</MobileLoginRank2>
             </MobileMainC>
 
             <MobileMainD>
-              <MobileMainDa>
-                <Link to="/PwChange" style={LinkStyle1}>
-                  <MobilePwChangeBtn>비밀번호 변경</MobilePwChangeBtn>
-                </Link>
-              </MobileMainDa>
+              <MobileRankText3>3순위</MobileRankText3>
+              <MobileLoginRank3>{userInfo.flavor_genre_third}</MobileLoginRank3>
             </MobileMainD>
 
             <MobileMainE>
               <MobileMainEa>
-                <Link to="/WithDrawal" style={LinkStyle1}>
-                  <MobileRemoveBtn>회원탈퇴</MobileRemoveBtn>
+                <Link to="/PwChange" style={LinkStyle1}>
+                  <MobilePwChangeBtn>비밀번호 변경</MobilePwChangeBtn>
                 </Link>
               </MobileMainEa>
             </MobileMainE>
+
+            <MobileMainF>
+              <MobileMainFa>
+                <Link to="/WithDrawal" style={LinkStyle1}>
+                  <MobileRemoveBtn>회원탈퇴</MobileRemoveBtn>
+                </Link>
+              </MobileMainFa>
+            </MobileMainF>
           </MobileMain>
         </MobileFrame>
-      )}
+       )}
     </MediaQuery>
   </>
 );
