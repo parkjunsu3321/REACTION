@@ -317,7 +317,7 @@ export default function WithDrawal() {
   const [isChecked, setIsChecked] = useState(false);
   const [pw, setPw] = useState('');
 
-  const handleCheckboxChange =  = async () => {
+  const handleCheckboxChange = async () => {
     try {
       const token = localStorage.getItem('token');
       const config = {
