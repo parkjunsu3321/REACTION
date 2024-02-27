@@ -413,14 +413,12 @@ const InGameContent = () => {
   const handleAnswerCheck = async () => {
   try {
     const requestData = { input: inputText, answer: '헤어지자 말해요' };
-    const response = await axios.get(`${process.env.REACT_APP_FAST_API_KEY}/api/users/textembedding`, {
-      params: requestData
-    });
-
+    const response = await axios.post(`${process.env.REACT_APP_FAST_API_KEY}/api/users/textembedding`, requestData);
+    
     console.log("Response from server:", response.data);
-
+    
     const currentSong = PopularSong[currentVideoIndex];
-
+    
     if (response.data === true) {
       playCorrectSound();
       setInputText("");
@@ -433,18 +431,15 @@ const InGameContent = () => {
     }
   } catch (error) {
     console.error('Error:', error.message);
-    // Log the error response if available
+    // Handle error response if available
     if (error.response) {
       console.error('Error Response:', error.response.data);
-    }
-    // Handle specific error types if needed
-    if (error.response && error.response.status === 422) {
-      // Handle 422 error
-      console.error('Validation Error:', error.response.data);
-      // Display validation errors to the user if available
-      // Example: toast.error(error.response.data.message);
+      if (error.response.status === 422) {
+        console.error('Validation Error:', error.response.data.detail);
+        // Handle validation errors if needed
+        // Example: toast.error(error.response.data.detail);
+      }
     } else {
-      // Handle other types of errors
       console.error('Unhandled Error:', error);
       // Display a generic error message to the user
       // Example: toast.error("An error occurred. Please try again later.");
