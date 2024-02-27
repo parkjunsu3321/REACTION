@@ -305,6 +305,9 @@ const UserStatus = () => {
   const [genredata, setgenredata] = useState({
         genredata: []
       });
+  const [forData, setForData] = useState({
+        genres: []
+      });
   const handleGenreSelect = (index, genre) => {
     // 이미 선택된 장르인지 확인
     if (selectedGenres.some(item => item && item.value === genre.value)) {
@@ -325,9 +328,6 @@ const UserStatus = () => {
 
     const handleGenreInput = async () => { // 변경된 부분
       setgenredata({ ...forData, genres: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
-      const [forData, setForData] = useState({
-        genres: []
-      });
       const token = localStorage.getItem('token');
       try {
         const config = {
