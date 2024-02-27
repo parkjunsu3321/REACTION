@@ -444,9 +444,10 @@ const InGameContent = () => {
         acc[rowIndex] = []; // 새로운 행 생성
     }
     acc[rowIndex][colIndex] = cur; // 데이터 삽입
-    console.log(musicList);
     return acc;
 }, []);
+
+  console.log(dataArray);
 
   return (
     <>
