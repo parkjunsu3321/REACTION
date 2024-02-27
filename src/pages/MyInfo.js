@@ -368,8 +368,7 @@ const MyInfo = () => {
   const fetchData = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.post(
-        `${process.env.FAST_API_KEY}/api/users/getInfo`,
+      const response = await axios.post(process.env.FAST_API_KEY+'/api/users/getInfo',
         {},
         {
           headers: {
@@ -378,8 +377,9 @@ const MyInfo = () => {
         }
       );
       const { name, flavor_genre_first, flavor_genre_second, flavor_genre_third } = response.data.data;
-      // Use the fetched data here as needed
-    } catch (error) {
+    } 
+    catch (error) 
+    {
       console.error('Error fetching user info:', error);
     }
   };
