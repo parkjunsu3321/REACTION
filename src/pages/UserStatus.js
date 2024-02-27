@@ -335,6 +335,7 @@ const UserStatus = () => {
             "Authorization": `Bearer ${token}`
           }
         };
+        console.log(genredata);
         setForData({ ...forData, genres:  genredata});
         const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/Input_Genre', forData, config);
   
