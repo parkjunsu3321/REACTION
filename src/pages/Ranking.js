@@ -434,7 +434,7 @@ const Ranking = () => {
                             <MobileMainBb/>
 
                             <MobileMainBc>
-				{playerNames.map((name, index) => (<h1 key={index}>{name}</h1>))}
+				{playerNames.map((name, 0) => (<h1 key={0}>{name}</h1>))}
                             </MobileMainBc>
                         </MobileMainB>
 
