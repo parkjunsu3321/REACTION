@@ -376,7 +376,7 @@ const MyInfo = () => {
           }
         }
       );
-      const { name, flavor_genre_first, flavor_genre_second, flavor_genre_third } = response.data.data;
+      const { name, flavor_genre_first, flavor_genre_second, flavor_genre_third } = response.data;
     } 
     catch (error) 
     {
