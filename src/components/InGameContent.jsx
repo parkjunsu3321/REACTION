@@ -437,9 +437,9 @@ const InGameContent = () => {
 
   const musicList = localStorage.getItem("revalue");
 
-  const dataArray = musicList.split(',').reduce((acc, cur, index) => { 
-    const rowIndex = 2; // 행 인덱스 계산
-    const colIndex = 10; // 열 인덱스 계산
+  const dataArray = musicList.split(',').reduce((acc, cur, index) => {
+    const rowIndex = Math.floor(index / 10); // 행 인덱스 계산
+    const colIndex = index % 10; // 열 인덱스 계산
     if (!acc[rowIndex]) {
         acc[rowIndex] = []; // 새로운 행 생성
     }
@@ -448,6 +448,7 @@ const InGameContent = () => {
 }, []);
 
   console.log(dataArray[0][0]);
+  console.log(dataArray[0][1]);
 
   return (
     <>
