@@ -412,7 +412,7 @@ const InGameContent = () => {
 
   const handleAnswerCheck = async () => {
   try {
-    const requestData = { input: inputText, answer: '헤어지자 말해요' };
+    const requestData = { input: inputText, answer: PopularSong[currentVideoIndex].name };
     const response = await axios.post(`${process.env.REACT_APP_FAST_API_KEY}/api/users/textembedding`, requestData);
     
     console.log("Response from server:", response.data);
