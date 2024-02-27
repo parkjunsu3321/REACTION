@@ -442,28 +442,38 @@ export default function PwChange() {
   // 현재 비밀번호, 새 비밀번호, 새 비밀번호 확인 값이 비어 있지 않고, 새 비번과 확인 값이 일치하는 경우 변경 가능
   const isPwValid = currentPw !== '' && newPw !== '' && isPwMatch;
 
-  const handlePwChange = () => {
-    axios
-      .post(process.env.REACT_APP_WAITLIST_API_URL + '/api/change', {
-        pw: currentPw,
-        newPw: newPw,
-      })
-      .then((response) => {
-        if (response.data === true) {
-          alert('비밀번호 변경이 완료되었습니다.');
-        } else {
-          alert('비밀번호 변경중 오류가 발생하였습니다.');
+  const handlePwChange = async () => { // 변경된 부분
+    const token = localStorage.getItem('token');
+    try {
+      const config = {
+        headers: {
+          "Authorization": `Bearer ${token}`
         }
-        setCurrentPw('');
-        setConfirmPw('');
-        setNewPw('');
-      })
-      .catch((error) => {
-        alert('Error fetching data: ' + error);
-        if (error.response) {
-          alert('Server response: ' + error.response.data);
+      };
+      const checkrequestData = { new_password: currentPw}; // 변경된 부분
+      const response = await axios.post(process.env.REACT_APP_FAST_API_KEY+'/api/users/check_passwrod', checkrequestData, config);
+      if(response.data === true)
+      {
+        const requestData = { new_password: newPw}; // 변경된 부분
+        const response = await axios.post(process.env.REACT_APP_FAST_API_KEY+'/api/users/changing_password', requestData, config);
+        if (response.data === true) 
+        {
+            alert('비밀번호 변경 성공');
+        } 
+        else 
+        {
+            alert('비밀번호 변경 실패');
         }
-      });
+      }
+      else
+      {
+        alert('현재 비밀번호를 잘못 입력하셨습니다.')
+      }
+    } 
+    catch (error) 
+    {
+      console.error('Error:', error.response.data);
+    }
   };
 
   return (
