@@ -351,11 +351,11 @@ const UserStatus = () => {
 
     const handleReset = () => {
       setSelectedGenres(Array(5).fill(null));
-      handleGenreInput();
     };
     
     const areAllGenresSelected = () => {
       return selectedGenres.every(genre => genre !== null);
+      handleGenreInput();
     };
 
   const options = [
