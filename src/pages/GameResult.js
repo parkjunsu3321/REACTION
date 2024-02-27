@@ -3,6 +3,8 @@ import Layout from "../components/Layout";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 
 const MobileFrame = styled.div`
   width: 100%;
@@ -17,9 +19,10 @@ const MobileFrame = styled.div`
 
 const MobileContainer = styled.div`
   width: 90%;
-  height: 95%;
+  height: 90%;
   background-color: rgba(255, 255, 255, 0.5);
   border: 3px solid black;
+  border-radius: 15px;
 `;
 
 const MobileHeaderFrame = styled.div`
@@ -32,29 +35,87 @@ const MobileHeaderFrame = styled.div`
 `;
 
 const TitleBox = styled.div`
-  width: 60%;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const MobileMainTFrame = styled.div`
+const MobileMainStarFrame = styled.div`
   width: 100%;
-  height: 40%;
+  height: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: none;
 `;
 
-const MobileMainBFrame = styled.div`
+const MobileMainStar1 = styled.div`
   width: 100%;
-  height: 35%;
+  height: 33%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const MobileMainStar2 = styled.div`
+  width: 100%;
+  height: 33%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const MobileMainStar2a = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 120px;
+  margin-bottom: 10px;
+`;
+
+const MobileMainStar2b = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 120px;
+  margin-bottom: 10px;
+`;
+
+const MobileMainStar3 = styled.div`
+  width: 100%;
+  height: 33%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const MobileMainStar3a = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 70px;
+  margin-bottom: 20px;
+`;
+
+const MobileMainStar3b = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 70px;
+  margin-bottom: 20px;
+`;
+
+const MobileMainFrame = styled.div`
+  width: 100%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: none;
 `;
 
 const ScoreBox = styled.div`
@@ -66,6 +127,7 @@ const ScoreBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
 `;
 
 const ScoreBoxL = styled.div`
@@ -85,7 +147,7 @@ const ScoreBoxR = styled.div`
 
 const MobileFooterFrame = styled.div`
   width: 100%;
-  height: 15%;
+  height: 20%;
   background-color: none;
   display: flex;
   align-items: center;
@@ -95,7 +157,6 @@ const MobileFooterFrame = styled.div`
 const BtnArea = styled.div`
   width: 80%;
   height: 100%;
-  background-color: none;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -104,12 +165,12 @@ const BtnArea = styled.div`
 
 const StyleBtn1 = styled.button`
   width: 40%;
-  height: 50%;
+  height: 40%;
   border: 3px solid black;
   font-weight: bold;
   font-size: 20px;
   background-color: white;
-
+  border-radius: 10px;
 `;
 
 const Space = styled.div`
@@ -119,12 +180,12 @@ const Space = styled.div`
 
 const StyleBtn2 = styled.button`
   width: 40%;
-  height: 50%;
+  height: 40%;
   border: 3px solid black;
   font-weight: bold;
   font-size: 20px;
   background-color: white;
-
+  border-radius: 10px;
 `;
 
 const LinkStyle = {
@@ -369,16 +430,12 @@ const DBChoiceRankText3 = styled.div`
   width: 70%;
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled(IoClose)`
   position: absolute;
-  top: 10px;
+  top: 5px;
+  width: 12%;
+  height: 12%;
   right: 10px;
-  width: 20%;
-  height: 3.5%;
-  background-color: orange;
-  border-radius: 15px;
-  border: 1px solid gray;
-  font-weight: 600;
 `;
 
 const GameResult = () => {
@@ -405,7 +462,34 @@ const GameResult = () => {
           </TitleBox>
         </MobileHeaderFrame>
 
-        <MobileMainTFrame>
+        <MobileMainStarFrame>
+        <MobileMainStar1>
+        <FaStar style = {{width:"150%",height:"150%",color:"yellow"}}/>
+        </MobileMainStar1>
+
+        <MobileMainStar2>
+          <MobileMainStar2a>
+          <FaStar style = {{width:"150%",height:"150%",color:"yellow"}}/>
+          </MobileMainStar2a>
+
+          <MobileMainStar2b>
+          <FaStar style = {{width:"150%",height:"150%",color:"yellow"}}/>
+          </MobileMainStar2b>
+        </MobileMainStar2>
+
+        <MobileMainStar3>
+          <MobileMainStar3a>
+          <FaStar style = {{width:"150%",height:"150%",color:"yellow"}}/>
+          </MobileMainStar3a>
+
+          <MobileMainStar3b>
+          <FaStar style = {{width:"150%",height:"150%",color:"yellow"}}/>
+          </MobileMainStar3b>
+        </MobileMainStar3>
+        
+        </MobileMainStarFrame>
+
+        <MobileMainFrame>
           <h1 style={{ marginTop: "5px", marginBottom: "5px" }}>Score</h1>
           <ScoreBox>
             <ScoreBoxL>
@@ -418,15 +502,7 @@ const GameResult = () => {
               <h1>100</h1>
             </ScoreBoxR>
           </ScoreBox>
-        </MobileMainTFrame>
-
-        <MobileMainBFrame>
-          <h1 style={{ marginTop: "5px", marginBottom: "5px" }}>High Combo</h1>
-          <ScoreBox>
-            <h1 style={{ color: "red" }}>null</h1><h1>Combo</h1>
-          </ScoreBox>
-        </MobileMainBFrame>
-
+        </MobileMainFrame>
         <MobileFooterFrame>
           <BtnArea>
           <StyleBtn1>
