@@ -323,7 +323,10 @@ const UserStatus = () => {
     // 모달 열기/닫기 함수
     const toggleModal = () => {
       setIsModalOpen(!isModalOpen);
-      handleGenreInput();
+      if(!isModalOpen)
+      {
+        handleGenreInput()
+      }
     };  
 
     const handleGenreInput = async () => { // 변경된 부분
