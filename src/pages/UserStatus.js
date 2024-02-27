@@ -327,7 +327,7 @@ const UserStatus = () => {
     };  
 
     const handleGenreInput = async () => { // 변경된 부분
-      setgenredata({ ...forData, genres: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
+      setgenredata({ ...forData, genredata: [selectedGenres[0], selectedGenres[1], selectedGenres[2]] });
       const token = localStorage.getItem('token');
       try {
         const config = {
