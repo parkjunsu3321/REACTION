@@ -417,23 +417,8 @@ const InGameContent = () => {
 };
 
 const chooseRandomSong = () => {
-    if (playedIndexes.length === PopularSong.length) {
-      const token = localStorage.getItem('token');
-  try {
-    const config = {
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
-    };
-
-    const request_datam = {score: score}
-    const response = axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/input_result', request_datam, config);
-    alert(response.data);
-  } 
-  catch (error) 
-  {
-    console.error('Error:', error.response.data);
-  }
+    if (playedIndexes.length === PopularSong.length) 
+    {
       navigate('/GameResult', { state: { score } });
       return;
     }
