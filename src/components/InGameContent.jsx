@@ -462,8 +462,6 @@ const chooseRandomSong = () => {
     // 선택된 노래의 인덱스와 제목을 재생목록에 추가
     setPlayedIndexes([...playedIndexes, selectedSongIndex]);
     setPlayedSongs([...playedSongs, selectedSongIndex]);
-  };
-
   // 버튼 클릭음 재생 함수
   const playButtonClickSound = () => {
     const audio = new Audio(button);
@@ -544,13 +542,9 @@ const chooseRandomSong = () => {
       console.error('Error Response:', error.response.data);
       if (error.response.status === 422) {
         console.error('Validation Error:', error.response.data.detail);
-        // Handle validation errors if needed
-        // Example: toast.error(error.response.data.detail);
       }
     } else {
       console.error('Unhandled Error:', error);
-      // Display a generic error message to the user
-      // Example: toast.error("An error occurred. Please try again later.");
     }
   }
 };
