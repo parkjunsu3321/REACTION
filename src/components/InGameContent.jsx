@@ -7,6 +7,7 @@ import PopularSong from "../song/PopularSong.json";
 import button from "../audio/button.mp3";
 import correct from "../audio/correct.mp3";
 import wrong from "../audio/wrong.mp3";
+import axios from "axios";
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
