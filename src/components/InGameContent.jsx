@@ -7,7 +7,6 @@ import PopularSong from "../song/PopularSong.json";
 import button from "../audio/button.mp3";
 import correct from "../audio/correct.mp3";
 import wrong from "../audio/wrong.mp3";
-import axios from "axios";
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -85,6 +84,7 @@ const MobileFrame = styled.div`
 	height: 100%;
 	background-color: red;
 `;
+
 const MobileHeader = styled.div`
 	width: 100%;
 	height: 70%;
@@ -370,8 +370,8 @@ const InGameContent = () => {
   const [playedIndexes, setPlayedIndexes] = useState([]); // 이미 재생된 인덱스 체크
   const [playedSongs, setPlayedSongs] = useState([]); // 이미 재생된 노래를 추적하기 위한 상태
   const [modalPlaying, setModalPlaying] = useState(false); // 모달 창의 노래 제어 상태
-	
-	// 장르별 맞춘 개수를 추적할 상태
+
+  // 장르별 맞춘 개수를 추적할 상태
   const [genreCounts, setGenreCounts] = useState({
     "발라드": 0,
     "댄스": 0,
@@ -379,7 +379,7 @@ const InGameContent = () => {
     "락": 0,
     "힙합": 0
   });
-	
+
   const navigate = useNavigate();
 
   const closeModal = () => {  //  모달 닫는 함수
@@ -411,19 +411,13 @@ const InGameContent = () => {
     }
     return "";
   };
-  
-  const gameresultinput = async (score) => {
-  
-};
 
-const chooseRandomSong = () => {
-    if (playedIndexes.length === PopularSong.length) 
-    {
+  const chooseRandomSong = () => {
+    if (playedIndexes.length === PopularSong.length) {
       navigate('/GameResult', { state: { score } });
       return;
     }
-  };
-  
+
     // 이미 재생된 노래를 제외하고 랜덤하게 노래 선택
     const availableIndexes = PopularSong.reduce((acc, _, index) => {
       if (!playedIndexes.includes(index)) {
@@ -431,21 +425,23 @@ const chooseRandomSong = () => {
       }
       return acc;
     }, []);
-  
+
     // 이전에 재생된 노래를 확인하여 중복 재생을 방지
     let randomIndex = Math.floor(Math.random() * availableIndexes.length);
     while (playedSongs.includes(availableIndexes[randomIndex])) {
       randomIndex = Math.floor(Math.random() * availableIndexes.length);
     }
-  
+
     const selectedSongIndex = availableIndexes[randomIndex];
-  
+
     // 선택된 노래의 인덱스를 설정
     setCurrentVideoIndex(selectedSongIndex);
-  
+
     // 선택된 노래의 인덱스와 제목을 재생목록에 추가
     setPlayedIndexes([...playedIndexes, selectedSongIndex]);
     setPlayedSongs([...playedSongs, selectedSongIndex]);
+  };
+
   // 버튼 클릭음 재생 함수
   const playButtonClickSound = () => {
     const audio = new Audio(button);
@@ -473,7 +469,7 @@ const chooseRandomSong = () => {
     audio.volume = 0.2; // 볼륨을 절반으로 설정
     audio.play();
   }
-    
+
   const handlePlayBtn = () => {
     playButtonClickSound(); // 버튼 클릭음 재생
     setPlaying(!playing);
@@ -485,7 +481,7 @@ const chooseRandomSong = () => {
     chooseRandomSong();
     const nextQuestion = currentQuestion + 1;
     setCurrentQuestion(nextQuestion);
-  
+
     // 재생 시작
     setPlayedIndexes([...playedIndexes, currentVideoIndex]);
     setTimeout(() => {
@@ -493,45 +489,35 @@ const chooseRandomSong = () => {
     }, 300); // 0.3초 뒤에 재생 시작
   }
 
-  const handleAnswerCheck = async () => {
-  try {
-    const requestData = { input: inputText, answer: PopularSong[currentVideoIndex].name };
-    const response = await axios.post(`${process.env.REACT_APP_FAST_API_KEY}/api/users/textembedding`, requestData);
-    
-    console.log("Response from server:", response.data);
-    
+  const handleAnswerCheck = () => {
+    // 입력값이 비어 있는지 확인하고, 비어 있다면 함수 종료
+    if (inputText.trim() === "") {
+      toast.error("정답을 입력하세요.", { autoClose: 1000 }); // 토스트 메시지로 변경
+      playEmptySound();
+      return;
+    }
+
     const currentSong = PopularSong[currentVideoIndex];
-	  
-    if (response.data === true) {
+    if (currentSong.answer.includes(inputText.trim().toLowerCase())) {
       playCorrectSound();
       setInputText("");
-      toast.success("정답입니다.", { autoClose: 1000 });
-      setScore(score + 1);
-          // 장르별 맞춘 개수 업데이트
-	    const currentGenre = currentSong.tags[0]; // 장르는 배열의 첫 번째 요소로 가정
-	    setGenreCounts(prevCounts => ({
-	      ...prevCounts,
-	      [currentGenre]: prevCounts[currentGenre] + 1
-	    }));
-		    
+      toast.success("정답입니다.", { autoClose: 1000 }); // 토스트 메시지로 변경
+      setScore(score + 1); // 맞췄을 때 점수 증가
+
+      // 장르별 맞춘 개수 업데이트
+      const currentGenre = currentSong.tags[0]; // 장르는 배열의 첫 번째 요소로 가정
+      setGenreCounts(prevCounts => ({
+        ...prevCounts,
+        [currentGenre]: prevCounts[currentGenre] + 1
+      }));
+
+      // 다음 곡으로 이동
       handleNextBtn();
     } else {
+      toast.error("틀렸습니다. 다시 시도해주세요.", { autoClose: 1000 }); // 토스트 메시지로 변경
       playWrongSound();
-      toast.error("틀렸습니다. 다시 시도해주세요.", { autoClose: 1000 });
     }
-  } catch (error) {
-    console.error('Error:', error.message);
-    // Handle error response if available
-    if (error.response) {
-      console.error('Error Response:', error.response.data);
-      if (error.response.status === 422) {
-        console.error('Validation Error:', error.response.data.detail);
-      }
-    } else {
-      console.error('Unhandled Error:', error);
-    }
-  }
-};
+  };
 
   const currentVideoUrl = `https://www.youtube.com/watch?v=${PopularSong[currentVideoIndex].code}`;
 
@@ -539,21 +525,21 @@ const chooseRandomSong = () => {
     <>
       <MediaQuery minWidth={767}>
         <Frame>
-        {showModal && (
-          <Modal>
-            <ModalContent>
-              <h3 style={{marginTop:"20%"}}>버튼을 클릭하면 시작합니다!</h3>
+          {showModal && (
+            <Modal>
+              <ModalContent>
+                <h3 style={{ marginTop: "20%" }}>버튼을 클릭하면 시작합니다!</h3>
                 <img
                   src="./images/playButton.png"
-                  style={{width: "20%", height: "50%"}}
+                  style={{ width: "20%", height: "50%" }}
                   onClick={() => { closeModal(); handlePlayBtn(); }}
                 />
-              <h1>Click!!</h1>
-            </ModalContent>
-          </Modal>
+                <h1>Click!!</h1>
+              </ModalContent>
+            </Modal>
           )}
 
-            {isModalOpen &&
+          {isModalOpen &&
             <Modal2>
               <ModalContent2>
                 <ModalMain2>
@@ -577,26 +563,26 @@ const chooseRandomSong = () => {
               </ModalContent2>
             </Modal2>
           }
-          <h1>현재까지 당신의 점수는 {score} 점입니다!</h1> 
+          <h1>현재까지 당신의 점수는 {score} 점입니다!</h1>
           <img
             src="./images/discospaghetti.gif"
             style={{ width: "50%", height: "50%" }}
           />
-            <ReactPlayer
-              url={currentVideoUrl}
-              width='0%'
-              height='0%'
-              controls={true}
-              playing={playing}
-              light={false}
-              pip={true}
-              playsinline={true} // playsinline 속성 추가
-            />
-            <TextBox
-              value={inputText.toLowerCase()} // 입력된 텍스트를 화면에 출력할 때 소문자로 변환하여 보여줌
-              onChange={(e) => setInputText(e.target.value)} // 입력된 값은 원본 그대로 유지
-              placeholder="정답을 입력하세요"
-            />
+          <ReactPlayer
+            url={currentVideoUrl}
+            width='0%'
+            height='0%'
+            controls={true}
+            playing={playing}
+            light={false}
+            pip={true}
+            playsinline={true} // playsinline 속성 추가
+          />
+          <TextBox
+            value={inputText.toLowerCase()} // 입력된 텍스트를 화면에 출력할 때 소문자로 변환하여 보여줌
+            onChange={(e) => setInputText(e.target.value)} // 입력된 값은 원본 그대로 유지
+            placeholder="정답을 입력하세요"
+          />
           <BtnArea>
             <CorrectBtn onClick={handlePlayBtn}>{playing ? '일시 정지' : '재생'}</CorrectBtn>
             <PassBtn onClick={handleOpenModal}>정답공개</PassBtn> {/* 패스 버튼 추가 */}
@@ -606,23 +592,23 @@ const chooseRandomSong = () => {
 
       {/*여기부터 모바일 환경*/}
       <MediaQuery maxWidth={767}>
-      <ToastContainer />
+        <ToastContainer />
         <MobileFrame>
           {showModal && (
-          <Modal>
-            <ModalContent>
-              <h3 style={{marginTop:"20%"}}>버튼을 클릭하면 시작합니다!</h3>
-              <img
-                src="./images/playButton.png"
-                style={{width: "40%", height: "30%", marginTop:"10%" }}
-                onClick={() => { closeModal(); handlePlayBtn(); }}
-              />
-              <h1>Click!!</h1>
-            </ModalContent>
-          </Modal>
+            <Modal>
+              <ModalContent>
+                <h3 style={{ marginTop: "20%" }}>버튼을 클릭하면 시작합니다!</h3>
+                <img
+                  src="./images/playButton.png"
+                  style={{ width: "40%", height: "30%", marginTop: "10%" }}
+                  onClick={() => { closeModal(); handlePlayBtn(); }}
+                />
+                <h1>Click!!</h1>
+              </ModalContent>
+            </Modal>
           )}
 
-            {isModalOpen &&
+          {isModalOpen &&
             <Modal2>
               <ModalContent2>
                 <ModalMain2>
@@ -648,8 +634,8 @@ const chooseRandomSong = () => {
           }
 
           <MobileHeader>
-            <h4>현재까지 당신의 점수는 {score} 점입니다!</h4> 
-	                 <MobileHeaderA>
+            <h4>현재까지 당신의 점수는 {score} 점입니다!</h4>
+            <MobileHeaderA>
               <MobileHeaderAa>발라드: {genreCounts["발라드"]}</MobileHeaderAa>
                <MobileHeaderAb>댄스: {genreCounts["댄스"]}</MobileHeaderAb>
                <MobileHeaderAc> R&B: {genreCounts["R&B"]}</MobileHeaderAc>
@@ -688,7 +674,7 @@ const chooseRandomSong = () => {
             </MobileFooterA>
             <MobileFooterB>
               <MobilePassBtn onClick={handlePlayBtn}>{playing ? '일시 정지' : '재생'}</MobilePassBtn>
-              <MobilePassBtn onClick={handleOpenModal}>정답공개</MobilePassBtn> 
+              <MobilePassBtn onClick={handleOpenModal}>정답공개</MobilePassBtn>
             </MobileFooterB>
           </MobileFooter>
         </MobileFrame>
