@@ -427,7 +427,7 @@ const chooseRandomSong = () => {
     };
 
     const request_datam = {score: score}
-    const response = await axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/input_result', request_datam, config);
+    const response = axios.post(process.env.REACT_APP_FAST_API_KEY + '/api/users/input_result', request_datam, config);
     alert(response.data);
   } 
   catch (error) 
