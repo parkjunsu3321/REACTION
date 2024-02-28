@@ -413,7 +413,12 @@ const InGameContent = () => {
   };
   
   const gameresultinput = async (score) => {
-  const token = localStorage.getItem('token');
+  
+};
+
+const chooseRandomSong = () => {
+    if (playedIndexes.length === PopularSong.length) {
+      const token = localStorage.getItem('token');
   try {
     const config = {
       headers: {
@@ -429,16 +434,9 @@ const InGameContent = () => {
   {
     console.error('Error:', error.response.data);
   }
-};
-
-const chooseRandomSong = async () => {
-    if (playedIndexes.length === PopularSong.length) {
       navigate('/GameResult', { state: { score } });
       return;
     }
-    
-    // Await gameresultinput function call
-    await gameresultinput(score);
   };
   
     // 이미 재생된 노래를 제외하고 랜덤하게 노래 선택
