@@ -490,36 +490,45 @@ const InGameContent = () => {
     }, 300); // 0.3초 뒤에 재생 시작
   }
 
-  const handleAnswerCheck = () => {
-    // 입력값이 비어 있는지 확인하고, 비어 있다면 함수 종료
-    if (inputText.trim() === "") {
-      toast.error("정답을 입력하세요.", { autoClose: 1000 }); // 토스트 메시지로 변경
-      playEmptySound();
-      return;
-    }
-
+  const handleAnswerCheck = async () => {
+  try {
+    const requestData = { input: inputText, answer: PopularSong[currentVideoIndex].name };
+    const response = await axios.post(`${process.env.REACT_APP_FAST_API_KEY}/api/users/textembedding`, requestData);
+    
+    console.log("Response from server:", response.data);
+    
     const currentSong = PopularSong[currentVideoIndex];
-    if (currentSong.answer.includes(inputText.trim().toLowerCase())) {
+	  
+    if (response.data === true) {
       playCorrectSound();
       setInputText("");
-      toast.success("정답입니다.", { autoClose: 1000 }); // 토스트 메시지로 변경
-      setScore(score + 1); // 맞췄을 때 점수 증가
-
-      // 장르별 맞춘 개수 업데이트
-      const currentGenre = currentSong.tags[0]; // 장르는 배열의 첫 번째 요소로 가정
-      setGenreCounts(prevCounts => ({
-        ...prevCounts,
-        [currentGenre]: prevCounts[currentGenre] + 1
-      }));
-
-      // 다음 곡으로 이동
+      toast.success("정답입니다.", { autoClose: 1000 });
+      setScore(score + 1);
+          // 장르별 맞춘 개수 업데이트
+	    const currentGenre = currentSong.tags[0]; // 장르는 배열의 첫 번째 요소로 가정
+	    setGenreCounts(prevCounts => ({
+	      ...prevCounts,
+	      [currentGenre]: prevCounts[currentGenre] + 1
+	    }));
+		    
       handleNextBtn();
     } else {
-      toast.error("틀렸습니다. 다시 시도해주세요.", { autoClose: 1000 }); // 토스트 메시지로 변경
       playWrongSound();
+      toast.error("틀렸습니다. 다시 시도해주세요.", { autoClose: 1000 });
     }
-  };
-
+  } catch (error) {
+    console.error('Error:', error.message);
+    // Handle error response if available
+    if (error.response) {
+      console.error('Error Response:', error.response.data);
+      if (error.response.status === 422) {
+        console.error('Validation Error:', error.response.data.detail);
+      }
+    } else {
+      console.error('Unhandled Error:', error);
+    }
+  }
+};
   const currentVideoUrl = `https://www.youtube.com/watch?v=${PopularSong[currentVideoIndex].code}`;
 
   return (
